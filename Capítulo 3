@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define ex1
+#define ex3
 //BS.: Todos os programa devem ser finalizados pelo usuario.
 
 #ifdef ex1
@@ -66,7 +66,38 @@ int main() {
     - Se os 2 numeros sao negativos, retorne a multiplicacao dos N numeros existente
       entre eles.
     - Se 1. numero for positivo e o 2. negativo faca a divisao entre eles.*/
+int verificar(numeroII) {
+    int valor;
+    if(numeroII%2 == 0)
+	    valor=1;
+    else
+	    valor=0;
+return valor;
+}
+
 int main() {
+	int numeroI, numeroII, verificadoI, verificadoII;
+	char Resposta;
+	setlocale(LC_ALL,"");
+
+	do{
+        printf("Digite o valor do número 1: ");
+        scanf("%d",&numeroII);
+        verificadoI = verificar(numeroII);
+        numeroI = numeroII;
+
+        printf("Digite o valor do número 2: ");
+        scanf("%d",&numeroII);
+        verificadoII = verificar(numeroII);
+
+        if(verificadoI==0 && verificadoII == 0)
+            printf("A multiplicação dos número é: %d",numeroI*numeroII);
+        else
+            printf("a divisão dos números é %d",numeroI/numeroII);
+        printf("Digite S caso queira tentar com novos valores: ");
+        scanf("%c",&Resposta);
+	}while(Resposta == 's' || Resposta == 'S');
+	return 0;
 }
 #endif //ex2
 
@@ -75,7 +106,34 @@ int main() {
     uma funcao para cada operacoes aritmeticas e passe como parametro os 2
     valores recebidos na funcao main(). Retorne os resultados usando o comando
     return e imprima os 4 resultados no video na funcao main().*/
+int Soma(int valorI, int valorII) {
+    return valorI + valorII;
+}
+int Subtracao(int valorI, int valorII) {
+    return valorI - valorII;
+}
+float Divisao(float valorI,float valorII) {
+    return valorI/valorII;
+}
+int Multiplicacao(int valorI, int valorII) {
+    return valorI*valorII;
+}
+
 int main () {
+    float valorI, valorII;
+    char Resposta;
+    setlocale(LC_ALL,"");
+
+    do{
+        printf("Digite um número: ");
+        scanf("%f",&valorI);
+        printf("Digite um número: ");
+        scanf("%f",&valorII);
+        printf("A soma dos números é: %d\nA subtração dos números é: %d\nA multiplicação dos números é: %d\nA divisão dos números é: %.2f\n",Soma(valorI,valorII),Subtracao(valorI,valorII),Multiplicacao(valorI,valorII),Divisao(valorI,valorII));
+        printf("\nDigite s caso queira continuar: ");
+        scanf("%c",&Resposta);
+        getchar();
+    }while(Resposta == 's'||Resposta=='S');
 }
 #endif //ex3
 
