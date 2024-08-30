@@ -1,0 +1,25 @@
+
+int verifiar(numeroII) {
+int valor;
+if(numeroII%2 == 0)
+	valor=1;
+else
+	valor=0;
+
+return valor;
+}
+
+int main() {
+	int numeroI, numeroII, verificadoI, verificadoII;
+
+	printf("Digite o valor do número 1: ");
+	scanf("%d",&numeroII);
+	verificar(numeroII) = verificadoI;
+	numeroI = numeroII;
+
+	printf("Digite o valor do número 2: ");
+	scanf("%d",&numeroII);
+	verificar(numeroII) = verificadoII;
+
+	if(verificadoI==0 && verificadoII == 0)numeroI*numeroII);
+	else  printf("a divisão dos números é %d",numeroI/numeroII);
