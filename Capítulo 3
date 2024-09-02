@@ -140,7 +140,53 @@ int main () {
 #ifdef ex4
 4 - Reescreva o programa do exercicio anterior para receber via teclado n
     valores. Os n valores nao sao definidos previamente.
-int main() {
+int Soma(int valores[50], int quantidade) {
+int x, soma = 0;
+for(x=0; x<quantidade;x++)
+	soma += valores[x];
+return soma;
+}
+int Subtracao(int valores[50], int quantidade) {
+int x, subtracao = valores[0];
+for(x=1; x<quantidade;x++)
+	subtracao = subtracao -(valores[x]);
+return subtracao;
+}
+float Divisao(int valores[50], int quantidade) {
+int x, divisao = valores[0];
+for(x=1; x<quantidade;x++)
+	divisao = divisao/valores[x];
+return divisao;
+}
+int Multiplicacao(int valores[50], int quantidade) {
+int x, multiplicacao = valores[0];
+for(x=1; x<quantidade;x++)
+	multiplicacao = multiplicacao*valores[x];
+return multipicacao;
+}
+
+int main () {
+float valores[50];
+int quantidade, x;
+char Resposta;
+setlocale(LC_ALL,"");
+
+    do{
+        do{
+		printf("Digite a quantidade de números que deseja digitar: ");
+        	scanf("%d",&quantidade);
+		if(quantidade<2)
+			printf("Digite um valor válido!\n");
+	}while(quantidade<2);
+	for(x = 0; x<quantidade; x++) {
+        	printf("Digite um número: ");
+        	scanf("%f",&valores[x]);
+	}
+        printf("A soma dos números é: %d\nA subtração dos números é: %d\nA multiplicação dos números é: %d\nA divisão dos números é: %.5f\n",Soma(valorI,valorII),Subtracao(valorI,valorII),Multiplicacao(valorI,valorII),Divisao(valorI,valorII));
+        printf("\nDigite s caso queira continuar: ");
+        scanf("%c",&Resposta);
+        getchar();
+    }while(Resposta == 's'||Resposta=='S');
 }
 #endif //ex4
 
@@ -150,5 +196,34 @@ int main() {
     As operacoes aritmeticas devem ser funcoes. O resultado acumulado deve ser
     mostrado na funcao main().*/
 int main() {
+float valores[50], resultado;
+int quantidade, x;
+char Resposta;
+print("\nDigite "+" para soma, "-"para subtração,"x" para multiplicação ou "/" para divisão.\n\n")
+do{
+	resultado = valores[0];
+	for(x=1;x<quantidade;x++) {
+	print("\nOperação: ");
+	scanf("%c",&Resposta);
+	getchar();
+		switch(Resposta)
+			case '+':
+				resultado += valores[x]
+			break;
+			case '-':
+				resultado = resultado -(valores[x]);
+			break;
+			case 'x':
+				resultado = resultado*valores[x];
+			break;
+			case '/':
+				resultado = resultado/valores[x];
+			break;
+	}
+printf("O resultado das operações é: %f", resultado);
+printf("\nDigite s caso queira continuar: ");
+        scanf("%c",&Resposta);
+        getchar();
+}while(Resposta == 's'||Resposta=='S');
 }
 #endif //ex5
