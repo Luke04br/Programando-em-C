@@ -199,13 +199,23 @@ int main() {
 float valores[50], resultado;
 int quantidade, x;
 char Resposta;
+setlocale(LC_ALL,"");
 print("\nDigite "+" para soma, "-"para subtração,"x" para multiplicação ou "/" para divisão.\n\n")
 do{
+	scanf("%d",&valores[0]);
 	resultado = valores[0];
-	for(x=1;x<quantidade;x++) {
-	print("\nOperação: ");
+	for(x=1;;x++) {
+	do {
 	scanf("%c",&Resposta);
 	getchar();
+		if(Resposta != '+'||Resposta != '-'||Resposta != 'x'||Resposta != '/'||Resposta != '=')
+			printf("Digite um operdor válido!\n);
+	}while(Resposta != '+'||Resposta != '-'||Resposta != 'x'||Resposta != '/'||Resposta != '=');
+		if(Resposta == '=') {
+			printf("Resultado: %f\n", resultado);
+			break;
+		}
+	scanf("%d",&valores[x]);
 		switch(Resposta)
 			case '+':
 				resultado += valores[x]
@@ -219,8 +229,8 @@ do{
 			case '/':
 				resultado = resultado/valores[x];
 			break;
+		printf("Resultado: %f\n", resultado);
 	}
-printf("O resultado das operações é: %f", resultado);
 printf("\nDigite s caso queira continuar: ");
         scanf("%c",&Resposta);
         getchar();
