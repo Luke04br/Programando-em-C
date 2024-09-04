@@ -204,21 +204,18 @@ int main() {
     setlocale(LC_ALL,"");
     printf("\nDigite (+) para soma, (-) para subtração,(x) para multiplicação ou (/) para divisão.\n\n");
     do{
-        scanf("%d",&valores[0]);
+        scanf("%f",&valores[0]);
         getchar();
         resultado = valores[0];
-        for(x=0;;x++) {
+        for(x=1;;x++) {
             do {
                 scanf("%c",&Resposta);
                 getchar();
                 if(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=')
                         printf("Digite um operdor válido!\n");
             }while(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=');
-            if(Resposta == '=') {
-                printf("Resultado: %f\n", resultado);
-                break;
-            }
-            scanf("%d",&valores[x]);
+            scanf("%f",&valores[x]);
+            getchar();
             switch(Resposta) {
 
                 case '+':
@@ -240,7 +237,6 @@ int main() {
                     break;
                 break;
             }
-            printf("Resultado: %c\n", Resposta);
             printf("Resultado: %.2f\n", resultado);
         }
         printf("\nDigite s caso queira continuar: ");
