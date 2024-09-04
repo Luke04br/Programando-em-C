@@ -1,7 +1,8 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define ex3
+#define ex5
 //BS.: Todos os programa devem ser finalizados pelo usuario.
 
 #ifdef ex1
@@ -10,21 +11,21 @@
     mostrado na funcao main().
     Ex: se N = 4, N! = 24. Logo, a soma de seus algarismos e´ 2 + 4 = 6.*/
 int main() {
-    int x, N, Nf=1,metrica=1, Soma = 0, suporte;
+    int x, N, Nf = 1, metrica = 1, Soma = 0, suporte;
     char Resposta;
     setlocale(LC_ALL,"");
 
     do {
         do {
-            printf("Digite um número maior que 0: ");
+            printf("\nDigite um número maior que 0: ");
             scanf("%d",&N);
             getchar();
-            if(N<0)
+            if(N<0 || N>16)
                 printf("Digite um valor válido!!!\n\n");
-        }while(N<0);
+        }while(N<0 || N>16);
 
-        for(x=1;x<N;x++) //fatorando
-            Nf += Nf*x;
+        for(x=1;x<N+1;x++) //fatoriando
+            Nf = Nf*x;
 
         printf("\nO falor do fatorial do número digitado é: %d", Nf);
         for(x=0;;x++){ // determinando o tamanho
@@ -35,6 +36,7 @@ int main() {
                 break;
             }
         }
+
         for(x=0;;x++) { //fazendo a soma
             if(metrica==1)
                 break;
@@ -76,25 +78,26 @@ return valor;
 }
 
 int main() {
-	int numeroI, numeroII, verificadoI, verificadoII;
+	float numeroI, numeroII;
+	int verificadoI, verificadoII;
 	char Resposta;
 	setlocale(LC_ALL,"");
 
 	do{
         printf("Digite o valor do número 1: ");
-        scanf("%d",&numeroII);
+        scanf("%f",&numeroII);
         verificadoI = verificar(numeroII);
         numeroI = numeroII;
 
         printf("Digite o valor do número 2: ");
-        scanf("%d",&numeroII);
+        scanf("%f",&numeroII);
         verificadoII = verificar(numeroII);
 
         if(verificadoI==0 && verificadoII == 0)
             printf("A multiplicação dos número é: %d",numeroI*numeroII);
         else
-            printf("a divisão dos números é %d",numeroI/numeroII);
-        printf("Digite S caso queira tentar com novos valores: ");
+            printf("a divisão dos números é %f",numeroI/numeroII);
+        printf("\n\nDigite S caso queira tentar com novos valores: ");
         scanf("%c",&Resposta);
 	}while(Resposta == 's' || Resposta == 'S');
 	return 0;
@@ -138,51 +141,50 @@ int main () {
 #endif //ex3
 
 #ifdef ex4
-4 - Reescreva o programa do exercicio anterior para receber via teclado n
-    valores. Os n valores nao sao definidos previamente.
-int Soma(int valores[50], int quantidade) {
+/*4 - Reescreva o programa do exercicio anterior para receber via teclado n
+    valores. Os n valores nao sao definidos previamente.*/
+float valores[50];
+int Soma(int quant) {
 int x, soma = 0;
-for(x=0; x<quantidade;x++)
+for(x=0; x<quant;x++)
 	soma += valores[x];
 return soma;
 }
-int Subtracao(int valores[50], int quantidade) {
+int Subtracao(int quant) {
 int x, subtracao = valores[0];
-for(x=1; x<quantidade;x++)
+for(x=1; x<quant;x++)
 	subtracao = subtracao -(valores[x]);
 return subtracao;
 }
-float Divisao(int valores[50], int quantidade) {
+float Divisao(int quant) {
 int x, divisao = valores[0];
-for(x=1; x<quantidade;x++)
+for(x=1; x<quant;x++)
 	divisao = divisao/valores[x];
 return divisao;
 }
-int Multiplicacao(int valores[50], int quantidade) {
+int Multiplicacao(int quant) {
 int x, multiplicacao = valores[0];
-for(x=1; x<quantidade;x++)
+for(x=1; x<quant;x++)
 	multiplicacao = multiplicacao*valores[x];
-return multipicacao;
+return multiplicacao;
 }
 
 int main () {
-float valores[50];
-int quantidade, x;
+int quant = 0, x;
 char Resposta;
 setlocale(LC_ALL,"");
 
     do{
-        do{
-		printf("Digite a quantidade de números que deseja digitar: ");
-        	scanf("%d",&quantidade);
-		if(quantidade<2)
-			printf("Digite um valor válido!\n");
-	}while(quantidade<2);
-	for(x = 0; x<quantidade; x++) {
+        for(x = 0;;x++){
+            if(Resposta!= '=') {
         	printf("Digite um número: ");
         	scanf("%f",&valores[x]);
-	}
-        printf("A soma dos números é: %d\nA subtração dos números é: %d\nA multiplicação dos números é: %d\nA divisão dos números é: %.5f\n",Soma(valorI,valorII),Subtracao(valorI,valorII),Multiplicacao(valorI,valorII),Divisao(valorI,valorII));
+        	Resposta = getchar();
+        	quant++;
+            }
+            else break;
+        }
+        printf("A soma dos números é: %d\nA subtração dos números é: %d\nA multiplicação dos números é: %d\nA divisão dos números é: %.5f\n",Soma(quant),Subtracao(quant),Multiplicacao(quant),Divisao(quant));
         printf("\nDigite s caso queira continuar: ");
         scanf("%c",&Resposta);
         getchar();
@@ -196,44 +198,55 @@ setlocale(LC_ALL,"");
     As operacoes aritmeticas devem ser funcoes. O resultado acumulado deve ser
     mostrado na funcao main().*/
 int main() {
-float valores[50], resultado;
-int quantidade, x;
-char Resposta;
-setlocale(LC_ALL,"");
-print("\nDigite "+" para soma, "-"para subtração,"x" para multiplicação ou "/" para divisão.\n\n")
-do{
-	scanf("%d",&valores[0]);
-	resultado = valores[0];
-	for(x=1;;x++) {
-	do {
-	scanf("%c",&Resposta);
-	getchar();
-		if(Resposta != '+'||Resposta != '-'||Resposta != 'x'||Resposta != '/'||Resposta != '=')
-			printf("Digite um operdor válido!\n);
-	}while(Resposta != '+'||Resposta != '-'||Resposta != 'x'||Resposta != '/'||Resposta != '=');
-		if(Resposta == '=') {
-			printf("Resultado: %f\n", resultado);
-			break;
-		}
-	scanf("%d",&valores[x]);
-		switch(Resposta)
-			case '+':
-				resultado += valores[x]
-			break;
-			case '-':
-				resultado = resultado -(valores[x]);
-			break;
-			case 'x':
-				resultado = resultado*valores[x];
-			break;
-			case '/':
-				resultado = resultado/valores[x];
-			break;
-		printf("Resultado: %f\n", resultado);
-	}
-printf("\nDigite s caso queira continuar: ");
+    float valores[50], resultado;
+    int x;
+    char Resposta;
+    setlocale(LC_ALL,"");
+    printf("\nDigite (+) para soma, (-) para subtração,(x) para multiplicação ou (/) para divisão.\n\n");
+    do{
+        scanf("%d",&valores[0]);
+        getchar();
+        resultado = valores[0];
+        for(x=0;;x++) {
+            do {
+                scanf("%c",&Resposta);
+                getchar();
+                if(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=')
+                        printf("Digite um operdor válido!\n");
+            }while(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=');
+            if(Resposta == '=') {
+                printf("Resultado: %f\n", resultado);
+                break;
+            }
+            scanf("%d",&valores[x]);
+            switch(Resposta) {
+
+                case '+':
+                    resultado = resultado + valores[x];
+                break;
+
+                case '-':
+                    resultado = resultado -(valores[x]);
+                break;
+
+                case 'x':
+                    resultado = resultado*valores[x];
+                break;
+
+                case '/':
+                    resultado = resultado/valores[x];
+                break;
+                case '=':
+                    break;
+                break;
+            }
+            printf("Resultado: %c\n", Resposta);
+            printf("Resultado: %.2f\n", resultado);
+        }
+        printf("\nDigite s caso queira continuar: ");
         scanf("%c",&Resposta);
         getchar();
-}while(Resposta == 's'||Resposta=='S');
+    }while(Resposta == 's'||Resposta=='S');
+    return 0;
 }
 #endif //ex5
