@@ -214,6 +214,10 @@ int main() {
                 if(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=')
                         printf("Digite um operdor válido!\n");
             }while(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=');
+            if(Resposta == '=') {
+                printf("\nResultado = %.2f",resultado);
+                break;
+            }
             scanf("%f",&valores[x]);
             getchar();
             switch(Resposta) {
@@ -233,11 +237,7 @@ int main() {
                 case '/':
                     resultado = resultado/valores[x];
                 break;
-                case '=':
-                    break;
-                break;
             }
-            printf("Resultado: %.2f\n", resultado);
         }
         printf("\nDigite s caso queira continuar: ");
         scanf("%c",&Resposta);
