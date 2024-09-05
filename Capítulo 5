@@ -1,1 +1,51 @@
+#include<stdlib.h>
+#include<locale.h>
+#define ex1
+//OBS.: Todos os programa devem ser finalizados pelo usuario.
+#ifdef ex1
+/*1 - Receba 2 string de ate 10 caracteres via teclado na funcao main(). Faça uma
+    funcao para compara-las e retorne como resultado se são IGUAIS 1 ou se
+    DIFERENTES 0 para a funcao main(). Imprima o resultado na funcao main().
+    (Declare os vetores como variavel global) (nao pode usar funcao de biblioteca)*/
+int main() {
+}
+#endif//ex1
+
+#ifdef ex2
+/*2 - Escreva um programa para receber 5 nomes, com até 7 caracteres, via teclado
+    e imprima-os no video no seguinte formato:(Declare os 5 vetores como variaveis
+    globais)
+
+            10        20        30        40        50
+    12345678901234567890123456789012345678901234567890
+      nome1                                   nome5
+                nome2               nome4
+                          nome3
+*/
+int main() {
+}
+#endif//ex2
+
+#ifdef ex3
+/*3 - Escreva um programa que receba uma string na funcao main(). Faca uma funcao que
+    calcula o comprimento de uma string recebida via teclado. Mostre o valor do
+    comprimento na funcao main().
+    (Declare o vetor como variavel global) (nao pode usar funcao de biblioteca)*/
+int main() {
+}
+#endif//ex3
+
+#ifdef ex4
+/*4 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
+    para letras maiusculas. (nao pode usar funcao de biblioteca)*?/
+int main() {
+}
+#endif//ex4
+
+#ifdef ex5
+/*5 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
+    para letras minusculas. (nao pode usar funcao de biblioteca)*/
+int main() {
+}
+#endif//ex5
 
