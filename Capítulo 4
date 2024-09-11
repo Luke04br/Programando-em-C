@@ -1,12 +1,37 @@
 #include <stdlib.h>
 #include <locale.h>
-#define ex1
+#define ex4
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
 #ifdef ex1
 /*1 - Receba via teclado 10 valores inteiros e ordene por ordem crescente assim
-    que sao digitados. Guarde-os em um vetor. Mostre ao final os valores 
+    que sao digitados. Guarde-os em um vetor. Mostre ao final os valores
     ordenados.*/
 int main() {
+    int valores[10], ordem[10], x, sup, posicao = 0;
+    char Resposta;
+    setlocale(LC_ALL,"");
+
+    do{
+        printf("Digite os 10 valores que deseja ordenar\n");
+        for(x=0;x<10;x++) {
+            printf("%d° valor: ",x+1);
+            scanf("%d",&valores[x]);
+        }
+        for(x=0;x<10;x++) {
+            for(sup=0;sup<10;sup++) {
+                if(valores[x]>valores[sup])
+                    posicao++;
+            }
+            ordem[posicao] = valores[x];
+            posicao = 0;
+        }
+        printf("Ordenando os valores em ordem crescente:");
+        for(x=0;x<10;x++)
+            printf(" %d ",ordem[x]);
+        printf("\n\nDigite s caso queira continuar: ");
+        scanf(" %c",&Resposta);
+    }while(Resposta=='s'||Resposta=='S');
+    return 0;
 }
 #endif//ex1
 
@@ -28,22 +53,96 @@ int main() {
 #endif//ex2
 
 #ifdef ex3
-/*3 - Escreva um programa que receba um vetor de inteiros com tamanho 10 e o 
-    decomponha em dois outros vetores. Um tera´ as componentes de ordem impar 
+/*3 - Escreva um programa que receba um vetor de inteiros com tamanho 10 e o
+    decomponha em dois outros vetores. Um tera´ as componentes de ordem impar
     e o outro tera´ as componentes de ordem par.
     Por exemplo, se o vetor dado for v = {3, 5, 6, 8, 1, 4, 2, 3, 7, 9}, o programa
     deve gerar os vetores u = {3, 6, 1, 2, 7} e w = {5, 8, 4, 3, 9}.*/
 int main() {
+    int vetor[10], p[5], i[5], x, y, z;
+    char Resposta;
+    setlocale(LC_ALL,"");
+
+    do{
+        y = -1;
+        z = -1;
+        printf("Digite os 10 valores do vetor\n");
+        for(x=0;x<10;x++) {
+            printf("%d° valor: ",x+1);
+            scanf("%d",&vetor[x]);
+        }
+        for(x=0;x<10;x++) {
+            if(x%2==0){
+                y++;
+                p[y]=vetor[x];
+            }
+            else {
+                z++;
+                i[z]=vetor[x];
+            }
+        }
+        printf("vetor de índice par: ");
+        for(x=0;x<5;x++)
+            printf(" %d" ,p[x]);
+
+         printf("\nvetor de índice ímpar: ");
+        for(x=0;x<5;x++)
+            printf(" %d" ,i[x]);
+
+        printf("\n\nDigite s caso queira continuar: ");
+        scanf(" %c",&Resposta);
+    }while(Resposta=='s'||Resposta=='S');
 }
 #endif//ex3
 
 #ifdef ex4
-/*4 - Escreva um programa que receba um vetor de inteiros com tamanho 10 e o 
-    decomponha em dois outros vetores. Um tera´ as componentes de valor impar 
-    e o outro tera´ as componentes de valor par. 
+/*4 - Escreva um programa que receba um vetor de inteiros com tamanho 10 e o
+    decomponha em dois outros vetores. Um tera´ as componentes de valor impar
+    e o outro tera´ as componentes de valor par.
     Por exemplo, se o vetor dado for v = {3, 5, 6, 8, 1, 4, 2, 3, 7, 4} o
     programa deve gerar os vetores u = {3, 5, 1, 3, 7} e w = {6, 8, 4, 2, 4}.*/
 int main() {
+    int vetor[10], p[10], i[10], x, y, z;
+    char Resposta;
+    setlocale(LC_ALL,"");
+
+    do{
+        y = -1;
+        z = -1;
+        printf("Digite os 10 valores do vetor\n");
+        for(x=0;x<10;x++) {
+            printf("%d° valor: ",x+1);
+            scanf("%d",&vetor[x]);
+        }
+        for(x=0;x<10;x++) {
+            if(vetor[x]%2==0){
+                y++;
+                p[y]=vetor[x];
+            }
+            else {
+                z++;
+                i[z]=vetor[x];
+            }
+        }
+        printf("vetor de valores pares: ");
+        if (y == -1)
+            printf("não há números pares");
+        else{
+        for(x=0;x<y+1;x++)
+            printf(" %d" ,p[x]);
+        }
+
+         printf("\nvetor de valores ímpares: ");
+         if (z == -1)
+            printf("não há números ímpares");
+         else{
+        for(x=0;x<z+1;x++)
+            printf(" %d" ,i[x]);
+         }
+
+        printf("\n\nDigite s caso queira continuar: ");
+        scanf(" %c",&Resposta);
+    }while(Resposta=='s'||Resposta=='S');
 }
 #endif//ex4
 
@@ -57,6 +156,30 @@ int main() {
 }
 #endif//ex5
 
+/*int main() {
+    int valores[10], ordem[10], x, sup, posicao = 0;
+    char Resposta;
+    setlocale(LC_ALL,"");
 
-
-*/
+    do{
+        printf("Digite os 10 valores que deseja ordenar\n");
+        for(x=0;x<10;x++) {
+            printf("%d° valor: ",x+1);
+            scanf("%d",&valores[x]);
+        }
+        for(x=0;x<10;x++) {
+            for(sup=0;sup<10;sup++) {
+                if(valores[x]>valores[sup])
+                    posicao++;
+            }
+            ordem[posicao] = valores[x];
+            posicao = 0;
+        }
+        printf("Ordenando os valores em ordem crescente:");
+        for(x=0;x<10;x++)
+            printf(" %d ",ordem[x]);
+        printf("\n\nDigite s caso queira continuar: ");
+        scanf(" %c",&Resposta);
+    }while(Resposta=='s'||Resposta=='S');
+    return 0;
+}*/
