@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <locale.h>
+
+char filmes [20];
+int quantidade;
+
+int main(){
+    setlocale(LC_ALL,"");
+    char filmePesquisado[20];
+
+    int resposta;
+    printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n 1 - entrada de dados\n 2 - Lista todos os dados na tela\n 3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n 4 - Pesquisar os filmes pela 1° letra\n 5 - Altera dados\n 6 - Exclui dados\n 7 - Saída");
+        printf("\n\nDigite a opção que deseja: ");
+    do {
+        scanf("%d",&resposta);
+        if(resposta>7 || resposta<1)
+            printf("Digite um valor válido: ");
+    }while(resposta>7 || resposta<1);
+
+    if(resposta == 1) {
+        printf("\nDigite o nome do filme 1°: ");
+        scanf("%s",&filmes);
+        printf("Digite a quantidade dele: ");
+        do{
+        scanf("%d",&quantidade);
+        if(quantidade<1)
+            printf("Digite um valor válido: ");
+        }while(quantidade<1);
+    }
+    else if(resposta == 2){
+        printf("DIgite o nome do filme que deseja consultar: ");
+        scanf("%s",&filmePesquisado[20]);
+        if(filmePesquisado[20] == filmes[20])
+             printf("Não há esse filme em nosso catálogo!");
+        else{
+            printf("Não há esse filme em nosso catálogo!");
+        }
+    }
+
+    else if(resposta == 3){
+
+    }
+
+    else if(resposta == 4){
+
+    }
+
+    else if(resposta == 5){
+
+    }
+    else if(resposta == 6){
+
+    }
+    else{
+
+    }
+return 0;
+}
