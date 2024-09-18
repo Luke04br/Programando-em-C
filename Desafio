@@ -1,22 +1,41 @@
 #include <stdio.h>
 #include <locale.h>
 
-char filmes [20];
-int quantidade;
+char filme[20], filmeII[20],filmeIII[20];
+int quantidade, quantidadeII, quantidadeIII;
 
 void Menu() {
     printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n 1 - entrada de dados\n 2 - Lista todos os dados na tela\n 3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n 4 - Pesquisar os filmes pela 1° letra\n 5 - Altera dados\n 6 - Exclui dados\n 7 - Saída");
         printf("\n\nDigite a opção que deseja: ");
 }
 void Entrada(){
+
     printf("\nDigite o nome do filme 1°: ");
-        scanf("%s",&filmes);
-        printf("Digite a quantidade dele: ");
-        do{
+    scanf("%s",&filmes[20]);
+    printf("Digite a quantidade disponível dele: ");
+    do{
         scanf("%d",&quantidade);
         if(quantidade<1)
             printf("Digite um valor válido: ");
-        }while(quantidade<1);
+    }while(quantidade<1);
+
+        printf("\nDigite o nome do filme 2°: ");
+    scanf("%s",&filmesII[20]);
+    printf("Digite a quantidade disponível dele: ");
+    do{
+        scanf("%d",&quantidadeII);
+        if(quantidadeII<1)
+            printf("Digite um valor válido: ");
+    }while(quantidadeII<1);
+
+        printf("\nDigite o nome do filme 3°: ");
+    scanf("%s",&filmesIII[20]);
+    printf("Digite a quantidade disponível dele: ");
+    do{
+        scanf("%d",&quantidadeIII);
+        if(quantidadeIII<1)
+            printf("Digite um valor válido: ");
+    }while(quantidadeIII<1);
 }
 
 void Listagem() {
@@ -24,12 +43,19 @@ void Listagem() {
 
 void Pesquisa() {
     char filmePesquisado[20];
-    printf("DIgite o nome do filme que deseja consultar: ");
-    scanf("%s",&filmePesquisado[20]);
-    if(filmePesquisado[20] == filmes[20])
-        printf("Não há esse filme em nosso catálogo!");
-    else
-        printf("Não há esse filme em nosso catálogo!");
+    do{
+        printf("Digite o nome do filme que deseja consultar: ");
+        scanf("%s",&filmePesquisado[20]);
+        if(filmePesquisado[20] == filme[20])
+            printf("O filme %s tem %d volumes disponíveis",filme[20],quantidade);
+        else if(filmePesquisado[20] == filmesII[20])
+            printf("O filme %s tem %d volumes disponíveis",filmeII[20],quantidadeII);
+        else if(filmePesquisado[20] == filmesIII[20])
+            printf("O filme %s tem %d volumes disponíveis",filmeIII[20],quantidadeIII);
+        else
+            printf("Não há esse filme em nosso catálogo!");
+            
+    }while(filmePesquisado[20] == filme[20] && filmePesquisado[20] == filmeII[20] && filmePesquisado[20] == filmeIII[20]);
 }
 
 void Letra() {
@@ -44,7 +70,6 @@ void Saida() {
 }
 int main(){
     setlocale(LC_ALL,"");
-    char filmePesquisado[20];
     int Resposta, x;
 
     for(x =0;;x++) {
