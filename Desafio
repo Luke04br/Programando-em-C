@@ -11,7 +11,7 @@ void Menu() {
 void Entrada(){
 
     printf("\nDigite o nome do filme 1°: ");
-    scanf("%s",&filmes[20]);
+    scanf("%s",&filme[0]);
     printf("Digite a quantidade disponível dele: ");
     do{
         scanf("%d",&quantidade);
@@ -20,7 +20,7 @@ void Entrada(){
     }while(quantidade<1);
 
         printf("\nDigite o nome do filme 2°: ");
-    scanf("%s",&filmesII[20]);
+    scanf("%s",&filmeII[0]);
     printf("Digite a quantidade disponível dele: ");
     do{
         scanf("%d",&quantidadeII);
@@ -29,7 +29,7 @@ void Entrada(){
     }while(quantidadeII<1);
 
         printf("\nDigite o nome do filme 3°: ");
-    scanf("%s",&filmesIII[20]);
+    scanf("%s",&filmeIII[0]);
     printf("Digite a quantidade disponível dele: ");
     do{
         scanf("%d",&quantidadeIII);
@@ -45,20 +45,32 @@ void Pesquisa() {
     char filmePesquisado[20];
     do{
         printf("Digite o nome do filme que deseja consultar: ");
-        scanf("%s",&filmePesquisado[20]);
-        if(filmePesquisado[20] == filme[20])
+        scanf("%s",&filmePesquisado[0]);
+        if(filmePesquisado[20] == filmeII[20])
             printf("O filme %s tem %d volumes disponíveis",filme[20],quantidade);
-        else if(filmePesquisado[20] == filmesII[20])
+        else if(filmePesquisado[20] == filmeII[20])
             printf("O filme %s tem %d volumes disponíveis",filmeII[20],quantidadeII);
-        else if(filmePesquisado[20] == filmesIII[20])
-            printf("O filme %s tem %d volumes disponíveis",filmeIII[20],quantidadeIII);
+        else if(filmePesquisado == filmeIII)
+            printf("O filme %s tem %d volumes disponíveis",filmeIII,quantidadeIII);
         else
             printf("Não há esse filme em nosso catálogo!");
-            
-    }while(filmePesquisado[20] == filme[20] && filmePesquisado[20] == filmeII[20] && filmePesquisado[20] == filmeIII[20]);
+    }while(filmePesquisado != filme && filmePesquisado != filmeII[20] && filmePesquisado != filmeIII);
 }
 
 void Letra() {
+    char LetraPesquisada;
+    do{
+        printf("Digite a inicial do filme que deseja colsultar: ");
+        scanf("%c",&LetraPesquisada);
+        if(LetraPesquisada == filme[0])
+            printf("O filme %s tem %d volumes disponíveis\n\n",filme,quantidade);
+        else if(LetraPesquisada == filmeII[0])
+            printf("O filme %s tem %d volumes disponíveis\n\n",filmeII,quantidadeII);
+        else if(LetraPesquisada == filmeIII[0])
+            printf("O filme %s tem %d volumes disponíveis\n\n",filmeIII,quantidadeIII);
+        else
+            printf("Não há esse filme em nosso catálogo!");
+    }while(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0]);
 }
 void AlteraDados() {
 }
@@ -109,3 +121,4 @@ int main(){
     }
 return 0;
 }
+
