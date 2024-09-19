@@ -43,34 +43,56 @@ void Listagem() {
 
 void Pesquisa() {
     char filmePesquisado[20];
-    do{
+    int x, cont = 0;
         printf("Digite o nome do filme que deseja consultar: ");
         scanf("%s",&filmePesquisado[0]);
-        if(filmePesquisado[20] == filmeII[20])
-            printf("O filme %s tem %d volumes disponíveis",filme[20],quantidade);
-        else if(filmePesquisado[20] == filmeII[20])
-            printf("O filme %s tem %d volumes disponíveis",filmeII[20],quantidadeII);
-        else if(filmePesquisado == filmeIII)
-            printf("O filme %s tem %d volumes disponíveis",filmeIII,quantidadeIII);
-        else
-            printf("Não há esse filme em nosso catálogo!");
-    }while(filmePesquisado != filme && filmePesquisado != filmeII[20] && filmePesquisado != filmeIII);
-}
+        getchar();
+    
+    for(x=0;x<20;x++){
+        if(filmePesquisado[x]!=filme[x]){
+            cont++;
+            break;
+        }
+    }
+    if(x==19)
+        printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
 
+    for(x=0;x<20;x++){
+        if(filmePesquisado[x]!=filmeII[x]){
+            cont++;
+            break;
+        }
+    }
+        if(x==19)
+            printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
+
+    for(x=0;x<20;x++){
+        if(filmePesquisado[x]!=filmeII[x]){
+            cont++;
+            break;
+        }
+    }
+    if(x==19)
+        printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
+        
+    if(cont==3)
+        printf("O filme %s não está cadastrado",filmePesquisado); 
+    }
+        
 void Letra() {
-    char LetraPesquisada;
-    do{
+    char LetraPesquisada =' ';
+    while(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0]) {
         printf("Digite a inicial do filme que deseja colsultar: ");
         scanf("%c",&LetraPesquisada);
         if(LetraPesquisada == filme[0])
-            printf("O filme %s tem %d volumes disponíveis\n\n",filme,quantidade);
-        else if(LetraPesquisada == filmeII[0])
-            printf("O filme %s tem %d volumes disponíveis\n\n",filmeII,quantidadeII);
-        else if(LetraPesquisada == filmeIII[0])
-            printf("O filme %s tem %d volumes disponíveis\n\n",filmeIII,quantidadeIII);
-        else
-            printf("Não há esse filme em nosso catálogo!");
-    }while(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0]);
+            printf("\nO filme %s tem %d volumes disponíveis\n",filme,quantidade);
+        if(LetraPesquisada == filmeII[0])
+            printf("\nO filme %s tem %d volumes disponíveis\n",filmeII,quantidadeII);
+        if(LetraPesquisada == filmeIII[0])
+            printf("\nO filme %s tem %d volumes disponíveis\n",filmeIII,quantidadeIII);
+        if(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0])
+            printf("Não há filmes com essa inicial em nosso catálogo!\n\n");
+    }    
 }
 void AlteraDados() {
 }
@@ -121,4 +143,3 @@ int main(){
     }
 return 0;
 }
-
