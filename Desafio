@@ -1,103 +1,165 @@
 #include <stdio.h>
 #include <locale.h>
 
-char filme[20], filmeII[20],filmeIII[20];
+char filme[20], filmeII[20], filmeIII[20];
 int quantidade, quantidadeII, quantidadeIII;
 
 void Menu() {
-    printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n 1 - entrada de dados\n 2 - Lista todos os dados na tela\n 3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n 4 - Pesquisar os filmes pela 1° letra\n 5 - Altera dados\n 6 - Exclui dados\n 7 - Saída");
+    printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n 1 - Entrada de dados\n 2 - Lista todos os dados na tela\n 3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n 4 - Pesquisar os filmes pela 1° letra\n 5 - Altera dados\n 6 - Exclui dados\n 7 - Saída");
         printf("\n\nDigite a opção que deseja: ");
 }
+
 void Entrada(){
 
-    printf("\nDigite o nome do filme 1°: ");
-    scanf("%s",&filme[0]);
-    printf("Digite a quantidade disponível dele: ");
+    char Resposta;
+
     do{
-        scanf("%d",&quantidade);
-        if(quantidade<1)
-            printf("Digite um valor válido: ");
-    }while(quantidade<1);
+        printf("\nDigite o nome do filme 1°: ");
+        scanf("%s",&filme);
+        getchar();
+        printf("Digite a quantidade disponível dele: ");
+        do{
+            scanf("%d",&quantidade);
+            getchar();
+            if(quantidade<1)
+                printf("Digite um valor válido: ");
+        }while(quantidade<1);
 
         printf("\nDigite o nome do filme 2°: ");
-    scanf("%s",&filmeII[0]);
-    printf("Digite a quantidade disponível dele: ");
-    do{
-        scanf("%d",&quantidadeII);
-        if(quantidadeII<1)
-            printf("Digite um valor válido: ");
-    }while(quantidadeII<1);
+        scanf("%s",&filmeII);
+        getchar();
+        printf("Digite a quantidade disponível dele: ");
+        do{
+            scanf("%d",&quantidadeII);
+            getchar();
+            if(quantidadeII<1)
+                printf("Digite um valor válido: ");
+        }while(quantidadeII<1);
 
         printf("\nDigite o nome do filme 3°: ");
-    scanf("%s",&filmeIII[0]);
-    printf("Digite a quantidade disponível dele: ");
-    do{
-        scanf("%d",&quantidadeIII);
-        if(quantidadeIII<1)
-            printf("Digite um valor válido: ");
-    }while(quantidadeIII<1);
+        scanf("%s",&filmeIII);
+        getchar();
+        printf("Digite a quantidade disponível dele: ");
+        do{
+            scanf("%d",&quantidadeIII);
+            getchar();
+            if(quantidadeIII<1)
+                printf("Digite um valor válido: ");
+        }while(quantidadeIII<1);
+        printf("\nTem certeza que deseja lançar esses dados? (Digite s se sim) ");
+        scanf("%c",&Resposta);
+        getchar();
+    }while(Resposta!='s' && Resposta != 'S');
 }
 
 void Listagem() {
+    char Resposta;
+   do{
+    printf("O Filme %s tem %d volumes disponíveis.\n",filme, quantidade);
+    printf("O Filme %s tem %d volumes disponíveis.\n",filmeII, quantidadeII);
+    printf("O Filme %s tem %d volumes disponíveis.\n",filmeIII, quantidadeIII);
+    printf("\nJá leu parceiro? (Digite 's' se já): ");
+    scanf("%c",&Resposta);
+   }while(Resposta != 's'&& Resposta != 'S');
 }
 
 void Pesquisa() {
-    char filmePesquisado[20];
+    char filmePesquisado[20], Resposta;
     int x, cont = 0;
-        printf("Digite o nome do filme que deseja consultar: ");
-        scanf("%s",&filmePesquisado[0]);
+
+    do{
+        printf("\nDigite o nome do filme que deseja consultar: ");
+        scanf("%s",&filmePesquisado);
         getchar();
-    
-    for(x=0;x<20;x++){
-        if(filmePesquisado[x]!=filme[x]){
-            cont++;
-            break;
-        }
-    }
-    if(x==19)
-        printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
 
-    for(x=0;x<20;x++){
-        if(filmePesquisado[x]!=filmeII[x]){
-            cont++;
-            break;
+        for(x=0;filmePesquisado[x]!='\0';x++)
+            if(filmePesquisado[x]!= filme[x])
+                break;
+        if(filmePesquisado[x]=='\0' && filme[x]=='\0') {
+                printf("\nO filme %s tem %d volumes em estoque\n",filme,quantidade);
+                cont++;
         }
-    }
-        if(x==19)
-            printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
 
-    for(x=0;x<20;x++){
-        if(filmePesquisado[x]!=filmeII[x]){
-            cont++;
-            break;
-        }
-    }
-    if(x==19)
-        printf("\nO filme %s tem %d em estoque\n",filmePesquisado, quantidade);
-        
-    if(cont==3)
-        printf("O filme %s não está cadastrado",filmePesquisado); 
-    }
-        
+        for(x=0;filmePesquisado[x]!='\0';x++)
+            if(filmePesquisado[x]!= filmeII[x])
+                break;
+        if(filmePesquisado[x]=='\0' && filmeII[x]=='\0') {
+                printf("\nO filme %s tem %d volumes em estoque\n",filmeII,quantidadeII);
+                cont++;
+            }
+
+        for(x=0;filmePesquisado[x]!='\0';x++)
+            if(filmePesquisado[x]!= filmeIII[x])
+                break;
+        if(filmePesquisado[x]=='\0' && filmeIII[x]=='\0') {
+                printf("\nO filme %s tem %d volumes em estoque\n",filmeIII,quantidadeIII);
+                cont++;
+            }
+
+        if(cont==0)
+            printf("\nO filme '%s' não está cadastrado\n",filmePesquisado);
+
+        printf("\nDigite S para pesquisar outro filme pelo nome: ");
+        scanf("%c",&Resposta);
+        system("cls");
+    }while(Resposta =='s'||Resposta=='S');
+}
+
 void Letra() {
-    char LetraPesquisada =' ';
-    while(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0]) {
-        printf("Digite a inicial do filme que deseja colsultar: ");
+    char LetraPesquisada, Resposta;
+    do {
+        printf("\nDigite a inicial do filme que deseja colsultar: ");
         scanf("%c",&LetraPesquisada);
+        getchar();
         if(LetraPesquisada == filme[0])
             printf("\nO filme %s tem %d volumes disponíveis\n",filme,quantidade);
         if(LetraPesquisada == filmeII[0])
             printf("\nO filme %s tem %d volumes disponíveis\n",filmeII,quantidadeII);
         if(LetraPesquisada == filmeIII[0])
             printf("\nO filme %s tem %d volumes disponíveis\n",filmeIII,quantidadeIII);
+
         if(LetraPesquisada != filme[0] && LetraPesquisada != filmeII[0] && LetraPesquisada != filmeIII[0])
-            printf("Não há filmes com essa inicial em nosso catálogo!\n\n");
-    }    
+            printf("Não há filmes com essa inicial em nosso catálogo!\n");
+
+        printf("\nDeseja pesquisar outro filme pela inical? (Digite 's' caso queira): ");
+        scanf("%c",&Resposta);
+        getchar();
+        system("cls");
+    }while(Resposta =='s' || Resposta == 'S');
 }
+
 void AlteraDados() {
+    int numero;
+    char Resposta;
+    do {
+        printf("1 - O Filme %s tem %d volumes disponíveis.\n",filme, quantidade);
+        printf("2 - O Filme %s tem %d volumes disponíveis.\n",filmeII, quantidadeII);
+        printf("3 - O Filme %s tem %d volumes disponíveis.\n",filmeIII, quantidadeIII);
+        printf("Digite o número do filme que deseja alterar os dados: ");
+        scanf("%d",&numero);
+        getchar();
+        switch(numero){
+            case 1:
+                    printf("\nDigite o nome do filme 1°: ");
+                    scanf("%s",&filme);
+                    getchar();
+                    printf("Digite a quantidade disponível dele: ");
+                do{
+                    scanf("%d",&quantidade);
+                    getchar();
+                    if(quantidade<1)
+                        printf("Digite um valor válido: ");
+                }while(quantidade<1);
+            break;
+        case 2:
+            case 3:
+        }
+    }while(Resposta == 's' || Resposta == 'S');
 }
+
 void ExluiDados() {
 }
+
 void Saida() {
     printf("Fechando o menu...\n\n");
     exit(0);
@@ -111,7 +173,7 @@ int main(){
         Menu();
         do {
             scanf("%d",&Resposta);
-            getchar;
+            getchar();
             if(Resposta>7 || Resposta<1)
                 printf("Digite um valor válido: ");
         }while(Resposta>7 || Resposta<1);
