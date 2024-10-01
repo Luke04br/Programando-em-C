@@ -152,12 +152,41 @@ void AlteraDados() {
                 }while(quantidade<1);
             break;
         case 2:
+                    printf("\nDigite o nome do filme 2°: ");
+                    scanf("%s",&filmeII);
+                    getchar();
+                    printf("Digite a quantidade disponível dele: ");
+                do{
+                    scanf("%d",&quantidadeII);
+                    getchar();
+                    if(quantidadeII<1)
+                        printf("Digite um valor válido: ");
+                }while(quantidadeII<1);
             case 3:
+                    printf("\nDigite o nome do filme 3°: ");
+                    scanf("%s",&filmeIII);
+                    getchar();
+                    printf("Digite a quantidade disponível dele: ");
+                do{
+                    scanf("%d",&quantidadeIII);
+                    getchar();
+                    if(quantidadeIII<1)
+                        printf("Digite um valor válido: ");
+                }while(quantidadeIII<1);
         }
     }while(Resposta == 's' || Resposta == 'S');
 }
 
 void ExluiDados() {
+    int Resposta;
+    do {
+        printf("1 - O Filme %s tem %d volumes disponíveis.\n",filme, quantidade);
+        printf("2 - O Filme %s tem %d volumes disponíveis.\n",filmeII, quantidadeII);
+        printf("3 - O Filme %s tem %d volumes disponíveis.\n",filmeIII, quantidadeIII);
+        printf("Digite o número do filme que deseja alterar os dados: ");
+        +6
+        scanf("%d",&numero);
+        getchar();
 }
 
 void Saida() {
