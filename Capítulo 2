@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include<locale.h>
 
-#define ex2
+#define ex5
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
 
 
 #ifdef ex1
 /*1 - Escreva um programa para adivinhar um numero entre 1 e 99 que o usuario
-    pensou. Digite via teclado os simbolos =, > ou < a cada pergunta. Utilize o
+ ,   pensou. Digite via teclado os simbolos =, > ou < a cada pergunta. Utilize o
     comando if-else.*/
 #include <stdio.h>
 #include <locale.h>
@@ -20,11 +20,14 @@
 
 int main() {
     char Resposta;
-    int Palpite = 50, min = 1, max = 99;
+    int Palpite, min, max;
     setlocale(LC_ALL, "");
 
     do {
         system("cls");
+        Palpite = 50;
+        min = 1;
+        max = 99;
         printf("Pense em um número de 1 a 99. Agora responda as perguntas com <, > ou =\n\n");
         do {
             do {
@@ -74,11 +77,14 @@ int main() {
 
 int main() {
     char Resposta;
+    int Palpite,  min, max;
     setlocale(LC_ALL,"");
 
     do {
         system("cls");
-        int Palpite = 50,  min = 1, max = 99;
+        Palpite = 50;
+        min = 1;
+        max = 99;
         printf("Pense em um número de 1 a 99. Agora responda as perguntas com <, > ou =\n\n");
         do{
             do{
@@ -128,14 +134,17 @@ return 0;
     Quando o numero digitado for negativo o programa deve parar e calcula a
     media dos valores positivos digitados.*/
 int main() {
-    int x = 0, cont = 0, numeros[100];
-    float media = 0;
+    int x = 0, cont, numeros[100];
+    float media;
     char Resposta;
     setlocale(LC_ALL,"");
 
     do{
-       for(x;;x++) {
-            printf("Digite um número: ");
+        media = 0;
+        cont = 0;
+        system("cls");
+        for(x;;x++) {
+            printf("Digite um número (%d°): ",x+1);
             scanf("%d",&numeros[x]);
             if(numeros[x]<0)
                 break;
@@ -145,13 +154,15 @@ int main() {
         for(x=0;x<cont;x++)
             media += numeros[x];
         media = media/cont;
+        if(cont == 0)
+                printf("\nNão há números positivos para calcular a média\n");
 
-        printf("\nA média dos números positivos digitados é: %.2f", media);
+        else
+        printf("\nA média dos números positivos digitados é: %.2f\n", media);
+
         printf("\nDigite S ou s para realizar um novo cálculo: ");
-        scanf("%c",&Resposta);
-        getchar();
+        scanf(" %c",&Resposta);
     }while(Resposta == 'S' || Resposta == 's');
-    system("cls");
     return 0;
 }
 #endif // ex3
@@ -170,6 +181,7 @@ int main() {
     char Resposta;
     setlocale(LC_ALL,"");
     do{
+        system("cls");
         do {
             printf("Digite a distância percorrida em Km pelo carro: ");
             scanf("%f",&distancia);
@@ -186,16 +198,14 @@ int main() {
         consumo = distancia/litros;
         printf("\o carro tem consumo de: %.2fKm/L", consumo);
         if (consumo <=8)
-            printf("Venda o carro!");
+            printf("\nVenda o carro!");
         else if(consumo<=14)
-            printf(" --> Econômico!");
+            printf("\nEconômico!");
         else
-            printf("Super econômico!");
-        printf("\nDigite S ou s para realizar um novo cálculo: ");
-        scanf("%c",&Resposta);
-        getchar();
+            printf("\nSuper econômico!");
+        printf("\n\nDigite S ou s para realizar um novo cálculo: ");
+        scanf(" %c",&Resposta);
     }while(Resposta == 'S' || Resposta == 's');
-    system("cls");
     return 0;
 }
 #endif // ex4
@@ -211,58 +221,57 @@ int main() {
 	char Resposta;
 	setlocale(LC_ALL,"");
 	do{
-
+        system("cls");
 		do {
 			printf("Digite a hora que a ligação foi iniciada: ");
-			scanf("%d,&horasI);
-			if(horasI<0)
-				printf("Digite um valor válido!\n);
-		}while(horas<0);
+			scanf("%d",&horasI);
+			if(horasI<0 || horasI>23)
+				printf("Digite um valor válido!\n");
+		}while(horasI<0 || horasI>23);
 
 		do {
 			printf("\nDigite os minutos em que a ligação foi iniciada: ");
-			scanf("%d,&minutosI);
-			if(minutosI<0)
-				printf("Digite um valor válido!\n);
-		}while(minutosI<0);
+			scanf("%d",&minutosI);
+			if(minutosI<0||minutosI>59)
+				printf("Digite um valor válido!\n");
+		}while(minutosI<0||minutosI>59);
 
 		do {
 			printf("\nDigite os segudos em que ligação foi iniciada: ");
-			scanf("%d,&segundosI);
-			if(segundosI<0)
-				printf("Digite um valor válido!\n);
-		}while(segundosI<0);
+			scanf("%d",&segundosI);
+			if(segundosI<0 ||segundosI>59)
+				printf("Digite um valor válido!\n");
+		}while(segundosI<0 ||segundosI>59);
+
 
 		do {
-			printf("Digite a hora que a ligação foi finalizada: ");
-			scanf("%d,&horasF);
-			if(horasF<0)
-				printf("Digite um valor válido!\n);
-		}while(horasF<0);
+			printf("\nDigite a hora que a ligação foi finalizada: ");
+			scanf("%d",&horasF);
+			if (horasF<0 || horasF>23 || horasF<horasI)
+				printf("Digite um valor válido!\n");
+		}while(horasF<0 || horasF>23|| horasF<horasI);
 
 		do {
 			printf("\nDigite os minutos em que a ligação foi finalizada: ");
-			scanf("%d,&minutosF);
-			if(minutosF<0)
-				printf("Digite um valor válido!\n);
-		}while(minutosF<0);
+			scanf("%d",&minutosF);
+			if(minutosF<0||minutosF>59 || (horasF==horasI && minutosF<minutosI))
+				printf("Digite um valor válido!\n");
+		}while(minutosF<0||minutosF>59 || (horasF==horasI && minutosF<minutosI));
 
 		do {
 			printf("\nDigite os segudos em que ligação foi finalizada: ");
-			scanf("%d,&segundosF);
-			if(segundosF<0)
-				printf("Digite um valor válido!\n);
-		}while(segundosF<0);
+			scanf("%d",&segundosF);
+			if(segundosF<0 ||segundosF>59 || (horasF==horasI && minutosF==minutosI && segundosF<segundosI))
+				printf("Digite um valor válido!\n");
+		}while(segundosF<0 ||segundosF>59 ||(horasF==horasI && minutosF==minutosI && segundosF<segundosI));
 
 		horasI = horasF-horasI;
 		minutosI = minutosF - minutosI;
 		segundosI = segundosF - segundosI;
 		printf("\nA ligação teve duração de %d horas, %d minutos e %d segundos",horasI,minutosI,segundosI);
 		printf("\n\nDigite S caso queira verificar a duração de alguma outra ligação: ");
-		scanf("%c",&Resposta);
-		getchar();
-	}while(Resposta = 'S' || Resposta = 's');
-	system("cls");
+		scanf(" %c",&Resposta);
+	}while(Resposta == 'S' || Resposta == 's');
 	return 0;
 }
 #endif//ex5
