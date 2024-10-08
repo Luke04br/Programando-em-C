@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include<locale.h>
 
-#define ex4
+#define ex2
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
 
 
@@ -10,38 +10,62 @@
 /*1 - Escreva um programa para adivinhar um numero entre 1 e 99 que o usuario
     pensou. Digite via teclado os simbolos =, > ou < a cada pergunta. Utilize o
     comando if-else.*/
-int main() {
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
 
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+int main() {
     char Resposta;
-    int Palpite = 50,  min = 1, max = 99;
-    setlocale(LC_ALL,"");
+    int Palpite = 50, min = 1, max = 99;
+    setlocale(LC_ALL, "");
 
     do {
+        system("cls");
         printf("Pense em um número de 1 a 99. Agora responda as perguntas com <, > ou =\n\n");
-        do{
-            do{
-                printf("O número é maior, menor ou igual a %d?",Palpite); // Pergunta 1
-                scanf("%c",&Resposta);
-                getchar();
-                if(Resposta != '<' && Resposta != '='&& Resposta != '>')
+        do {
+            do {
+                printf("O número é maior, menor ou igual a %d? ", Palpite);
+                scanf(" %c", &Resposta);
+                if (Resposta != '<' && Resposta != '=' && Resposta != '>') {
                     printf("Digite um símbolo válido!\n\n");
-            }while(Resposta != '<' && Resposta != '='&& Resposta != '>');
-            if(Resposta == '=' || Palpite == 99 || Palpite == 1)
-                printf("O número que você pensou é %d!!!\nMELHORE, CONEEEE!!!", Palpite);
-            else if(Resposta == '<')
+                }
+            } while (Resposta != '<' && Resposta != '=' && Resposta != '>');
+
+            if (Resposta == '=')
+                printf("O número que você pensou é %d!!!\n", Palpite);
+
+            else if (Resposta == '<')
                 max = Palpite - 1;
+
             else
                 min = Palpite + 1;
 
-            Palpite = (max + min)/2;
-        }while(Resposta != '=');
-    printf("DIgite S ou s, caso queria jogar novamente:");
-    scanf("%c",&Resposta);
-    getchar();
-    }while(Resposta == 'S' || Resposta == 's');
-    system("cls");
+            Palpite = (max + min) / 2;
+
+            if (Palpite < 1) {
+                Palpite = 1;
+                Resposta = '=';
+                printf("O número que você pensou é %d!!!\n", Palpite);
+            }
+            else if (Palpite > 98) {
+                Palpite = 99;
+                Resposta = '=';
+                printf("O número que você pensou é %d!!!\n", Palpite);
+            }
+        }while (Resposta != '=');
+
+        printf("Digite S ou s, caso queira jogar novamente: ");
+        scanf(" %c", &Resposta);
+    } while (Resposta == 'S' || Resposta == 's');
+
     return 0;
 }
+
+
 #endif // ex1
 
 #ifdef ex2
@@ -49,18 +73,17 @@ int main() {
     Conte o n. de tentativas e imprima o resultado no video.*/
 
 int main() {
-
     char Resposta;
-    int Palpite = 50,  min = 1, max = 99;
     setlocale(LC_ALL,"");
 
     do {
+        system("cls");
+        int Palpite = 50,  min = 1, max = 99;
         printf("Pense em um número de 1 a 99. Agora responda as perguntas com <, > ou =\n\n");
         do{
             do{
                 printf("O número é maior, menor ou igual a %d?",Palpite); // Pergunta 1
-                scanf("%c",&Resposta);
-                getchar();
+                scanf(" %c",&Resposta);
                 if(Resposta != '<' && Resposta != '='&& Resposta != '>')
                     printf("Digite um símbolo válido!\n\n");
             }while(Resposta != '<' && Resposta != '='&& Resposta != '>');
@@ -79,14 +102,26 @@ int main() {
                     break;
             }
             Palpite = (max + min)/2;
+
+            if(Palpite < 1) {
+                Palpite = 1;
+                Resposta = '=';
+                printf("O número que você pensou é %d!!!\n", Palpite);
+            }
+            else if (Palpite > 98) {
+                Palpite = 99;
+                Resposta = '=';
+                printf("O número que você pensou é %d!!!\n", Palpite);
+            }
         }while(Resposta != '=');
-    printf("DIgite S ou s, caso queria jogar novamente:");
-    scanf("%c",&Resposta);
+
+    printf("Digite S ou s, caso queria jogar novamente: ");
+    scanf(" %c",&Resposta);
+
     }while(Resposta == 'S' || Resposta == 's');
-    system("cls");
-    return 0;
+return 0;
 }
-#endif // ex12
+#endif // ex2
 
 #ifdef ex3
 /*3 - Escreva um programa que receba via teclado numeros inteiros positivos.
@@ -171,7 +206,6 @@ int main() {
     Escreva um programa que recebe via teclado dois instantes dados em
     horas, minutos e segundo e determina o intervalo de tempo
     (em horas, minutos e segundos) decorrido entre eles.*/
-#ifdef ex5
 int main() {
 	int horasI, minutosI, segundosI, horasF, minutosF, segundosF;
 	char Resposta;
@@ -232,6 +266,3 @@ int main() {
 	return 0;
 }
 #endif//ex5
-
-
-//tamojunto rui
