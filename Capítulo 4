@@ -1,37 +1,44 @@
 #include <stdlib.h>
 #include <locale.h>
-#define ex4
+#define ex1
+
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
 #ifdef ex1
 /*1 - Receba via teclado 10 valores inteiros e ordene por ordem crescente assim
     que sao digitados. Guarde-os em um vetor. Mostre ao final os valores
     ordenados.*/
 int main() {
-    int valores[10], ordem[10], x, sup, posicao = 0;
-    char Resposta;
-    setlocale(LC_ALL,"");
+int A[10],ordem[10],x,y;
+char resposta;
 
-    do{
-        printf("Digite os 10 valores que deseja ordenar\n");
-        for(x=0;x<10;x++) {
-            printf("%d° valor: ",x+1);
-            scanf("%d",&valores[x]);
+setlocale(LC_ALL,"Portuguese");
+
+  do{
+    for(x=0;x<10;x++){
+      printf("Digite o %d° número:",x+1);
+      scanf("%d",&A[x]);
+      ordem[x]=A[x];
         }
-        for(x=0;x<10;x++) {
-            for(sup=0;sup<10;sup++) {
-                if(valores[x]>valores[sup])
-                    posicao++;
-            }
-            ordem[posicao] = valores[x];
-            posicao = 0;
+    for(x=0;x<10;x++){
+        for(y=0;y<10;y++){
+            if(A[x]>A[y]){
+                ordem[x]= A[y];
+                ordem[y]= A[x];
+            }else{ordem[x]= A[x];
+                ordem[y]= A[y];}
         }
-        printf("Ordenando os valores em ordem crescente:");
-        for(x=0;x<10;x++)
-            printf(" %d ",ordem[x]);
-        printf("\n\nDigite s caso queira continuar: ");
-        scanf(" %c",&Resposta);
-    }while(Resposta=='s'||Resposta=='S');
-    return 0;
+    }
+
+    printf("os valores ordenados em ordem crescente são:");
+
+    for(x=0;x<10;x++){
+        printf("%d\n",ordem[x]);
+    }
+
+    printf("Deseja inserir mais números?\n");
+    scanf(" %c",&resposta);
+
+  }while(resposta=='s'||resposta=='S');
 }
 #endif//ex1
 
@@ -49,6 +56,65 @@ int main() {
                 float               double
 */
 int main() {
+
+    setlocale(LC_ALL,"");
+
+    int I[3],x;
+    long L[3];
+    unsigned U[3];
+    float F[3];
+    double D[3];
+    char Resposta;
+
+do{
+    for(x=0;x<3;x++){
+    printf("\nDigite o %d° valor para a variável tipo int: ",x+1);
+    scanf("%d",&I[x]);
+    }
+    system("cls");
+
+    for(x=0;x<3;x++){
+    printf("\nDigite o %d° valor para a variável tipo long: ",x+1);
+    scanf("%ld",&L[x]);
+    getchar();
+    }
+    system("cls");
+
+    for(x=0;x<3;x++){
+    printf("\nDigite o %d° valor para a variável tipo unsigned:",x+1);
+    scanf("%u",&U[x]);
+    getchar();
+    }
+    system("cls");
+
+    for(x=0;x<3;x++){
+    printf("\nDigite o %d° valor para a variável tipo float: ",x+1);
+    scanf("%f",&F[x]);
+    getchar();
+    }
+    system("cls");
+
+    for(x=0;x<3;x++){
+    printf("\nDigite o %d° valor para a variável tipo double: ",x+1);
+    scanf("%lf",&D[x]);
+    getchar();
+    }
+    system("cls");
+
+    printf("\n\nimprimindo:\n\n        10        20        30        40        50\n12345678901234567890123456789012345678901234567890\n");
+    for(x=0;x<3;x++){
+    printf("  %-11d         %-11ld         %-8u\n",I[x],L[x],U[x]);
+    printf("            %-11f         %-18lf     \n",F[x],D[x]);
+    }
+
+    printf("\nDeseja inserir mais números?(Digite s se sim):");
+    scanf("%c",&Resposta);
+    getchar();
+
+}while(Resposta=='s'||Resposta=='S');
+    return 0;
+
+
 }
 #endif//ex2
 
@@ -153,33 +219,44 @@ int main() {
     resultado em um 3. vetor. Imprima na tela o indice, os valores e o resultado
     dos 6 elementos dos vetores.*/
 int main() {
+int A[2][3], B[2][3],soma[2][3],x,y;
+char Resposta;
+
+setlocale(LC_ALL,"");
+do{
+    for(x=0;x<2;x++){
+        for(y=0;y<3;y++){
+        printf("\nDigite o valor de índice [%d][%d] do vetor A:",x,y);
+        scanf("%d",&A[x][y]);
+        getchar();
+        }
+    }
+
+    for(x=0;x<2;x++){
+        for(y=0;y<3;y++){
+        printf("\nDigite o valor de índice [%d][%d] do vetor B:",x,y);
+        scanf("%d",&B[x][y]);
+        getchar();
+        }
+    }
+
+    for(x=0;x<2;x++){
+        for(y=0;y<3;y++){
+        soma[x][y] = A[x][y] + B[x][y];
+        }
+    }
+
+    printf("\nos valores somados são:\n");
+    for(x=0;x<2;x++){
+        for(y=0;y<3;y++){
+        printf("valor da soma dos valores de índice [%d][%d]: %d\n",x,y,soma[x][y]);
+        }
+    }
+
+    printf("Deseja inserir mais valores?(Digite s se sim):");
+    scanf("%c",&Resposta);
+    getchar();
+
+}while(Resposta=='s'||Resposta=='S');
 }
 #endif//ex5
-
-/*int main() {
-    int valores[10], ordem[10], x, sup, posicao = 0;
-    char Resposta;
-    setlocale(LC_ALL,"");
-
-    do{
-        printf("Digite os 10 valores que deseja ordenar\n");
-        for(x=0;x<10;x++) {
-            printf("%d° valor: ",x+1);
-            scanf("%d",&valores[x]);
-        }
-        for(x=0;x<10;x++) {
-            for(sup=0;sup<10;sup++) {
-                if(valores[x]>valores[sup])
-                    posicao++;
-            }
-            ordem[posicao] = valores[x];
-            posicao = 0;
-        }
-        printf("Ordenando os valores em ordem crescente:");
-        for(x=0;x<10;x++)
-            printf(" %d ",ordem[x]);
-        printf("\n\nDigite s caso queira continuar: ");
-        scanf(" %c",&Resposta);
-    }while(Resposta=='s'||Resposta=='S');
-    return 0;
-}*/
