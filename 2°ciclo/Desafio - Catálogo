@@ -84,7 +84,7 @@ void Entrada(){
 }
 
 void Listagem() {
-    
+
     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há filmes para mostrar!!!\n\n");
         system("pause");
@@ -344,9 +344,9 @@ int main(){
     setlocale(LC_ALL,"");
     int Resposta, x;
 
-    filme[0]=='\0';
-    filmeII[0]=='\0';
-    filmeIII[0]=='\0';
+    filme[0]='*';
+    filmeII[0]='*';
+    filmeIII[0]='*';
 
     for(x =0;;x++) {
         catalogo_filmes = fopen("catalogo_filmes.txt", "r");
