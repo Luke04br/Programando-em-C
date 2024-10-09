@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define ex5
+#define ex1
 //BS.: Todos os programa devem ser finalizados pelo usuario.
 
 #ifdef ex1
@@ -11,13 +11,17 @@
     mostrado na funcao main().
     Ex: se N = 4, N! = 24. Logo, a soma de seus algarismos e´ 2 + 4 = 6.*/
 int main() {
-    int x, N, Nf = 1, metrica = 1, Soma = 0, suporte;
+    int x, N, Nf, metrica, Soma, suporte;
     char Resposta;
     setlocale(LC_ALL,"");
 
     do {
+        metrica = 1;
+        Soma = 0;
+        Nf = 1;
+        system("cls");
         do {
-            printf("\nDigite um número maior que 0: ");
+            printf("\nDigite um número maior que 0 e menor que 17: ");
             scanf("%d",&N);
             getchar();
             if(N<0 || N>16)
@@ -36,22 +40,30 @@ int main() {
                 break;
             }
         }
+        if(metrica==1)
+                Soma = Nf;
 
-        for(x=0;;x++) { //fazendo a soma
-            if(metrica==1)
-                break;
-            else {
-                suporte = (Nf/metrica);
-                Soma = Soma +suporte;
-                Nf = Nf - (suporte*metrica);
-                metrica = metrica/10;
-                suporte = 0;
+        else{
+            for(x=0;;x++) { //fazendo a soma
+                if(metrica==1){
+                    suporte = (Nf/metrica);
+                    Soma = Soma + suporte;
+                    Nf = Nf - (suporte*metrica);
+                    metrica = metrica/10;
+                    break;
+                }
+
+                else {
+                    suporte = (Nf/metrica);
+                    Soma = Soma + suporte;
+                    Nf = Nf - (suporte*metrica);
+                    metrica = metrica/10;
+                }
             }
         }
         printf("\n\nA soma dos algarismos do fatorial do número digitado é: %d", Soma);
-        printf("\nDigite S caso queira inserir um novo valor:");
-        scanf("%c",&Resposta);
-        getchar();
+        printf("\n\nDigite S caso queira inserir um novo valor:");
+        scanf(" %c",&Resposta);
     }while(Resposta == 'S'|| Resposta == 's');
 
 
