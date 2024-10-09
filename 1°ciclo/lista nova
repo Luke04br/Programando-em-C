@@ -1,0 +1,239 @@
+#define<stdlib.h>
+#define<stdio.h>
+#define<locale.h>
+
+#define ex1
+
+#ifdef ex1
+int main() {
+  int inputs, outputs, estoque;
+
+    printf("digite o estoque atual: ");
+    scanf("%d",&estoque);
+    printf("Estoque atual:%d\n",estoque);
+    printf("Inisra os inputs: ");
+    scanf("%d",&inputs);
+    printf("Estoque atual:%d\n",estoque = estoque + inputs);
+    printf("outputs:");
+    scanf("%d",&outputs);
+    printf("Estoque atual:%d\n",estoque = estoque - outputs);
+    return 0;
+}
+#endif // ex1
+
+#ifdef ex2
+int main() {
+    float valor_produto, preco_venda;
+    printf("insira o valor do produto: ");
+    scanf("%f",&valor_produto);
+    printf("o valor do produto será:");
+    preco_venda = valor_produto * 0.91;
+    printf("%f",preco_venda);
+    return 0;
+}
+#endif // ex2
+
+#ifdef ex3
+int main() {
+    float a = 0, b = 0;
+    printf("insira o valor das despesas:");
+    scanf("%f",&a);
+    printf("valor reajustado:");
+    b = a * 1.10;
+    printf("%f",b);
+    return 0;
+}
+#endif // ex3
+
+#ifdef ex4
+int main() {
+    int a = 0, b = 0;
+
+    printf("oi, tudo bem?\npara iniciar o jogo insira dois numeros maiores que 0\n\n");
+    printf("insira um numero:");
+    scanf("%d",&a);
+    while(a<=0){
+        printf("insira um numero valido:"); 
+        scanf("%d",&a);
+  }
+
+    printf("insira um numero:");
+    scanf("%d",&b);
+    while(b<=0){
+        printf("insira um numero valido:");
+        scanf("%d",&b);
+    }
+
+    if(a%b == 0 || b%a == 0)
+        printf("os numeros sao multiplos, pois quando dividimos o maior pelo menor, o restando dessa divisao e 0.\n\n");
+
+    else if(a%b != 0 && b%a != 0)
+        printf("os numeros nao sao multiplos\n\n");
+
+    return 0;
+}
+
+#ifdef ex5
+
+int main(){
+    float a = -1;
+
+    while (a < 0) {
+        printf("insira um valor valido para o produto:");
+        scanf("%f",&a);
+    }
+
+    if(a >= 100){
+        a = a * 1.20; 
+        printf("o valor do produto sera:%f",a);
+    }
+    else if(a<100){
+        a = a * 1.10; 
+        printf("o valor do produto será: %f\n\n",a);
+    }
+      return 0;
+}
+
+#ifdef ex6
+
+float retornaAliquota(float sb) { 
+  float aliquota;
+  if (sb <= 1412.00)
+      aliquota=0.075;
+  else if(sb <= 2666.68)
+      aliquota = 0.091;
+  else if(sb <= 4000.03)
+      aliquota = 0.12;
+  else if(sb <= 7786.02)
+      aliquota = 0.14;
+  else if(sb <= 13333.48)
+      aliquota = 0.145;
+  else if(sb <= 26666.94)
+      aliquota = 0.165;
+  else if(sb <= 52000.54)
+      aliquota = 0.19;
+  else if(sb > 52000.54)
+      aliquota = 0.22;
+
+  return aliquota;
+}
+
+int main(){
+  float hora, aulas, sb, sl;
+
+  do {
+    printf("Digite o valor de sua hora/aula:");
+    scanf("%f", &hora);
+  }while(hora < 0);
+
+  do {
+    printf("Digite o numero de aulas dadas:");
+    scanf("%f", &aulas);
+  }while(aulas < 0);
+
+  sb = hora * aulas;
+  sl = sb - sb * retornaAliquota(sb);
+
+  printf("seu salario bruto e:%.2f\n",sb);
+  printf("a aliquota e:%.3f\n",retornaAliquota(sb));
+  printf("o valor de seu salario liquido e:%.2f\n\n",sl);
+
+  return 0;}
+#endif // ex6
+
+#ifdef ex7
+int main(){
+    float bruto, distribuidor, impostos, ValorF;
+
+    printf("insira o preco de fabrica do veiculo: ");
+    scanf("%f",&bruto);
+
+    printf("insira o porcentual de lucro do distribuidor em decimal: ");
+    scanf("%f",&distribuidor);
+    distribuidor = bruto * distribuidor;
+    printf("lucro do distribuidor:%f\n",distribuidor);
+
+    printf("insira o porcentual de impostos aplicados sobre o preco de fabrica em decimal:");
+    scanf("%f",&impostos);
+    impostos = bruto * impostos;
+    printf("valor dos impostos:%f\n",e);
+
+    ValorF = bruto + distribuidor + impostos;
+    printf("o valor do produto para o consumidor sera:%f\n\n",ValorF);
+    return 0;
+}
+#endif // ex7
+
+#ifdef ex8
+int main(){
+    float p1, p2, p3, p4, media;
+
+    printf("digite a nota da p1: ");
+    scanf("%f",&p1);
+    while (p1 < 0) {
+        printf("digite um valor válido: "); 
+        scanf("%f",&p1);
+    }
+
+    printf("digite a nota da p2: ");
+    scanf("%f",&p2);
+    while (p2 < 0) {
+        printf("digite um valor válido: "); 
+        scanf("%f",&p2);
+    }
+
+    printf("digite a nota da p3: ");
+    scanf("%f",&p3);
+    while (p3 < 0){
+          printf("digite um valor válido: "); 
+          scanf("%f",&p3);
+    }
+
+    printf("digite a nota da p4:");
+    scanf("%f",&p4);
+    while (p4 < 0){
+          printf("digite um valor válido:"); 
+          scanf("%f",&p4);
+    }
+
+    media = (p1 + p2 + p3 + p4) / 4;
+
+    if(media>=6)
+        printf("aprovado com media:%f",media);
+
+    else if(media<6)
+        printf("reprovado com media:%f",media);
+    return 0;
+}
+#endif // ex8
+
+#ifdef ex9
+int main(){
+    int n1 , n2, n3, n4, produtoq = 0;
+
+    printf("digite um numero entre 10 e 25: ");
+    scanf("%d",&n1);
+    while(n1 < 10 || n1 > 25){
+          printf("digite um valor valido:"); 
+          scanf("%d",&n1);
+    }
+    
+    printf("digite um numero maior que 0: ");
+    scanf("%d",&n2);
+    while(n2 < 0){
+          printf("digite um valor valido:"); 
+          scanf("%d",&n2);
+    }
+
+    n3 = n1 + n2;
+    n4 = n1 * n2 * n3;
+    produtoq = n1 * n1 + n2 * n2 + n3 * n3 + n4 * n4;
+
+    printf("n1:%d, n2:%d, n3:%d, n4:%d\n",n1, n2, n3,n4);
+    printf("a soma do quadrado dos numeros é:%d\n\n",produtoq);
+    if(produtoq < 50000)
+          printf("os dados nao sao representatvos o suficiente, por favor fornca novos dados");
+
+    return 0;
+}
+#endif // ex9
