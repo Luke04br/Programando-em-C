@@ -354,7 +354,11 @@ int main(){
     setlocale(LC_ALL,"");
     int Resposta, x;
 
-    fopen(catalogo_filmes,"r");
+    filme[0]=='\0';
+    filmeII[0]=='\0';
+    filmeIII[0]=='\0';
+
+    catalogo_filmes = fopen("catalogo_filmes.txt", "r");
     fread(filme, sizeof(char),20,catalogo_filmes);
     fread(&quantidade, sizeof(int),1,catalogo_filmes);
     fread(filmeII, sizeof(char),20,catalogo_filmes);
@@ -406,7 +410,7 @@ int main(){
             break;
 
             case 7: //sai
-                fopen(catalogo_filmes,"w");
+                catalogo_filmes = fopen("catalogo_filmes.txt", "w");
                 fwrite(filme, sizeof(char),20,catalogo_filmes);
                 fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
                 fwrite(filmeII, sizeof(char),20,catalogo_filmes);
