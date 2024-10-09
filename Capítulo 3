@@ -128,6 +128,7 @@ int main () {
     setlocale(LC_ALL,"");
 
     do{
+        system("cls");
         printf("Digite um número: ");
         scanf("%f",&valorI);
         printf("Digite um número: ");
@@ -145,34 +146,37 @@ int main () {
     valores. Os n valores nao sao definidos previamente.*/
 float valores[50];
 int Soma(int quant) {
-int x, soma = 0;
-for(x=0; x<quant;x++)
-	soma += valores[x];
+    int x, soma = 0;
+    for(x=0; x<quant;x++)
+        soma += valores[x];
 return soma;
 }
+
 int Subtracao(int quant) {
-int x, subtracao = valores[0];
-for(x=1; x<quant;x++)
-	subtracao = subtracao -(valores[x]);
+    int x, subtracao = valores[0];
+    for(x=1; x<quant;x++)
+        subtracao = subtracao -(valores[x]);
 return subtracao;
 }
+
 float Divisao(int quant) {
-int x, divisao = valores[0];
-for(x=1; x<quant;x++)
-	divisao = divisao/valores[x];
+    int x, divisao = valores[0];
+    for(x=1; x<quant;x++)
+        divisao = divisao/valores[x];
 return divisao;
 }
+
 int Multiplicacao(int quant) {
-int x, multiplicacao = valores[0];
-for(x=1; x<quant;x++)
-	multiplicacao = multiplicacao*valores[x];
+    int x, multiplicacao = valores[0];
+    for(x=1; x<quant;x++)
+        multiplicacao = multiplicacao*valores[x];
 return multiplicacao;
 }
 
 int main () {
-int quant = 0, x;
-char Resposta;
-setlocale(LC_ALL,"");
+    int quant = 0, x;
+    char Resposta;
+    setlocale(LC_ALL,"");
 
     do{
         for(x = 0;;x++){
@@ -197,51 +201,69 @@ setlocale(LC_ALL,"");
     Faca uma calculadora com as 4 operacoes aritmeticas.(utilize o comando switch).
     As operacoes aritmeticas devem ser funcoes. O resultado acumulado deve ser
     mostrado na funcao main().*/
+    float soma(float acumulado, float numero){
+        acumulado = acumulado + numero;
+        return acumulado;
+    }
+
+    float subtracao(float acumulado, float numero){
+        acumulado = acumulado - (numero);
+        return acumulado;
+    }
+
+    float divisao(float acumulado, float numero){
+        acumulado = acumulado/numero;
+        return acumulado;
+    }
+
+    float multiplicacao(float acumulado, float numero){
+        acumulado = acumulado*numero;
+        return acumulado;
+    }
+
 int main() {
-    float valores[50], resultado;
+    float acumulado, numero;
     int x;
     char Resposta;
+
     setlocale(LC_ALL,"");
-    printf("\nDigite (+) para soma, (-) para subtração,(x) para multiplicação ou (/) para divisão.\n\n");
     do{
-        scanf("%f",&valores[0]);
-        getchar();
-        resultado = valores[0];
-        for(x=1;;x++) {
+        system("cls");
+        printf("\nDigite (+) para soma, (-) para subtração,(x) para multiplicação ou (/) para divisão.\n\n");
+        scanf("%f",&acumulado);
+        for(x = 1;;x++) {
             do {
-                scanf("%c",&Resposta);
-                getchar();
+                scanf(" %c",&Resposta);
                 if(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=')
                         printf("Digite um operdor válido!\n");
             }while(Resposta != '+' && Resposta != '-'&& Resposta != 'x' && Resposta != '/' && Resposta != '=');
             if(Resposta == '=') {
-                printf("\nResultado = %.2f",resultado);
+                printf("\nResultado = %.2f",acumulado);
                 break;
             }
-            scanf("%f",&valores[x]);
+            scanf("%f",&numero);
             getchar();
             switch(Resposta) {
 
                 case '+':
-                    resultado = resultado + valores[x];
+                    acumulado = soma(acumulado,numero);
                 break;
 
                 case '-':
-                    resultado = resultado -(valores[x]);
+                    acumulado = subtracao(acumulado,numero);
                 break;
 
                 case 'x':
-                    resultado = resultado*valores[x];
+                    acumulado = multiplicacao(acumulado,numero);
                 break;
 
                 case '/':
-                    resultado = resultado/valores[x];
+                    acumulado = divisao(acumulado,numero);
                 break;
             }
         }
         printf("\nDigite s caso queira continuar: ");
-        scanf("%c",&Resposta);
-        getchar();
+        scanf(" %c",&Resposta);
     }while(Resposta == 's'||Resposta=='S');
     return 0;
 }
