@@ -79,41 +79,67 @@ do{
     Determine o dia da semana desta data.*/
 int main() {
 char Resposta;
-int Data[3], Datazero, Ano, Mes, Dia;
+int Data[3],a,b,c;
+setlocale(LC_ALL,"");
 
-do{
-    printf("Digite uma data a partir de 01.01.1901, começando pelo dia:");
+    printf("Digite uma data, começando pelo dia:");
     do{
     scanf("%d",&Data[0]);
     if(Data[0]<0 || Data[0]>31)
         printf("Digite um valor válido:");
     }while(Data[0]<0 || Data[0]>31);
-    
+
     printf("mes:");
     do{
     scanf("%d",&Data[1]);
     if(Data[1]<0 || Data[1]>12)
         printf("Digite um valor válido:");
     }while(Data[1]<0 || Data[1]>12);
-    
+
     printf("ano:");
     do{
     scanf("%d",&Data[2]);
     if(Data[2]<0)
         printf("Digite um valor válido:");
     }while(Data[1]<0);
-    
-    Datazero=1;
-    
-    Ano= Data[1]
-    
-    
-    
-    printf("Digite s se deseja inserir outros dois números:")
+
+    if (Data[1] < 3) {
+        Data[1] += 12;
+        Data[2]--;
+    }
+    a = Data[2] % 100;
+    b = Data[2] / 100;
+    c = (Data[0] + 13 * (Data[1] + 1) / 5 + a + a / 4 + b / 4 + 5 * b) % 7;
+
+    printf("O dia da semana para a data %d/%d/%d é ", Data[0], Data[1], Data[2]);
+    switch (c) {
+        case 0:
+            printf("Sábado");
+            break;
+        case 1:
+            printf("Domingo");
+            break;
+        case 2:
+            printf("Segunda-feira");
+            break;
+        case 3:
+            printf("Terça-feira");
+            break;
+        case 4:
+            printf("Quarta-feira");
+            break;
+        case 5:
+            printf("Quinta-feira");
+            break;
+        case 6:
+            printf("Sexta-feira");
+            break;
+    printf(".\n");
+
+    printf("Digite s se deseja inserir outros dois números:");
     scanf("%c",Resposta);
     getchar();
 }while(Resposta=='s'||Resposta=='S');
-}
 }
 #endif//ex2
 
