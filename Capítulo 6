@@ -1,6 +1,7 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include<locale.h>
-#define ex1
+#define ex2
 //OBS.:Todos os programa devem ser finalizados pelo usuario.
 
 #ifdef ex1
@@ -8,12 +9,111 @@
     dias, recebendo via teclado a data (dia, mes e ano) do seu nascimento e a
     data (dia, mes e ano) atual.*/
 int main() {
+int DataNasc[3],DataAtual[3],Idade[3];
+char Resposta;
+
+setlocale(LC_ALL,"");
+
+do{
+    printf("\nDigite o dia de hoje:");
+    do{
+    scanf("%d",&DataAtual[0]);
+    if(DataAtual[0]<1 || DataAtual[0]>31)
+        printf("Digite um dia válido:");
+    }while(DataAtual[0]<1 || DataAtual[0]>31);
+
+    printf("\no mês de hoje:");
+    do{
+    scanf("%d",&DataAtual[1]);
+     if(DataAtual[1]<1 || DataAtual[1]>12)
+        printf("Digite um mês válido:");
+    }while(DataAtual[1]<1 || DataAtual[1]>12);
+
+    printf("\no ano do hoje:");
+    do{
+    scanf("%d",&DataAtual[2]);
+    if(DataAtual[2]<1)
+        printf("Digite um ano válido:");
+    }while(DataAtual[2]<1);
+
+
+    printf("\n\no ano do seu nascimento:");
+    do{
+    scanf("%d",&DataNasc[0]);
+    if(DataNasc[0]<0 || DataNasc[0]>DataAtual[2])
+        printf("Digite um ano válido:");
+    }while(DataNasc[0]<0 || DataNasc[0]>DataAtual[2]);
+
+    printf("\no mês do seu nascimento:");
+    do{
+    scanf("%d",&DataNasc[1]);
+    if(DataNasc[1]<1 || DataNasc[1]>12 || (DataNasc[0]==DataAtual[2] && DataNasc[1]>DataAtual[1]))
+        printf("Digite um mês válido:");
+    }while(DataNasc[1]<1 || DataNasc[1]>12 || (DataNasc[0]==DataAtual[2] && DataNasc[1]>DataAtual[1]));
+
+    printf("\nDigite o dia do seu nascimento:");
+    do{
+    scanf("%d",&DataNasc[2]);
+    if(DataNasc[2]<1 || DataNasc[2]>31 || (DataNasc[0]==DataAtual[2] && DataNasc[1]==DataAtual[1] && DataNasc[2]>DataAtual[0]))
+        printf("Digite um dia válido:");
+    }while(DataNasc[2]<1 || DataNasc[2]>31 || (DataNasc[0]==DataAtual[2] && DataNasc[1]==DataAtual[1] && DataNasc[2]>DataAtual[0]));
+
+    Idade[0]=DataAtual[2]-DataNasc[0];
+    Idade[1]=DataAtual[1]-DataNasc[1];
+    if (Idade[1]<0)
+        Idade[1] = Idade[1]+12;
+    Idade[2]=DataAtual[0]-DataNasc[2];
+     if (Idade[2]<0)
+        Idade[2] = Idade[2]+30;
+
+    printf("\nSua idade é: %d anos,%d meses e %d dias",Idade[0],Idade[1],Idade[2]);
+
+    printf("\n\nDigite s caso queira calcular outra idade:");
+    scanf("%c",Resposta);
+    getchar();
+}while(Resposta=='s'||Resposta=='S');
 }
 #endif//ex1
 #ifdef ex2
 /*2 - Escreva um programa que receba via teclado uma data (dia, mes, e ano).
-    Determine o dia da semana desta data./*
+    Determine o dia da semana desta data.*/
 int main() {
+char Resposta;
+int Data[3], Datazero, Ano, Mes, Dia;
+
+do{
+    printf("Digite uma data a partir de 01.01.1901, começando pelo dia:");
+    do{
+    scanf("%d",&Data[0]);
+    if(Data[0]<0 || Data[0]>31)
+        printf("Digite um valor válido:");
+    }while(Data[0]<0 || Data[0]>31);
+    
+    printf("mes:");
+    do{
+    scanf("%d",&Data[1]);
+    if(Data[1]<0 || Data[1]>12)
+        printf("Digite um valor válido:");
+    }while(Data[1]<0 || Data[1]>12);
+    
+    printf("ano:");
+    do{
+    scanf("%d",&Data[2]);
+    if(Data[2]<0)
+        printf("Digite um valor válido:");
+    }while(Data[1]<0);
+    
+    Datazero=1;
+    
+    Ano= Data[1]
+    
+    
+    
+    printf("Digite s se deseja inserir outros dois números:")
+    scanf("%c",Resposta);
+    getchar();
+}while(Resposta=='s'||Resposta=='S');
+}
 }
 #endif//ex2
 
@@ -22,6 +122,14 @@ int main() {
     as operacoes logicas bit a bit AND, OU, OU EXCLUSIVO e imprima-os no
     video no formato decimal e hexadecimal.*/
 int main() {
+char Resposta;
+
+do{
+    printf("Digite s se deseja inserir outros dois números:")
+    scanf("%c",Resposta);
+    getchar();
+}while(Resposta=='s'||Resposta=='S');
+}
 }
 #endif//ex3
 
@@ -29,6 +137,32 @@ int main() {
 /*4 - Escreva um programa que receba via teclado 2 numeros inteiros e
     imprima-os no video com o resultado das 4 operacoes aritmeticas.*/
 int main() {
+float A,B,soma,subt,mult,div;
+char Resposta;
+
+setlocale(LC_ALL,"");
+
+do{
+    printf("Digite o 1° valor:");
+    scanf("%f",&A);
+
+    printf("Digite o 2° valor:");
+    scanf("%f",&B);
+
+    soma= A+B;
+    subt= A-B;
+    mult=A*B;
+    div=A/B;
+
+    printf("\nsoma= %.0f",soma);
+    printf("\nsubtração= %.0f",subt);
+    printf("\nmultiplicação= %.0f",mult);
+    printf("\ndiv= %.2f",div);
+
+    printf("\n\nDigite s se deseja inserir outros dois números:");
+    scanf(" %c",&Resposta);
+    getchar();
+}while(Resposta=='s'||Resposta=='S');
 }
 #endif//ex4
 
@@ -36,5 +170,13 @@ int main() {
 /*5 - Reescreva o exercicio anterior utilizando operadores de atribuicao
     composta.*/
 int main() {
+char Resposta;
+
+do{
+    printf("Digite s se deseja inserir outros dois números:")
+    scanf("%c",Resposta);
+    getchar();
+}while(Resposta=='s'||Resposta=='S');
+}
 }
 #endif//ex5
