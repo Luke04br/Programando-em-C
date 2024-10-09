@@ -92,7 +92,7 @@ void Entrada(){
 }
 
 void Listagem() {
-
+    
     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há filmes para mostrar!!!\n\n");
         system("pause");
@@ -113,6 +113,7 @@ void Pesquisa() {
     char Resposta;
     int x, cont = 0;
 
+
      if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há filmes para pesquisar!\n\n");
     }
@@ -120,8 +121,6 @@ void Pesquisa() {
     else {
             printf("\nDigite o nome do filme que deseja pesquisar: ");
             gets(FilmePesquisado);
-            fwrite(FilmePesquisado, sizeof(char),20,catalogo_filmes);
-            fread(FilmePesquisado, sizeof(char),20,catalogo_filmes);
 
             for(x=0;FilmePesquisado[x]!='\0';x++)
                 if(FilmePesquisado[x]!= filme[x])
@@ -180,6 +179,7 @@ void Letra() {
 void AlteraDados() {
     int x, cont;
     char Resposta;
+
     //se não tiver nenum filme cadastrado
     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há dados para alterar!\n\n");
@@ -219,6 +219,12 @@ void AlteraDados() {
                 if(quantidade<1)
                     printf("Digite um valor válido: ");
             }while(quantidade<1);
+
+    catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+    fwrite(filme, sizeof(char),20,catalogo_filmes);
+    fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
+    fclose(catalogo_filmes);
+
         }
         for(x=0;FilmePesquisado[x]!='\0';x++)
             if(FilmePesquisado[x]!= filmeII[x])
@@ -251,6 +257,10 @@ void AlteraDados() {
                 if(quantidadeII<1)
                     printf("Digite um valor válido: ");
             }while(quantidadeII<1);
+    catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+    fwrite(filmeII, sizeof(char),20,catalogo_filmes);
+    fwrite(&quantidadeII, sizeof(int),1,catalogo_filmes);
+    fclose(catalogo_filmes);
         }
 
         for(x=0;FilmePesquisado[x]!='\0';x++)
@@ -284,6 +294,10 @@ void AlteraDados() {
                 if(quantidadeIII<1)
                     printf("Digite um valor válido: ");
             }while(quantidadeIII<1);
+    catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+    fwrite(filmeIII, sizeof(char),20,catalogo_filmes);
+    fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
+    fclose(catalogo_filmes);
         }
     }
 }
@@ -309,6 +323,10 @@ char Resposta;
             if(Resposta == 's'||Resposta=='S') {
                 filme[0] = '*';
                 printf("\nfilme excluido com sucesso...\n\n");
+                    catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+                    fwrite(filme, sizeof(char),20,catalogo_filmes);
+                    fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
+                    fclose(catalogo_filmes);
             }
             else
                 printf("\nvoltando para o menu...\n\n");
@@ -324,6 +342,10 @@ char Resposta;
             if(Resposta == 's' ||Resposta=='S') {
                 filmeII[0] = '*';
                 printf("filme excluido com sucesso...\n\n");
+                catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+                fwrite(filmeII, sizeof(char),20,catalogo_filmes);
+                fwrite(&quantidadeII, sizeof(int),1,catalogo_filmes);
+                fclose(catalogo_filmes);
             }
             else
                 printf("voltando para o menu...\n\n");
@@ -338,6 +360,10 @@ char Resposta;
             if(Resposta == 's') {
                 filmeIII[0] = '*';
                 printf("filme excluido com sucesso...\n\n");
+                catalogo_filmes = fopen("catalogo_filmes.txt", "w");
+                fwrite(filmeIII, sizeof(char),20,catalogo_filmes);
+                fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
+                fclose(catalogo_filmes);
             }
             else
                 printf("voltando para o menu...\n\n");
@@ -358,16 +384,15 @@ int main(){
     filmeII[0]=='\0';
     filmeIII[0]=='\0';
 
-    catalogo_filmes = fopen("catalogo_filmes.txt", "r");
-    fread(filme, sizeof(char),20,catalogo_filmes);
-    fread(&quantidade, sizeof(int),1,catalogo_filmes);
-    fread(filmeII, sizeof(char),20,catalogo_filmes);
-    fread(&quantidadeII, sizeof(int),1,catalogo_filmes);
-    fread(filmeIII, sizeof(char),20,catalogo_filmes);
-    fread(&quantidadeIII, sizeof(int),1,catalogo_filmes);
-    fclose(catalogo_filmes);
-
     for(x =0;;x++) {
+        catalogo_filmes = fopen("catalogo_filmes.txt", "r");
+        fread(filme, sizeof(char),20,catalogo_filmes);
+        fread(&quantidade, sizeof(int),1,catalogo_filmes);
+        fread(filmeII, sizeof(char),20,catalogo_filmes);
+        fread(&quantidadeII, sizeof(int),1,catalogo_filmes);
+        fread(filmeIII, sizeof(char),20,catalogo_filmes);
+        fread(&quantidadeIII, sizeof(int),1,catalogo_filmes);
+        fclose(catalogo_filmes);
         system("cls");
         Menu();
         do {
@@ -410,14 +435,6 @@ int main(){
             break;
 
             case 7: //sai
-                catalogo_filmes = fopen("catalogo_filmes.txt", "w");
-                fwrite(filme, sizeof(char),20,catalogo_filmes);
-                fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
-                fwrite(filmeII, sizeof(char),20,catalogo_filmes);
-                fwrite(&quantidadeII, sizeof(int),1,catalogo_filmes);
-                fwrite(filmeIII, sizeof(char),20,catalogo_filmes);
-                fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
-                fclose(catalogo_filmes);
                 Saida();
             break;
         }
