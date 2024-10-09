@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include<locale.h>
+
+int A[20], B[20], C[20], D[20];
+
+void Armazena_AB(int K){
+  int x, c, d;
+  printf("Digite os valores do vetor A.\n");
+  for(x=0; x<K;x++) {
+    printf("\n%d° Valor:",x++);
+    scanf("%d",&A[x]);
+  }
+  printf("Digite os valores do vetor B.\n");
+  for(x=0; x<K;x++) {
+    printf("\n%d° Valor:",x++);
+    scanf("%d",&B[x]);
+  }
+  
+  for(x=0;x<K;x++){
+    if(x == 0|| x%2 == 0){
+      C[c]=A[x];
+      c++;
+      C[c]=B[x];
+      c++;
+    }
+    else {
+      D[d]=A[x];
+      d++;
+      D[d]=B[x];
+      d++;
+    }
+  }
+}
+
+int Menor_Multiplo5(int K) {
+  
+  int multiplos[20],Menor, x, y;
+  
+  for(x=0;x<K;x++)
+    if(D[x]%5 == 0) {
+        multiplos[y] = D[x];
+        y++;
+    }
+  
+  Menor = multiplos[0];
+  
+  for(x=1;x<y;x++) 
+    if(multiplos[x] < Menor)
+      Menor = multiplos[x];
+  return Menor;
+}
+
+int Media_Multiplos11(int K){
+  int multiplos[20],Media, x, y;
+  
+  for(x=0;x<K;x++)
+    if(D[x]%11 == 0) {
+        multiplos[y] = D[x];
+        y++;
+    }
+  
+  for(x=0;x<y;x++) 
+      Media = Media + multiplos[x];
+  if (Media!=0)
+    Media = Media/y;
+  return Media;
+}
+int main() {
+  int K,x, Menormultiplo, Menor, Media;
+  setlocale(LC_ALL,"Portuguese");
+  
+  do{
+    printf("Digite a quantidae de números que deseja armazenar nos vetores A e B:");
+    scanf("%d",&K);
+    if(K<5||K>20)
+      printf("\ndigite um valor válido!\n\n");
+  }while(K<5||K>20);
+  
+  printf("os valores do vetor A são:\n");
+  for(x=0;x<K;x++)
+    printf("%d",A[x]);
+  
+  printf("os valores do vetor B são:\n");
+  for(x=0;x<K;x++)
+    printf("%d",B[x]);
+  
+  printf("os valores do vetor C são:\n");
+  for(x=0;x<K;x++)
+    printf("%d",C[x]);
+  
+  printf("os valores do vetor D são:\n");
+  for(x=0;x<K;x++)
+    printf("%d",D[x]); 
+  
+  Menor = Menor_Multiplo5(K);
+  Media = Media_Multiplos11(K);
+  
+  if(Menor == 0)
+    printf("Não há múltiplos de 5 no vetor D.");
+  else 
+    printf("%d é o menor múltiplo de 5 no vetor D", Menor);
+  
+  return 0;
+  
+}
