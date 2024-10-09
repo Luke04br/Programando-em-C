@@ -1,0 +1,574 @@
+#include <stdio.h>
+#include<locale.h>
+
+//Lista 5
+#define ex13
+
+#ifdef ex1 /* Receba doze números positivos e armazene no vetor A. Após a alimentação de todos os números mostre apenas os números maiores que 121 que estão armazenados no vetor.*/
+int main() {
+    int A[12], x;
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite 12 números qualquer positivo:\n\n");
+
+    for(x = 0; x < 12; x++) {
+        do {
+        printf("Digite um número qualquer positivo(%d):",x + 1);
+        scanf("%d",&A[x]);
+            if(A[x]<0){
+            printf("Digite um valor válido\n\n");
+            }
+        }while(A[x]<0);
+    }
+    system("cls");
+    system("pause");
+    printf("Os números maiores que 121 são:\n");
+
+    for(x = 0; x < 12; x++){
+        if(A[x] > 121){
+            printf("%d\n",A[x]);
+        }
+    }
+    return 0;
+}
+#endif // ex1 vetores
+
+#ifdef ex2 /* Leia oito elementos e armazene-os no vetor A. Construa o vetor B de mesma dimensão com os elementos do vetor A multiplicados por 3. Apresente o conteúdo dos dois vetores.*/
+
+int main(){
+    int A[8], B[8], x;
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite 8 números quaisquer:\n\n");
+
+    for(x = 0; x < 8; x++) {
+        do {
+        printf("Digite um número quaisquer(%d):",x + 1);
+        scanf("%d",&A[x]);
+            if(A[x]< 0){
+            printf("Digite um valor válido\n\n");
+            }
+        }while(A[x]<0);
+    }
+    system("cls");
+    system("pause");
+    printf("os números do vetor A são:\n");
+    for(x = 0; x < 8; x++){
+        printf("%d\n",A[x]);
+        }
+    printf("\n\nos números do vetor B são:\n");
+    for(x = 0; x < 8; x++){
+        B[x]=3*A[x];
+        printf("%d\n",B[x]);
+        }
+    return 0;
+    }
+#endif // ex2
+
+#ifdef ex3 /* Faça um programa que armazene num vetor 6 números negativos. Calcule a soma dos seus quadrados; se a soma for inferior a 1000 solicite novos dados.Mostre somente a soma que satisfaz a condição.*/
+int main(){
+    int A[6], Squadrados = 0, x;
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite 6 números negativos.\n\n");
+    do {
+        for(x = 0; x < 6; x++) {
+            do {
+            printf("Digite um número negativo(%d):",x + 1);
+            scanf("%d",&A[x]);
+                if(A[x]>=0){
+                    printf("Digite um valor válido\n\n");
+                }
+            }while(A[x]>=0);
+        }
+        for(x = 0; x < 6; x++){
+            printf("%d\n",A[x]);
+            Squadrados =  Squadrados + (A[x]*A[x]);
+        }
+        printf("A soma dos quadrados deu:%.2d\n",Squadrados);
+        if(Squadrados<1000) {
+            printf("\n\t\t\tA soma dos quadrados é menor que 1000.\n\t\t\tFavor digitar novos valores\n\n");
+        }
+    }while(Squadrados<1000);
+    return 0;
+    }
+#endif
+#ifdef ex4 /* Armazene num vetor dez números positivos. Exiba o conteúdo do vetor. Mostre o maior número,
+              quantas vezes ele foi digitado e em que posições ele apareceu dentro do vetor.*/
+int main() {
+    int posicoes[10], quant = 0, maior = 0, A[10], x;
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite 10 números positivos.\n\n");
+
+    for(x = 0; x < 10; x++) {
+        do {
+            printf("Digite um número positivo(%d):",x + 1);
+            scanf("%d",&A[x]);
+            if(A[x]<0){
+                printf("Digite um valor válido\n\n");
+            }
+        }while(A[x]<0);
+        if(x==0) {
+                maior = A[x];
+                quant++;
+            }
+        else if(A[x]==maior){
+            quant++;
+        }
+        else if(A[x]>maior){
+            quant = 0;
+            maior = A[x];
+            quant++;
+        }
+    }
+    for(x = 0; x < 10; x++)
+        if(maior==A[x]) 
+        posicoes[x] = x;
+    
+    printf("o maior número é: %d, ele apareceu %d vezes nas posições",maior,quant);
+    for(x = 0; x < quant; x++)
+    printf("%d",posicoes[x]);
+    return 0;
+}
+#endif /*Peça o raio da circunferência e de o volume dela*/
+#ifdef ex1f
+Esfera (float raio) {
+    float volume;
+    volume = (4*3.14*(raio*raio*raio))/3;
+    printf("\no volume da esfera é de: %.2fcm^3\n\n",volume);
+}
+int main() {
+    float raio;
+    setlocale(LC_ALL,"");
+    printf("digite o tamanho do raio da esfera em cm^3:");
+    scanf("%f",&raio);
+    Esfera(raio);
+return 0;
+}
+#endif // ex1f
+#ifdef ex5 /* 5.	Armazene no vetor A 10 elementos positivos. Construa o vetor B do mesmo tipo e dimensão. Cada elemento do vetor B deve ser o valor negativo do elemento correspondente do vetor A. Desta forma, se em A [1] estiver armazenado o elemento 8 deve estar em B [1] o valor –8, e assim por diante. Apresentar o conteúdo dos dois vetores.*/
+
+int main(){
+    
+    int A[10], B[10], x;
+    setlocale(LC_ALL,"Portuguese");
+    
+    printf("digite 10 números positivos!\n");
+    
+    for(x = 0;x < 10;x++) {
+        do {
+            printf("digite um número(%d):",x + 1);
+            scanf("%d",&A[x]);
+            if(A[x]<=0)
+                printf("\ndigite um valor válido!\n");
+        }while(A[x]<=0);
+        B[x]= -A[x];
+    }
+    
+    printf("\nos valores do vetor A são:\n");
+    
+    for(x=0;x<10;x++) 
+        printf("\n%d\n",A[x]);
+    
+    printf("\nos valores do vetor B são:\n");
+    
+    for(x=0;x<10;x++) 
+        printf("\n%d\n",B[x]);
+    
+    return 0;
+}
+#endif // ex5
+
+#ifdef ex6 /*6.	Leia o vetor A de uma dimensão máxima de 15 elementos. O usuário poderá digitar a quantidade desejada desde que o valor seja inferior ou igual a 15. Construir um vetor B de mesmo tipo, de modo que cada elemento do vetor B seja fatorial do elemento correspondente do vetor A. Apresentar o conteúdo dos dois vetores.*/
+
+int main() {
+
+    int A[15], B[15], x, y;
+    setlocale(LC_ALL,"Portuguese");
+
+    printf("digite 15 números positivos e menores que 15!\n");
+
+    for(x = 0; x < 15; x++) {
+        do {
+            printf("digite um número(%d):", x + 1);
+            scanf("%d", &A[x]);
+            if(A[x] > 15 || A[x] <= 0)
+                printf("\ndigite um valor válido!\n");
+        } while(A[x] > 15 || A[x] <= 0);
+    }
+    for(x = 0; x < 15; x++) {
+        B[x] = 1;
+        for(y = A[x]; y > 1; y--) {
+            B[x] = B[x] * y;
+        }
+    }
+    printf("\nos valores do vetor A são:");
+
+    for( x = 0; x < 15; x++) 
+        printf("\n%d\n",A[x]);
+
+    printf("\nos valores do vetor B são:");
+
+    for( x = 0; x<15; x++) 
+        printf("\n%d\n",B[x]);
+
+    return 0;
+}
+#endif // ex6
+
+
+//#include <stdio.h>
+#ifdef ex7
+int main() {
+
+    int A[20], B[20], vet, quant;
+    setlocale(LC_ALL,"Portuguese");
+    
+    printf("Obs: O valor máximo é 20 e o mínimo é 4.\n\n");
+    
+    do {
+        printf("digite a quantidade de valores que você deseja guardar:");
+        scanf("%d",&quant);
+        if(quant > 20 || quant < 4) {
+            printf("digite um valor válido!\n");
+        }
+    }while(quant > 20 || quant < 4);
+
+    for(vet = 0; vet < quant; vet++) {
+        printf("digite um número(%d):", vet + 1);
+        scanf("%d", &A[vet]);
+    }  
+    for(vet = 0; vet < quant; vet++) {
+        B[vet] = A[(quant-1)-vet];
+    }
+
+    printf("\nOs valores do vetor A são:");
+
+    for(vet = 0; vet < quant; vet++) 
+        printf("\n%d", A[vet]);
+
+    printf("\n\nOs valores do vetor B são:");
+
+    for(vet = 0; vet < quant; vet++) 
+        printf("\n%d", B[vet]);
+
+    return 0;
+}
+#endif // ex7
+
+#ifdef ex8
+int main() {
+
+    int A[5], B[5], C[5], D[15], vet, x = 0;
+    setlocale(LC_ALL,"Portuguese");
+
+    printf("digite os valores dos vetores A, B e C.\nObs: cabem 5 números em cada um deles.\n\n");
+
+    for(vet = 0; vet < 5; vet++) {
+        printf("digite o %d° valor do vetor A:", vet + 1);
+        scanf("%d", &A[vet]);
+    }
+    for(vet = 0; vet < 5; vet++) {
+        printf("digite o %d° valor do vetor B:", vet + 1);
+        scanf("%d", &B[vet]);
+    }
+    for(vet = 0; vet < 5; vet++) {
+        printf("digite o %d° valor do vetor C:", vet + 1);
+        scanf("%d", &C[vet]);
+    }
+    
+    for(vet = 0; vet < 5; vet++) {
+        D[x] = A[vet];
+        x++;
+        D[x] = B[vet];
+        x++;
+        D[x] = C[vet];
+        x++;
+    }
+        
+     printf("\nOs valores do vetor D são:");
+    for(vet = 0; vet < 15; vet++)
+        printf("\n%d", D[vet]);
+
+    
+    return 0;
+}
+#endif // ex8
+
+#ifdef ex9
+/*
+    Leia o vetor A tipo vetor com 10 elementos positivos. Construa o vetor B de mesmo tipo, e cada elemento de B deve ser a metade de cada elemento de A. Exiba em que Vetor e em que posições apareceram valores superiores a 4.
+*/
+int main(){
+    float A[10], B[10];
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite 10 números positivos quaisquer:\n\n");
+
+    for(int x = 0; x < 10; x++) {
+        do {
+        printf("Digite um número quaisquer(%d):",x + 1);
+        scanf("%f",&A[x]);
+            if(A[x]< 0){
+            printf("Digite um valor válido\n\n");
+            }
+        }while(A[x]<0);
+        B[x] = A[x]/2;
+    }
+    printf("\n\nOs números do vetor B maiores que 4 são:\n");
+    for(int x = 0; x < 10; x++){
+        if(B[x] > 4)
+            printf("%.2f\n",B[x]);
+        }
+    return 0;
+    }
+#endif // ex9
+
+#ifdef ex10 /*Elabore um programa que efetue o cálculo de uma tabuada de um número qualquer e armazene 
+
+os resultados no vetor A de uma dimensão para 10 elementos. O usuário deverá digitar o número 
+
+e o programa deverá construir e exibir a tabuada correspondente*/
+int main(){
+    int n, A[10];
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite um número para saber os valores de sua tabuada:\n\n");
+    
+    do {
+        printf("Digite um número:");
+        scanf("%d",&n);
+            if(n<=0)
+            printf("Digite um valor válido\n\n");
+    }while(n<=0);
+    for(int x = 0; x < 10; x++) {
+        A[x] = n * (x + 1);
+    }
+    printf("\n\nA tabuada do número %d é:\n",n);
+    for(int x = 0; x < 10; x++)
+    printf("%d . %d = %d\n",n, x + 1, A[x]);
+    return 0;
+    }
+#endif // ex10
+
+#ifdef ex11 /*Receba a temperatura média de cada mês do ano e armazene essas temperaturas em um vetor; 
+calcule e mostre a maior, a menor temperatura do ano e a média das temperaturas. Mostre todas 
+as temperaturas armazenadas*/
+
+int main(){
+    float media = 0, A[12];
+
+    setlocale(LC_ALL,"Portuguese");
+    printf("Alimentando vetor\n\n");
+    printf("Digite as tenperaturas médias dos meses de janeiro a dezembro respectivamente!\n");
+    
+    for(int x = 0; x < 12; x++) {
+        printf("média de temperatura do mês %d:", x + 1);
+        scanf("%f",&A[x]);
+    }
+    for(int x = 0; x < 12; x++) {
+        media = media + A[x];
+    }
+    media = media/12;
+    printf("\n\nAs médias dos meses são respectivamente:\n");
+    for(int x = 0; x < 12; x++)
+    printf("\nmês %d = %.2f°C", x + 1, A[x]);
+    printf("\nA média anual de temperatura foi de %.2f°C",media);
+    return 0;
+}
+#endif //ex11
+
+#ifdef ex12 /*Receba a nota de dez alunos e armazene essas notas em um vetor. Calcule e mostre:
+a) A média da classe;
+b) A quantidade de alunos aprovados, isto é, com nota >=7;
+c) A quantidade de alunos reprovados, isto é, com nota <7.*/
+int main() {
+    
+    float notas[10], media = 0;
+    int x, apv = 0, rep = 0;
+    setlocale(LC_ALL,"Portuguese");
+
+    printf("digite a notas dos 10 alunos\n");
+    
+    for(x = 0 ;x < 10; x++) {
+        do { 
+            printf("digite a nota do aluno %d:", x + 1);
+            scanf("%f",&notas[x]);
+            if(notas[x] < 0 || notas[x] > 10)
+                 printf("digite um valor válido!\n"); 
+        }while(notas[x] < 0 || notas[x] > 10);
+        media = media + notas[x];
+        }
+    
+    if (media!= 0)
+        media = media/10;
+    
+    for(x = 0;x < 10;x++) {
+        if(notas[x] >= 7)
+            apv++;
+        else
+            rep++;
+    }
+    printf("\n\nA média da turma é de %.2f, com %.2d reprovados e %.2d aprovados",media,rep,apv);
+   return 0;
+}
+#endif//ex12
+
+#ifdef ex13 /**/
+int main() {
+
+    int pessoas, x, quant[15], ID[15];
+    float peso[15], menor;
+    setlocale(LC_ALL,"Portuguese");
+
+    do {
+        printf("Digite a quantidade de pessoas que irão participar da pesquisa(máx 15 pessoas):");
+        scanf("%d",&pessoas);
+        if(pessoas > 15 || pessoas < 1)
+            printf("Digite um valor válido!\n\n");
+    }while(pessoas > 15 || pessoas < 1);
+    
+    for(x = 0; x < pessoas; x++) {
+        do{
+            printf("\nDigite o peso da %dª pessoa em kilogramas:", x + 1);
+            scanf("%f",&peso[x]);
+            if(peso[x] < 4|| peso[x] > 595)
+                printf("digite um valor válido!\n\n");
+        }while(peso[x] < 4 || peso[x] > 595);
+        ID[x] = x + 1;
+        }
+    
+    menor = peso[0];
+    
+    for(x = 1; x < pessoas; x++) {
+        if(peso[x] < menor)
+            menor = peso[x];
+    }
+    printf("os IDs que tem peso maior que o menor peso são:\n");
+    for(x = 1; x < pessoas; x++) {
+        if(peso[x] == menor)
+            printf("%d\n",ID[x]);
+    }
+   return 0;
+}
+#endif // ex13
+
+#ifdef desafio /*Crie um programa dividido em funções:Função Cadastro :armazene no vetor A  no mínimo 5 e no máximo 10 números quaisquer.O usuário é quem determinará a quantidade.
+A variável K repesenta essa quantidade deve ser declarada localmente à função main.
+A função MédiaPares:exibirá se existir no interior da função main essa média.
+Caso a média não possa ser calculada deverá ser exibida uma mensagem informando ao usuário dentro da função main.
+Função Menor:verifique o menor número armazenado no vetor A e exiba o menor número encontrado na função main().
+Exiba MenorNum:exiba em que posições o menor apareceu no vetor A.
+Função VetorMenor Num:armazene no vetor VetorMenorNum apenas os números menore que o menor numero.Este vetor deveráser declarado como uma vaiável local à esta função.*/
+
+int A[10];
+
+void Cadastro(int K) {
+    for (int x = 0; x < K; x++) {
+        printf("Digite um número:");
+        scanf("%d",&A[x]);
+    }
+}
+
+float MediaPares(int K) {
+    float media = 0;
+    int quantpar = 0;
+    
+    for (int x = 0; x < K; x++)
+        if(A[x]%2==0) {
+            media = media + A[x];
+            quantpar++;
+        }
+    
+    if(media!=0)
+        media = media/quantpar;
+    
+    return media;
+}
+
+int Menor(int K) {
+    int menor;
+    
+    for(int x = 0; x < K; x++) {
+        if(x==0)
+            menor = A[x];
+        if(A[x]<menor) 
+            menor = A[x];
+    }
+    return menor;
+}
+
+void Menornum(int K, int menor) {
+    int posicao[10], y = 0;
+    
+    printf("as posições que o menor número apareceu foram:\n");
+    
+    for(int x = 0; x < K; x++)
+        if(A[x]==menor) {
+            posicao[y] = x;
+            y++;
+        }    
+    
+    for(int x = 0; x < y; x++)
+            printf("%d\n",posicao[x]);
+}
+
+void VetorMenor(int K, int menor) {
+    
+    int vetmenor[10], y = 0;
+    
+    for (int x = 0; x < K; x++) {
+        if(A[x]>menor) {
+            vetmenor[y] = A[x];
+            //printf("%d\n",vetmenor[y]);
+            y++;
+        }
+    } 
+    if(y==0)
+        printf("não há números maiores que o menor número");
+        
+    else{
+        for (int x = 0; x < y; x++)
+            printf("os números maiores que o menor número são:%d\n",vetmenor[x]);
+    }
+}
+    
+int main () {
+    
+    int K, menor;
+    float mediapares;
+    
+    setlocale(LC_ALL,"Portuguese");
+    
+     printf("digite a quantidade números que deseja armazenar\nObs: deve ser um valor entre 5 e 10\n\n");
+    
+    do {
+        printf("Quantidade:");
+        scanf("%d",&K);
+        if (K<5 || K>10)
+            printf("\ndigite uma quantidade válida!");
+    }while(K<5 || K>10);
+    
+    Cadastro(K);
+    mediapares = MediaPares(K);
+
+    if(mediapares == 0) 
+        printf("Não há números pares\n\n");
+    else
+        printf("\nA média dos números pares é %.2f\n\n",mediapares);
+
+    menor = Menor(K);
+    printf("o menor número é:%d\n\n",menor);
+    Menornum(K,menor);
+    VetorMenor(K,menor); 
+    
+    return 0;
+}
+
+#endif
