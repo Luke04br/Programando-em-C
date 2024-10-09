@@ -1,0 +1,259 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+#define ex14
+
+#ifdef ex1
+int main(){
+    int n, ant, suc;
+
+    printf("digite um numero:");
+
+    scanf("%d",&n);
+
+    ant = n - 1;
+
+    suc = n + 1;
+
+    printf("o numero e: %d, o antecessor e: %d, o sucessor e: %d",n, ant, suc);
+
+    return 0;
+}
+#endif
+
+#ifdef ex2
+int main(){
+    int n;
+
+    printf("digite um numero:");
+
+    scanf("%d",&n);
+
+    if(n>0) {
+            printf("o numero e positivo (+)");
+    }
+
+    if(n<0) {
+        printf("o numero e negativo (-)");
+    }
+
+    if(n==0) {
+            printf("o numero e 0");
+    }
+    return 0;
+}
+#endif
+
+#ifdef ex5
+int main(){
+
+    int n;
+    do {
+
+        printf("digite um numero:");
+        scanf("%d",&n);
+
+    } while(n<0);
+
+    if(n%2 == 0){
+
+        printf("o numero e par");
+
+    }
+    else{
+        printf("o numero e impar");
+    }
+
+    return 0;
+}
+#endif
+
+#ifdef ex6
+int main(){
+    int n1, n2;
+
+    printf("digite um numero:");
+
+    scanf("%d",&n1);
+
+    printf("digite um numero:");
+
+    scanf("%d",&n2);
+
+    if(n1 == n2) {
+            printf("os numeros sao iguais");
+    }
+
+    else if(n1>n2) {
+            printf("%d e maior que %d", n1, n2);
+    }
+    else {
+            printf("%d e maior que %d",n2, n1);
+    }
+    return 0;
+}
+#endif
+
+#ifdef ex7
+int main(){
+    char s = 'b';
+    float h, f;
+
+    while(s != 'f' && s != 'm') {
+        printf("digite f para feminino ou m para masculino:");
+        s = getchar();
+        if (s != 'f' && s != 'm') {
+            getchar();
+        }
+    }
+
+    do {
+        printf("digite sua altura:");
+        scanf("%f",&h);
+    } while(h<0);
+
+    if (s=="f"){
+        f = (72.7*h)-58; printf("seu peso ideal e: %f",f);
+    }
+    else {
+        f = (62.1*h)-44.7; printf("seu peso ideal e: %f",f);
+    }
+    return 0;
+}
+#endif
+
+#ifdef ex12
+int main(){
+    float si, sf;
+
+    do {
+        printf("digite o salario do funcionario:");
+        scanf("%f",&si);
+    }while(si<0);
+
+    if(si<800){sf = si + (si*0.15);
+
+    }
+    else if(si<=1000){ sf = si + (si*0.10);
+
+    }
+    else {sf = si + (si*0.05);
+
+    }
+
+    printf("\no salario antigo era:%.2f e o salario com reajuste e:%.2f\n\n",si, sf);
+}
+#endif // ex12
+
+#ifdef ex14
+int main(){
+
+    int codigo, quantidade;
+    float precou, precof;
+
+    printf("codigos disponiveis:\n\t1001\n\t1324\n\t6548\n\t987\n\t7623\n\n");
+    do {
+        printf("digite o codigo do produto: ");
+        scanf("%d",&codigo);
+
+    }while(codigo != 1001 && codigo != 1324 && codigo != 6548 && codigo != 987 && codigo != 7623);
+
+   do {
+        printf("\ndigite a quantidade comprada: ");
+        scanf("%d",&quantidade);
+    }while(quantidade <0);
+
+    if(codigo == 1001){
+            precou = 5.32;
+    }
+
+    else if(codigo == 1324){
+            precou = 6.45;
+    }
+
+    else if(codigo == 6548){
+            precou = 2.37;
+    }
+
+    else if(codigo == 987){
+            precou = 5.32;
+    }
+
+    else if(codigo == 7623){
+            precou = 6.45;
+    }
+
+    precof = precou * quantidade;
+
+    printf ("\no valor final e:%2.f\n\n",precof);
+
+    return 0;
+}
+#endif
+
+#ifdef ex15
+int main(){
+    int n;
+    float p1, p2, p3, me, ma;
+    char conceito;
+
+     setlocale(LC_ALL, "");
+
+    do{
+        printf("digite o número do aluno:");
+        scanf("%d",&n);
+    }while(n<0);
+
+    do{
+        printf("\ndigite a nota da p1 do aluno:");
+        scanf("%f",&p1);
+    }while(p1<0 || p1>10);
+
+    do{
+        printf("\ndigite a nota da p2 do aluno:");
+        scanf("%f",&p2);
+    }while(p2<0 || p2>10);
+
+    do{
+        printf("\ndigite a nota da p3 do aluno:");
+        scanf("%f",&p3);
+    }while(p3<0 || p3>10);
+
+     do{
+        printf("\ndigite a média dos exercícios do aluno:");
+        scanf("%f",&me);
+    }while(me<0 || me>10);
+
+   ma = (p1 + p2 * 2 + p3 * 3 + me)/7;
+
+   if (ma < 4) {
+        conceito = 'E';
+   }
+
+   else if (ma <6){
+        conceito = 'D';
+   }
+
+    else if (ma <7.5){
+        conceito = 'C';
+   }
+
+    else if (ma <9){
+        conceito = 'B';
+   }
+
+   else {
+        conceito = 'A';
+   }
+
+   if (ma > 6) {
+        printf("\naluno número %d\ncom as notas: %.2f; %.2f e %.2f \ncom a média de exercícios: %.2f \nficou com a média de aproveitamento: %.2f e com o conceito: %c\nAPROVADO!!\n\n",n,p1,p2,p3,me,ma,conceito);
+   }
+
+    else {
+        printf("\naluno número %d\ncom as notas: %.2f; %.2f e %.2f \ncom a média de exercícios: %.2f \nficou com a média de aproveitamento: %.2f e com o conceito: %c\nREPROVADO!\n\n",n,p1,p2,p3,me,ma,conceito);
+    }
+   return 0;
+}
+#endif // ex12
