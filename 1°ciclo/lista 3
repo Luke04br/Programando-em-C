@@ -1,1 +1,190 @@
 
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+#include <locale.h>
+#define ex1
+
+#ifdef ex1
+int main (){
+
+    float a, b, c, delta, x1, x2;
+
+    setlocale(LC_ALL, "");
+
+    printf("para poder calcular a equação de segundo grau, digite os valores de a, b e c. Obs: o valor de a deve ser diferente de 0, pois se ele for 0, nao e uma equcao de 2 grau\n");
+  
+    do {
+        printf("\ndigite um numero (a):");
+        scanf("%f",&a);
+        if(a==0) {
+            prinf("\nvalor inválido, favor digitar outro número.\n\n");
+        }
+    }while(a==0);
+  
+    printf("\ndigite um numero (b):");
+    scanf("%f",&b);
+
+    printf("\ndigite um numero (c):");
+    scanf("%f",&c);
+  
+    printf("\na equcao e: (%2.f)x^2 + (%2.f)x + (%2.f)\n", a,b,c );
+  
+    delta = (b * b) - (4 * a * c);
+    x1 = (-b + sqrt(delta))/(2*a);
+    x2 = (-b - sqrt(delta))/(2*a);
+  
+    printf("\no valor de delta e: %2.f\n",delta);
+  
+    if(delta<0) {
+            printf("\nnao ha raizes reais\n\n");
+    }
+      
+    else if(delta==0){
+  printf("\nha apenas uma raiz real que e: %2.f",x1);
+    }
+  
+    else {
+        printf("\nha duas raízes reais x1 = %2.f e x2 = %2.f\n\n",x1,x2);
+    }
+
+    return 0;
+}
+#endif // ex1
+
+
+#ifdef ex2
+int main(){
+
+    float nivel, horas, salario;
+
+    setlocale(LC_ALL, "");
+
+    do{
+        printf("digite o nível do professor:");
+        scanf("%f",&nivel);
+    }while(nivel != 1 && nivel != 2 && nivel != 3);
+
+     do{
+        printf("digite o número de aulas dadas:");
+        scanf("%f",&horas);
+    }while(horas<0);
+
+    if(nivel==1){
+        salario = horas * 55;
+    }
+
+    else if(nivel==2){
+        salario = horas * 67;
+    }
+
+    else if(nivel==3){
+        salario = horas * 78;
+    }
+
+    printf("o salário do professor e : %f",salario);
+
+    return 0;
+}
+#endif // ex2
+
+#ifdef ex3
+int main(){
+    int n1, n2, n3;
+
+    setlocale(LC_ALL, "");
+
+do {
+    printf("digite um número:");
+
+    scanf("%d",&n1);
+
+    printf("\ndigite um número:");
+
+    scanf("%d",&n2);
+
+    printf("\ndigite um número:");
+
+    scanf("%d",&n3);
+    if (n1==n2 && n2==n3) {
+    printf("\nos números são iguais, digite outros valores.\n\n");
+}while(n1==n2 && n2==n3);
+
+if (n1>n2 && n1>n3) {
+
+    printf("\no numero %d e o maior dos 3\n\n",n1);
+}
+
+if (n2>n1 && n2>n3) {
+
+    printf("\no numero %d e o maior dos 3\n\n",n2);
+}
+
+if (n3>n2 && n3>n1) {
+
+    printf("\no numero %d e o maior dos 3\n\n",n3);
+ }
+
+    return 0;
+}
+#endif // ex3
+
+#ifdef ex4
+
+int main() {
+
+    int n1, n2, n3;
+    float r;
+    char tipo;
+
+    setlocale(LC_ALL, "");
+
+    printf("para formar um triângulo,o maior lado (hipotenusa) deve ser menor ou igual a soma dos outros dois lados(catetos).\n\n" );
+
+    do{
+        do {
+            printf("\ndigite o tamanho do cateto 1:");
+            scanf("%d",&n1);
+
+        }while(n1<0);
+
+        do {
+            printf("\ndigite o tamanho do cateto 2:");
+            scanf("%d",&n2);
+
+        }while(n2<0);
+
+        do {
+            printf("\ndigite o tamanho do cateto 3:");
+            scanf("%d",&n3);
+
+        }while(n3<0);
+
+        if (n1>n2 && n1>n3){
+            r = n1 - (n2+n3);
+        }
+
+        else if (n2>n1 && n2>n3){
+            r = n2 - (n1+n3);
+        }
+
+        else{
+            r = n3 - (n2+n1);
+        }
+        if(r>0){
+            printf("\nnão é possível formar um triângulo com os números digitados, tente novamente.\n");
+        }
+    }while(r>0);
+
+    if(n1==n2 && n1==n3){
+        printf("\no triângulo é equilátero, possui todos os lados são iguais.\n\n");
+    }
+    else if(n1==n2 || n1==n3 || n2==n3){
+        printf("\no triângulo é isóceles, pois apenas dois de seus lados são iguais.\n\n");
+    }
+    else{
+          printf("\no triângulo é escaleno, pois nenhum de seus lados são iguais.\n\n");
+    }
+        return 0;
+}
+#endif // ex4
