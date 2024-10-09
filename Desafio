@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include <locale.h>
 #define N 20
-
+FILE *catalogo_filmes;
 int quantidade, quantidadeII, quantidadeIII;
 char filme[N], filmeII[N], filmeIII[N], FilmePesquisado[N];
 
