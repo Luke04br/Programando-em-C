@@ -122,16 +122,32 @@ do{
     as operacoes logicas bit a bit AND, OU, OU EXCLUSIVO e imprima-os no
     video no formato decimal e hexadecimal.*/
 int main() {
-char Resposta;
+    setlocale(LC_ALL, "");
+    char Resposta;
+    int num1, num2, and, or, xor;
 
-do{
-    printf("Digite s se deseja inserir outros dois números:")
-    scanf("%c",Resposta);
-    getchar();
-}while(Resposta=='s'||Resposta=='S');
+    do{
+        system("cls");
+        printf("Digite o primeiro numero inteiro: ");
+        scanf("%d", &num1);
+        printf("Digite o segundo numero inteiro: ");
+        scanf("%d", &num2);
+
+        and = num1 & num2;
+        or = num1 | num2;
+        xor = num1 ^ num2;
+
+        printf("\nResultados das operações:\n");
+        printf("AND (decimal): %d (hexadecimal): %X\n", and, and);
+        printf("OR (decimal): %d (hexadecimal): %X\n", or, or);
+        printf("XOR (decimal): %d (hexadecimal): %X\n", xor, xor);
+
+        printf("Digite 's' caso queira inserir outros valores: ");
+        Resposta = getchar();
+    }while(Resposta=='s'||Resposta=='S');
+
+    return 0;
 }
-}
-#endif//ex3
 
 #ifdef ex4
 /*4 - Escreva um programa que receba via teclado 2 numeros inteiros e
@@ -149,10 +165,10 @@ do{
     printf("Digite o 2° valor:");
     scanf("%f",&B);
 
-    soma= A+B;
+    soma = A+B;
     subt= A-B;
-    mult=A*B;
-    div=A/B;
+    mult = A*B;
+    div = A/B;
 
     printf("\nsoma= %.0f",soma);
     printf("\nsubtração= %.0f",subt);
@@ -169,14 +185,40 @@ do{
 #ifdef ex5
 /*5 - Reescreva o exercicio anterior utilizando operadores de atribuicao
     composta.*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+
 int main() {
+float B,soma,subt,mult,div;
 char Resposta;
 
+setlocale(LC_ALL,"");
+
 do{
-    printf("Digite s se deseja inserir outros dois números:")
-    scanf("%c",Resposta);
+    printf("Digite o 1° valor:");
+    scanf("%f",&soma);
+
+    subt = soma;
+    mult = soma;
+    div = soma;
+
+    printf("Digite o 2° valor:");
+    scanf("%f",&B);
+
+    soma += B;
+    subt -= B;
+    mult *= B;
+    div /= B;
+
+    printf("\nsoma= %.0f",soma);
+    printf("\nsubtração= %.0f",subt);
+    printf("\nmultiplicação= %.0f",mult);
+    printf("\ndiv= %.2f",div);
+
+    printf("\n\nDigite s se deseja inserir outros dois números:");
+    scanf(" %c",&Resposta);
     getchar();
 }while(Resposta=='s'||Resposta=='S');
-}
 }
 #endif//ex5
