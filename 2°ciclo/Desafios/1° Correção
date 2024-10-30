@@ -101,9 +101,9 @@ void Listagem() {
     }
 }
 
-void Pesquisa() {
+int Pesquisa() {
     char Resposta;
-    int x, cont = 0;
+    int x, pesquisa = 0;
 
 
      if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
@@ -119,7 +119,7 @@ void Pesquisa() {
                     break;
             if(FilmePesquisado[x]=='\0' && filme[x]=='\0') {
                     printf("O filme %s tem %d volumes em estoque\n",filme,quantidade);
-                    cont++;
+                    pesquisa = 1;
             }
 
             for(x=0;FilmePesquisado[x]!='\0';x++)
@@ -127,7 +127,7 @@ void Pesquisa() {
                     break;
             if(FilmePesquisado[x]=='\0' && filmeII[x]=='\0') {
                     printf("O filme %s tem %d volumes em estoque\n",filmeII,quantidadeII);
-                    cont++;
+                    pesquisa = 2;
             }
 
             for(x=0;FilmePesquisado[x]!='\0';x++)
@@ -135,12 +135,13 @@ void Pesquisa() {
                     break;
             if(FilmePesquisado[x]=='\0' && filmeIII[x]=='\0') {
                     printf("O filme %s tem %d volumes em estoque\n",filmeIII,quantidadeIII);
-                    cont++;
+                    pesquisa = 3;
             }
 
-        if(cont==0)
+        if(pesquisa==0)
             printf("\nO filme '%s' não está cadastrado\n",FilmePesquisado);
     }
+return pesquisa;
 }
 
 void Letra() {
