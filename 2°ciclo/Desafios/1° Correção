@@ -13,7 +13,6 @@ void Menu() {
 }
 
 void Entrada(){
-    fopen(catalogo_filmes,"w");
     int x, cont;
 //inserindo filme 1
     printf("\nDigite o nome do 1° filme: ");
@@ -45,10 +44,10 @@ void Entrada(){
 
     printf("Digite a quantidade disponível dele: ");
     do{
-            scanf("%d",&quantidadeII);
-            getchar();
-            if(quantidadeII<1)
-                printf("Digite um valor válido: ");
+        scanf("%d",&quantidadeII);
+        getchar();
+        if(quantidadeII<1)
+            printf("Digite um valor válido: ");
     }while(quantidadeII<1);
 //inserindo filme 3
     printf("\nDigite o nome do 3° filme: ");
@@ -87,7 +86,6 @@ void Listagem() {
 
     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há filmes para mostrar!!!\n\n");
-        system("pause");
     }
     else {
         if(filme[0]!='*')
@@ -179,12 +177,8 @@ void AlteraDados() {
     else {
         pesquisa = Pesquisa();
         switch(pesquisa) {
-        case 0:
-            printf("Esse filme não está cadastrado!");
-            system(pause);
-        break;
 
-        case 1:
+            case 1:
                 printf("\nDigite o nome do filme que irá substituí-lo: ");
                 do {
                     gets(filme);
@@ -210,6 +204,7 @@ void AlteraDados() {
                 if(quantidade<1)
                     printf("Digite um valor válido: ");
             }while(quantidade<1);
+            printf("Alteração de dados concluída com sucesso");
         break;
 
         case 2:
@@ -239,6 +234,7 @@ void AlteraDados() {
                 if(quantidadeII<1)
                     printf("Digite um valor válido: ");
             }while(quantidadeII<1);
+            printf("Alteração de dados concluída com sucesso");
         break;
 
         case 3:
@@ -269,6 +265,7 @@ void AlteraDados() {
                 if(quantidadeIII<1)
                     printf("Digite um valor válido: ");
             }while(quantidadeIII<1);
+            printf("Alteração de dados concluída com sucesso\n\n");
         break;
         }
     }
@@ -286,9 +283,6 @@ char Resposta;
     else {
         pesquisa = Pesquisa();
         switch(pesquisa) {
-            case 0:
-                printf("Filme não cadastrado!);
-            break;
 
             case 1:
                 printf("você tem certeza que deseja excluir esse registro? (s/n): ");
@@ -398,7 +392,7 @@ int main(){
         fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
         fwrite(filmeII, 1, 20, catalogo_filmes);
         fwrite(&quantidadeII, sizeof(int),1,catalogo_filmes);
-        fwrite(filmeII, 1, 20, catalogo_filmes);
+        fwrite(filmeIII, 1, 20, catalogo_filmes);
         fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
         fclose(catalogo_filmes);
 
