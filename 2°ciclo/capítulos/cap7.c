@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include<locale.h>
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
-#define ex1
+#define ex3
 
 #ifdef ex1
 /*1 - Escreva um programa que tem uma estrutura da dados com os membros abaixo.
@@ -102,12 +102,59 @@ int main() {
     Utilize vetor de estruturas.
                 estrutura: dia, mes, ano
 */
+struct Calendario{
+        int dia, mes, ano;
+};
+
+int Calculo(struct Calendario DataI, struct Calendario DataII){
+    int x, DiasI = 0, DiasII = 0;
+
+    for(x = 1; x < DataI.ano + 1; x++) {
+        if((x%4 == 0 && x %100 != 0) || x%400)
+            DiasI += 366;
+        else
+            DiasI += 365;
+    }
+
+    for(x = 1; x < DataI.mes + 1; x++){
+        if(x){
+
+        }
+    }
+
+    for(x = 0; x < DataI.ano + 1; x++) {
+        if((x/4) == 0)
+            DiasII += 366;
+        else
+            DiasII += 365;
+    }
+
+
+    return 0;
+}
+
 int main(){
     char Resposta;
+    struct Calendario DataI, DataII;
     do {
+        printf("Insira o ano da data 1ª data: ");
+        scanf(" %d",&DataI.ano);
+        printf("Insira o mes da data 1ª data: ");
+        scanf(" %d",&DataI.mes);
+        printf("Insira o dia da data 1ª data: ");
+        scanf(" %d",&DataI.dia);
 
-    printf("Deseja inserir novos valores? ");
-    scanf(%c,&Resposta);
+        printf("Insira o ano da data 2ª data: ");
+        scanf(" %d",&DataII.ano);
+        printf("Insira o mes da data 2ª data: ");
+        scanf(" %d",&DataII.mes);
+        printf("Insira o dia da data 2ª data: ");
+        scanf(" %d",&DataII.dia);
+
+        printf("As datas tem %d dias de diferença", Calculo(DataI, DataII));
+
+    printf("Deseja inserir novos valores? (s/n)");
+    scanf("%c",&Resposta);
     }while(Resposta!='s' && Resposta!='S');
     return 0;
 }
