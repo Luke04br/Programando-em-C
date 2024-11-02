@@ -8,8 +8,15 @@ int quantidade, quantidadeII, quantidadeIII;
 char filme[N], filmeII[N], filmeIII[N], FilmePesquisado[N];
 
 void Menu() {
-    printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n 1 - Entrada de dados\n 2 - Lista todos os dados na tela\n 3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n 4 - Pesquisar os filmes pela 1° letra\n 5 - Altera dados\n 6 - Exclui dados\n 7 - Saída");
-        printf("\n\nDigite a opção que deseja: ");
+    printf("**--------------- Bem vindo ao menu do nosso catálogo de filmes ---------------**\n\n");
+    printf("1 - Entrada de dados\n");
+    printf("2 - Lista todos os dados na tela\n");
+    printf("3 - Pesquisa um filme pelo nome completo e mostra todos os dados na tela\n");
+    printf("4 - Pesquisar os filmes pela 1° letra\n");
+    printf("5 - Altera dados\n");
+    printf("6 - Exclui dados\n");
+    printf("7 - Saída");
+    printf("\n\nDigite a opção que deseja: ");
 }
 
 void Entrada(){
@@ -100,49 +107,36 @@ void Listagem() {
 }
 
 int Pesquisa() {
-    char Resposta;
-    int x, pesquisa = 0;
-
-     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
-        printf("Não há filmes para pesquisar!\n\n");
+int x;
+    for(x = 0; FilmePesquisado[x] != '\0';x++)
+        if(FilmePesquisado[x]!= filme[x])
+            break;
+    if(FilmePesquisado[x]=='\0' && filme[x]=='\0') {
+        printf("\nO filme %s tem %d volumes em estoque\n",filme,quantidade);
+        return 1;
     }
 
-    else {
-            printf("\nDigite o nome do filme que deseja pesquisar: ");
-            gets(FilmePesquisado);
-
-            for(x=0;FilmePesquisado[x]!='\0';x++)
-                if(FilmePesquisado[x]!= filme[x])
-                    break;
-            if(FilmePesquisado[x]=='\0' && filme[x]=='\0') {
-                    printf("O filme %s tem %d volumes em estoque\n",filme,quantidade);
-                    pesquisa = 1;
-            }
-
-            for(x=0;FilmePesquisado[x]!='\0';x++)
-                if(FilmePesquisado[x]!= filmeII[x])
-                    break;
-            if(FilmePesquisado[x]=='\0' && filmeII[x]=='\0') {
-                    printf("O filme %s tem %d volumes em estoque\n",filmeII,quantidadeII);
-                    pesquisa = 2;
-            }
-
-            for(x=0;FilmePesquisado[x]!='\0';x++)
-                if(FilmePesquisado[x]!= filmeIII[x])
-                    break;
-            if(FilmePesquisado[x]=='\0' && filmeIII[x]=='\0') {
-                    printf("O filme %s tem %d volumes em estoque\n",filmeIII,quantidadeIII);
-                    pesquisa = 3;
-            }
-
-        if(pesquisa==0)
-            printf("\nO filme '%s' não está cadastrado\n",FilmePesquisado);
+    for(x = 0; FilmePesquisado[x] != '\0'; x++)
+        if(FilmePesquisado[x]!= filmeII[x])
+            break;
+    if(FilmePesquisado[x]=='\0' && filmeII[x]=='\0') {
+        printf("\nO filme %s tem %d volumes em estoque\n",filmeII ,quantidadeII);
+        return 2;
     }
-return pesquisa;
+
+    for(x = 0; FilmePesquisado[x]!='\0';x++)
+        if(FilmePesquisado[x]!= filmeIII[x])
+            break;
+    if(FilmePesquisado[x]=='\0' && filmeIII[x]=='\0') {
+        printf("\nO filme %s tem %d volumes em estoque\n",filmeIII ,quantidadeIII);
+        return 3;
+    }
+    printf("\nO filme '%s' não está cadastrado\n", FilmePesquisado);
+    return 0;
 }
 
 void Letra() {
-    char LetraPesquisada, Resposta;
+    char LetraPesquisada;
 
      if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
         printf("Não há filmes para pesquisar!!!\n\n");
@@ -167,113 +161,51 @@ void Letra() {
 }
 
 void AlteraDados() {
-    int x, pesquisa, cont = 0;
-    char Resposta;
+    int x, novaQuantidade, posicao;
 
-    //se não tiver nenum filme cadastrado
-    if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
-        printf("Não há dados para alterar!\n\n");
+    do {
+        printf("Digite o nome do filme que deseja susbtituir: ");
+        gets(FilmePesquisado);
+        posicao = Pesquisa();
+    } while (posicao == 0);
+
+    do {
+        printf("\nDigite o nome do novo filme: ");
+        gets(FilmePesquisado);
+        x = Pesquisa();
+        if ( x > 0)
+            printf("\nEsse filme já foi cadastrado, favor inserir outro.\n");
+    } while (x > 0);
+
+    printf("\nDigite a quantidade disponível dele: ");
+    do {
+        scanf("%d", &novaQuantidade);
+        getchar();
+        if (novaQuantidade < 1)
+            printf("Digite um valor válido: ");
+    } while (novaQuantidade < 1);
+
+    if (posicao == 1) {
+        for (x = 0; x < N; x++)
+            filme[x] = FilmePesquisado[x];
+        quantidade = novaQuantidade;
     }
-    else {
-        pesquisa = Pesquisa();
-        switch(pesquisa) {
 
-            case 1:
-                printf("\nDigite o nome do filme que irá substituí-lo: ");
-                do {
-                    gets(filme);
-    //comparando com o filme II
-                    for(x=0;filme[x]!='\0';x++)
-                        if(filme[x]!= filmeII[x])
-                             break;
-                    if(filme[x]=='\0' && filmeII[x]=='\0') //ve se é igual ao filmeII
-                        cont++;
-    //comparando com o filme III
-                    for(x=0;filme[x]!='\0';x++)
-                        if(filme[x]!= filmeIII[x])
-                             break;
-                    if(filme[x]=='\0' && filmeIII[x]=='\0')
-                        cont++;
-                    if(cont>0)
-                        printf("Esse filme já foi cadastrado, favor inserir outro: ");
-                }while(cont>0);
-            printf("Digite a quantidade disponível dele: ");
-            do{
-                scanf("%d",&quantidade);
-                getchar();
-                if(quantidade<1)
-                    printf("Digite um valor válido: ");
-            }while(quantidade<1);
-            printf("Alteração de dados concluída com sucesso");
-        break;
-
-        case 2:
-            printf("\nDigite o nome do filme que irá substituí-lo: ");
-            do {
-                gets(filmeII);
-        //comparando com o filme II
-                for(x=0;filmeII[x]!='\0';x++)
-                    if(filmeII[x]!= filme[x])
-                         break;
-                if(filmeII[x]=='\0' && filme[x]=='\0') //ve se é igual ao filmeII
-                    cont++;
-        //comparando com o filme III
-                for(x=0;filmeII[x]!='\0';x++)
-                    if(filmeII[x]!= filmeIII[x])
-                         break;
-                if(filme[x]=='\0' && filmeIII[x]=='\0')
-                    cont++;
-                if(cont>0)
-                    printf("Esse filme já foi cadastrado, favor inserir outro: ");
-            }while(cont>0);
-
-            printf("Digite a quantidade disponível dele: ");
-            do{
-                scanf("%d",&quantidadeII);
-                getchar();
-                if(quantidadeII<1)
-                    printf("Digite um valor válido: ");
-            }while(quantidadeII<1);
-            printf("Alteração de dados concluída com sucesso");
-        break;
-
-        case 3:
-            printf("\nDigite o nome do filme que irá substituí-lo: ");
-            do {
-                gets(filmeIII);
-        //comparando com o filme II
-                for(x=0;filmeIII[x]!='\0';x++)
-                    if(filmeIII[x]!= filme[x])
-                         break;
-                if(filmeIII[x]=='\0' && filme[x]=='\0') //ve se é igual ao filmeII
-                     cont++;
-        //comparando com o filme III
-                for(x=0;filmeIII[x]!='\0';x++)
-                    if(filmeIII[x]!= filmeII[x])
-                         break;
-                if(filmeIII[x]=='\0' && filmeII[x]=='\0')
-                     cont++;
-
-                if(cont>0)
-                    printf("Esse filme já foi cadastrado, favor inserir outro: ");
-            }while(cont>0);
-
-            printf("Digite a quantidade disponível dele: ");
-            do{
-                scanf("%d",&quantidadeIII);
-                getchar();
-                if(quantidadeIII<1)
-                    printf("Digite um valor válido: ");
-            }while(quantidadeIII<1);
-            printf("Alteração de dados concluída com sucesso\n\n");
-        break;
-        }
+    else if (posicao == 2) {
+        for (x = 0; x < N; x++)
+            filmeII[x] = FilmePesquisado[x];
+        quantidadeII = novaQuantidade;
     }
+
+    else if (posicao == 3) {
+        for (x = 0; x < N; x++)
+            filmeIII[x] = FilmePesquisado[x];
+        quantidadeIII = novaQuantidade;
+    }
+    printf("\nAlteração concluída com sucesso.\n\n");
 }
 
 void ExluiDados() {
-
-int x, pesquisa;
 char Resposta;
 
      if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
@@ -281,8 +213,7 @@ char Resposta;
     }
 
     else {
-        pesquisa = Pesquisa();
-        switch(pesquisa) {
+        switch(Pesquisa()) {
 
             case 1:
                 printf("você tem certeza que deseja excluir esse registro? (s/n): ");
@@ -327,13 +258,13 @@ void Saida() {
 
 int main(){
     setlocale(LC_ALL,"");
-    int Resposta, x;
+    int Resposta;
 
     filme[0]='*';
     filmeII[0]='*';
     filmeIII[0]='*';
 
-    for(x =0;;x++) {
+    for(;;) {
         catalogo_filmes = fopen("catalogo_filmes.txt", "r");
         fread(filme, 1, 20, catalogo_filmes);
         fread(&quantidade, sizeof(int),1,catalogo_filmes);
@@ -354,36 +285,45 @@ int main(){
 
         switch(Resposta) {
             case 1: //entrada de dados
+                printf("**---------------- Entrada de dados ----------------**\n\n");
                 Entrada();
                 system("pause");
             break;
 
             case 2: //lista tudo o que tem
+                printf("**-------------------- Listagem --------------------**\n\n");
                 Listagem();
                 system("pause");
             break;
 
             case 3: //Pesquisa pelo nome completo
+                printf("**-------------------- Pesquisa --------------------**\n\n");
+                printf("\nDigite o nome do filme que deseja consultar: ");
+                gets(FilmePesquisado);
                 Pesquisa();
                 system("pause");
             break;
 
             case 4: //Pesquisa pela inicial
+                printf("**-------------- Pesquisa pela inicial --------------**\n\n");
                 Letra();
                 system("pause");
             break;
 
             case 5: //ALtera dados de 1 dos filmes, usando a função Pesquisa()
+                printf("**---------------- Alteração de dados ----------------**\n\n");
                 AlteraDados();
                 system("pause");
             break;
 
             case 6: //exclui dados de 1 dos filmes. usando a função Pesquisa()
+                printf("**----------------- Exclusão de dados -----------------**\n\n");
                 ExluiDados();
                 system("pause");
             break;
 
             case 7: //sai
+                printf("**----------------------- Saída -----------------------**\n\n");
                 Saida();
             break;
         }
@@ -395,7 +335,6 @@ int main(){
         fwrite(filmeIII, 1, 20, catalogo_filmes);
         fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
         fclose(catalogo_filmes);
-
     }
 return 0;
 }
