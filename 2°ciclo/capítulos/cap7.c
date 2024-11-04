@@ -106,31 +106,81 @@ struct Calendario{
         int dia, mes, ano;
 };
 
-int Calculo(struct Calendario DataI, struct Calendario DataII){
-    int x, DiasI = 0, DiasII = 0;
+int meses(struct Calendario DataI, struct Calendario DataII){
+	switch(){
+		case 1:
+			return 0;
+		break;
+		
+		case 2:
+			if(bissexto() == 366)
+				return 29
+			else return 28
+		break;
+		
+		case 3:
+			return 31;
+		break;
+		
+		case 4:
+			return 30;
+		break;
+		
+		case 5:
+			return 31;
+		break;
+		
+		case 6:
+			return 30;
+		break;
+		
+		case 7:
+			return 31;
+		break;
+		
+		case 8:
+			return 31;
+		break;
+		
+		case 9:
+			return 30;
+		break;
+		
+		case 10:
+			return 31;
+		break;
+		
+		case 11:
+			return 30;
+		break;
+	}
+}
 
-    for(x = 1; x < DataI.ano + 1; x++) {
-        if((x%4 == 0 && x %100 != 0) || x%400)
-            DiasI += 366;
+int bissexto(int x){
+	if((x%4 == 0 && x %100 != 0) || x%400)
+            return 366;
         else
-            DiasI += 365;
-    }
+            return 365;
+}
 
-    for(x = 1; x < DataI.mes + 1; x++){
-        if(x){
-
-        }
-    }
-
-    for(x = 0; x < DataI.ano + 1; x++) {
-        if((x/4) == 0)
-            DiasII += 366;
-        else
-            DiasII += 365;
-    }
-
-
-    return 0;
+unsigned int Calculo(struct Calendario DataI, struct Calendario DataII) {
+    int x, SomaI = 0, SomaII = 0;
+	
+//calcula so dias totais da DataI
+	for(x = 0; x < DataI.ano; x++) 
+        	SomaI += bissexto();
+	for(x = 0; x < DataI.mes; x++)
+		SomaI += meses();
+	Soma += DataI.dia;
+	
+//calcula so dias totais da DataII
+	for(x = 0; x < DataII.ano; x++) 
+        	SomaII += bissexto();
+	for(x = 0; x < DataII.mes; x++)
+		SomaII += meses();
+	SomaII += DataII.dia;
+	
+	return SomaI - SomaII
 }
 
 int main(){
@@ -151,7 +201,7 @@ int main(){
         printf("Insira o dia da data 2ª data: ");
         scanf(" %d",&DataII.dia);
 
-        printf("As datas tem %d dias de diferença", Calculo(DataI, DataII));
+	printf("As datas tem %u dias de diferença", Calculo(DataI, DataII));
 
     printf("Deseja inserir novos valores? (s/n)");
     scanf("%c",&Resposta);
