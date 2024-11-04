@@ -146,7 +146,7 @@ void Letra() {
     else {
             printf("\nDigite a inicial do filme que deseja colsultar: ");
             LetraPesquisada = getchar();
-            if(LetraPesquisada == filme[0])
+            if(LetraPesquisada == filme[0]) // precisa ser if, pois a pode haver mais de um filme com a inicial 
                 printf("\nO filme %s tem %d volumes disponíveis\n",filme,quantidade);
 
             if(LetraPesquisada == filmeII[0])
@@ -163,46 +163,55 @@ void Letra() {
 void AlteraDados() {
     int x, novaQuantidade, pesquisa;
 
-    do {
+     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') 
+        printf("Não há filmes para pesquisar!!!n\n");
+
+    else {
         printf("Digite o nome do filme que deseja susbtituir: ");
-        gets(FilmePesquisado);
-        pesquisa = Pesquisa();
-    } while (pesquisa == 0);
+        do {
+            gets(FilmePesquisado);
+            pesquisa = Pesquisa();
+            if(pesquisa == 0) 
+                printf("Insira um filme existente: ");
+        }while (pesquisa == 0);
 
-    do {
-        printf("\nDigite o nome do novo filme: ");
-        gets(FilmePesquisado);
-        x = Pesquisa();
-        if ( x > 0)
-            printf("\nEsse filme já foi cadastrado, favor inserir outro.\n");
-    } while (x > 0);
+        do {
+            printf("\nDigite o nome do novo filme: ");
+            gets(FilmePesquisado);
+            x = Pesquisa();
+            if ( x > 0)
+                printf("\nEsse filme já foi cadastrado, favor inserir outro.\n");
+        }while (x > 0);
 
-    printf("\nDigite a quantidade disponível dele: ");
-    do {
-        scanf("%d", &novaQuantidade);
-        getchar();
-        if (novaQuantidade < 1)
-            printf("Digite um valor válido: ");
-    } while (novaQuantidade < 1);
-    
-    if (posicao == 1) {
-        for (x = 0; x < N; x++)
-            filme[x] = FilmePesquisado[x];
-        quantidade = novaQuantidade;
+        printf("\nDigite a quantidade disponível dele: ");
+        do {
+            scanf("%d", &novaQuantidade);
+            getchar();
+            if (novaQuantidade < 1)
+                printf("Digite um valor válido: ");
+        }while (novaQuantidade < 1);
+        switch(pesquisa) {
+        case 1:
+            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+                filme[x] = FilmePesquisado[x];
+            quantidade = novaQuantidade;
+        break;
+
+        case 2:
+            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+               filmeII[x] = FilmePesquisado[x];
+            quantidadeII = novaQuantidade;
+        break;
+
+        case 3:
+            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+                filmeIII[x] = FilmePesquisado[x];
+           quantidadeIII = novaQuantidade;
+        break;
+
+        printf("\nAlteração concluída com sucesso.\n\n");
+        }
     }
-
-    else if (posicao == 2) {
-        for (x = 0; x < N; x++)
-            filmeII[x] = FilmePesquisado[x];
-        quantidadeII = novaQuantidade;
-    }
-
-    else if (posicao == 3) {
-        for (x = 0; x < N; x++)
-            filmeIII[x] = FilmePesquisado[x];
-        quantidadeIII = novaQuantidade;
-    }
-    printf("\nAlteração concluída com sucesso.\n\n");
 }
 
 void ExluiDados() {
@@ -213,7 +222,14 @@ char Resposta;
         printf("Não há filmes para excluir!!!n\n");
 
     else {
-        pesquisa = Pesquisa();
+        printf("Digite o nome do filme que deseja susbtituir: ");
+        do {
+            gets(FilmePesquisado);
+            pesquisa = Pesquisa();
+            if(pesquisa == 0) 
+                printf("Insira o nome de um filme existente: );
+       }while (pesquisa == 0);
+
         printf("Você tem certeza que deseja excluir esse registro? (s/n): ");
         Resposta = getchar();
         if(Resposta == 'S' || Resposta == 's') {
