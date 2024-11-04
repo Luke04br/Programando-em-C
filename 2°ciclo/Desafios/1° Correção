@@ -161,13 +161,13 @@ void Letra() {
 }
 
 void AlteraDados() {
-    int x, novaQuantidade, posicao;
+    int x, novaQuantidade, pesquisa;
 
     do {
         printf("Digite o nome do filme que deseja susbtituir: ");
         gets(FilmePesquisado);
-        posicao = Pesquisa();
-    } while (posicao == 0);
+        pesquisa = Pesquisa();
+    } while (pesquisa == 0);
 
     do {
         printf("\nDigite o nome do novo filme: ");
@@ -184,7 +184,7 @@ void AlteraDados() {
         if (novaQuantidade < 1)
             printf("Digite um valor válido: ");
     } while (novaQuantidade < 1);
-
+    
     if (posicao == 1) {
         for (x = 0; x < N; x++)
             filme[x] = FilmePesquisado[x];
@@ -206,48 +206,34 @@ void AlteraDados() {
 }
 
 void ExluiDados() {
+int pesquisa;
 char Resposta;
 
-     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') {
+     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') 
         printf("Não há filmes para excluir!!!n\n");
-    }
 
     else {
-        switch(Pesquisa()) {
+        pesquisa = Pesquisa();
+        printf("Você tem certeza que deseja excluir esse registro? (s/n): ");
+        Resposta = getchar();
+        if(Resposta == 'S' || Resposta == 's') {
+            switch(pesquisa) {
 
-            case 1:
-                printf("você tem certeza que deseja excluir esse registro? (s/n): ");
-                Resposta = getchar();
-                if(Resposta == 's'|| Resposta=='S') {
+                case 1:
                     filme[0] = '*';
-                    printf("\nFilme excluido com sucesso...\n\n");
-                }
-                else
-                    printf("\nVoltando para o menu...\n\n");
-            break;
+                break;
 
-            case 2:
-                printf("você tem certeza que deseja excluir esse registro? (s/n): ");
-                Resposta = getchar();
-                if(Resposta == 's'||Resposta=='S') {
-                    filmeII[0] = '*';
-                    printf("\nFilme excluido com sucesso...\n\n");
-                }
-                else
-                    printf("\nVoltando para o menu...\n\n");
-            break;
+                case 2:
+                     filmeII[0] = '*';
+                break;
 
-            case 3:
-                printf("você tem certeza que deseja excluir esse registro? (s/n): ");
-                Resposta = getchar();
-                if(Resposta == 's'||Resposta=='S') {
+                case 3:
                     filmeIII[0] = '*';
-                    printf("\nFilme excluido com sucesso...\n\n");
-                }
-                else
-                    printf("\nVoltando para o menu...\n\n");
-            break;
-         }
+                break;
+             }
+            printf("\nFilme excluido com sucesso...\n\n");
+        }
+    else printf("voltando para o menu...\n\n);
     }
 }
 
