@@ -172,15 +172,15 @@ void AlteraDados() {
             gets(FilmePesquisado);
             pesquisa = Pesquisa();
             if(pesquisa == 0) 
-                printf("Insira um filme existente: ");
-        }while (pesquisa == 0);
+                printf("Filme inexistente no catálogo, favor inserir um filme cadastrado: ");
+        }while(pesquisa == 0);
 
+        printf("\nDigite o nome do novo filme: ");
         do {
-            printf("\nDigite o nome do novo filme: ");
             gets(FilmePesquisado);
             x = Pesquisa();
             if ( x > 0)
-                printf("\nEsse filme já foi cadastrado, favor inserir outro.\n");
+                printf("\nEsse filme já foi cadastrado, favor inserir outro: ");
         }while (x > 0);
 
         printf("\nDigite a quantidade disponível dele: ");
