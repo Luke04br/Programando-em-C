@@ -267,12 +267,12 @@ int main(){
 
     for(;;) {
         catalogo_filmes = fopen("catalogo_filmes.txt", "r");
-        fread(filme, 1, 20, catalogo_filmes);
-        fread(&quantidade, sizeof(int),1,catalogo_filmes);
-        fread(filmeII, 1, 20, catalogo_filmes);
-        fread(&quantidadeII, sizeof(int),1,catalogo_filmes);
-        fread(filmeIII, 1, 20, catalogo_filmes);
-        fread(&quantidadeIII, sizeof(int),1,catalogo_filmes);
+        fread(filme, sizeof(filme), 1, catalogo_filmes);
+        fread(&quantidade, sizeof(quantidade),1,catalogo_filmes);
+        fread(filmeII, sizeof(filmeII), 1, catalogo_filmes);
+        fread(&quantidadeII, sizeof(quantidadeII),1,catalogo_filmes);
+        fread(filmeIII, sizeof(filmeIII), 1, catalogo_filmes);
+        fread(&quantidadeIII, sizeof(quantidadeIII),1,catalogo_filmes);
         fclose(catalogo_filmes);
         system("cls");
         Menu();
@@ -323,12 +323,12 @@ int main(){
             break;
         }
         catalogo_filmes = fopen("catalogo_filmes.txt", "w");
-        fwrite(filme, 1, 20, catalogo_filmes);
-        fwrite(&quantidade, sizeof(int),1,catalogo_filmes);
-        fwrite(filmeII, 1, 20, catalogo_filmes);
-        fwrite(&quantidadeII, sizeof(int),1,catalogo_filmes);
-        fwrite(filmeIII, 1, 20, catalogo_filmes);
-        fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
+        fwrite(filme, sizeof(filme), 1, catalogo_filmes);
+        fwrite(&quantidade, sizeof(quantidade),1,catalogo_filmes);
+        fwrite(filmeII, sizeof(filmeII), 1, catalogo_filmes);
+        fwrite(&quantidadeII, sizeof(quantidadeII),1,catalogo_filmes);
+        fwrite(filmeIII, sizeof(filmeIII), 1, catalogo_filmes);
+        fwrite(&quantidadeIII, sizeof(quantidadeIII),1,catalogo_filmes);
         fclose(catalogo_filmes);
         printf("\n");
         system("pause");
