@@ -119,7 +119,7 @@ struct Calendario{
 int meses(int ano, int mes){
 	if(mes == 1) return 0;
 	if(mes == 2) {
-		bissexto(ano) == 366 ? return 29 : return 28;
+		return bissexto(ano) == 366 ? 29 : 28;
 	}
 	if (mes == 4 || mes == 6 || mes == 9 ||mes == 11 )
 		return 30;
@@ -135,56 +135,62 @@ int bissexto(int ano){
 unsigned int Calculo(struct Calendario DataI, struct Calendario DataII) {
 	int ano, mes;
 	int SomaI = 0, SomaII = 0;
-	
+
 //calcula os dias totais da DataI
-	for(ano = 0; ano < DataI.ano; ano++) 
+	for(ano = 0; ano < DataI.ano; ano++)
         	SomaI += bissexto(ano);
 	for(mes = 1; mes < DataI.mes; mes++)
 		SomaI += meses(DataI.ano, mes);
 	SomaI += DataI.dia;
-	
+
 //calcula os dias totais da DataII
-	for(ano = 0; ano < DataII.ano; ano++) 
+	for(ano = 0; ano < DataII.ano; ano++)
         	SomaII += bissexto(ano);
 	for(mes = 1; mes < DataII.mes; mes++)
 		SomaII += meses(DataII.ano, mes);
 	SomaII += DataII.dia;
-	
+
 	return SomaI - SomaII;
 }
-int DiaValido(int fia, int mes, int ano){
+int DiaValido(struct Calendario DataI){
 }
 
 int main(){
     char Resposta;
     struct Calendario DataI, DataII;
+    setlocale(LC_ALL,"");
+
     do {
         printf("Insira o ano da 1ª data: ");
         scanf("%d",&DataI.ano);
 	printf("Insira o mes da 1ª data: ");
+
 	do{
-        	scanf("%d",&DataI.mes);
+        	scanf(" %d",&DataI.mes);
 		if(DataI.mes>12 || DataI.mes<1)
 			printf("O mês deve ser um valor entre 1 e 12: ");
 	}while(DataI.mes>12 || DataI.mes<1);
-	do{
         printf("Insira o dia da 1ª data: ");
-        scanf("%d",&DataI.dia);
-	}while();
+        scanf(" %d",&DataI.dia);
 
-        printf("Insira o ano da 2ª data: ");
-        scanf(" %d",&DataII.ano);
-        printf("Insira o mes da 2ª data: ");
-        scanf(" %d",&DataII.mes);
-        printf("Insira o dia da 2ª data: ");
+        printf("Insira o ano da 1ª data: ");
+        scanf("%d",&DataII.ano);
+	printf("Insira o mes da 1ª data: ");
+
+	do{
+        	scanf(" %d",&DataII.mes);
+		if(DataI.mes>12 || DataII.mes<1)
+			printf("O mês deve ser um valor entre 1 e 12: ");
+	}while(DataI.mes>12 || DataII.mes<1);
+        printf("Insira o dia da 1ª data: ");
         scanf(" %d",&DataII.dia);
 
 	printf("As datas tem %u dias de diferença", Calculo(DataI, DataII));
-
-	printf("Deseja inserir novos valores? (s/n)");
+	printf("\nDeseja inserir novos valores? (s/n)");
 	scanf("%c",&Resposta);
 	getchar();
-    }while(Resposta!='s' && Resposta!='S');
+    }while(Resposta=='s' || Resposta=='S');
+
     return 0;
 }
 #endif//ex3
@@ -225,7 +231,7 @@ int main(){
 	int x;
 	float IMC;
 	setlocale(LC_ALL,"");
-	
+
 	for(;;){
 		switch(Menu()){
 			case 1:
@@ -261,12 +267,12 @@ int main(){
 			case 4:
 				printf("*-------------Saindo-------------*");
 				exit(0);
-			break;	
+			break;
 		}
 	system("pause");
 	}
 }
-	
+
 
     printf("Deseja inserir novos valores? ");
     scanf(%c,&Resposta);
