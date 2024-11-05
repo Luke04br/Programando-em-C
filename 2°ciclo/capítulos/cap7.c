@@ -119,39 +119,40 @@ struct Calendario{
 int meses(int ano, int mes){
 	if(mes == 1) return 0;
 	if(mes == 2) {
-		if(bissexto(ano) == 366)
-			return 29
-		else return 28
+		bissexto(ano) == 366 ? return 29 : return 28;
 	}
-	if (mes == 4 || mes == 6 || mes == 9 ||mes == 11 ) return 30;
-	if(mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) return 31;
+	if (mes == 4 || mes == 6 || mes == 9 ||mes == 11 )
+		return 30;
+	return 31;
 }
 
 int bissexto(int ano){
 	if((ano % 4 == 0 && ano % 100 != 0) || ano % 400)
             return 366;
-        else
-            return 365;
+        return 365;
 }
 
 unsigned int Calculo(struct Calendario DataI, struct Calendario DataII) {
-    int ano, mes, SomaI = 0, SomaII = 0;
+	int ano, mes;
+	int SomaI = 0, SomaII = 0;
 	
 //calcula os dias totais da DataI
 	for(ano = 0; ano < DataI.ano; ano++) 
         	SomaI += bissexto(ano);
 	for(mes = 1; mes < DataI.mes; mes++)
-		SomaI += meses(ano, mes);
-	Soma += DataI.dia;
+		SomaI += meses(DataI.ano, mes);
+	SomaI += DataI.dia;
 	
 //calcula os dias totais da DataII
 	for(ano = 0; ano < DataII.ano; ano++) 
         	SomaII += bissexto(ano);
 	for(mes = 1; mes < DataII.mes; mes++)
-		SomaII += meses(ano, mes);
+		SomaII += meses(DataII.ano, mes);
 	SomaII += DataII.dia;
 	
-	return SomaI - SomaII
+	return SomaI - SomaII;
+}
+int DiaValido(int fia, int mes, int ano){
 }
 
 int main(){
@@ -222,6 +223,7 @@ int Menu() {
 int main(){
 	struct dados pessoas[4];
 	int x;
+	float IMC;
 	setlocale(LC_ALL,"");
 	
 	for(;;){
@@ -236,7 +238,6 @@ int main(){
 					printf("\nDigite a altura de %s: ", pessoas[x].nome);
 					scanf("%f",&pessoas[x].altura);
 				}
-				system("pause");
 			break;
 
 			case 2:
@@ -250,14 +251,19 @@ int main(){
 			break;
 
 			case 3:
-				printf("*-------------Cálculo-------------*");
+				printf("*-----------Cálculo do IMC-----------*");
+				for(x = 0; x < 4; x++) {
+					IMC = (pessoas[x].peso)/(pessoas[x].altura*pessoas[x].altura);
+					printf("$s tem %f de IMC",pessoas[x].nome, IMC);
+				}
 			break;
 
 			case 4:
 				printf("*-------------Saindo-------------*");
 				exit(0);
-			break;
+			break;	
 		}
+	system("pause");
 	}
 }
 	
