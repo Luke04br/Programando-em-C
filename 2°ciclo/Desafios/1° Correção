@@ -146,7 +146,7 @@ void Letra() {
     else {
             printf("\nDigite a inicial do filme que deseja colsultar: ");
             LetraPesquisada = getchar();
-            if(LetraPesquisada == filme[0]) // precisa ser if, pois a pode haver mais de um filme com a inicial 
+            if(LetraPesquisada == filme[0]) // precisa ser if, pois a pode haver mais de um filme com a inicial
                 printf("\nO filme %s tem %d volumes disponíveis\n",filme,quantidade);
 
             if(LetraPesquisada == filmeII[0])
@@ -163,7 +163,7 @@ void Letra() {
 void AlteraDados() {
     int x, novaQuantidade, pesquisa;
 
-     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') 
+     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*')
         printf("Não há filmes para pesquisar!!!n\n");
 
     else {
@@ -171,7 +171,7 @@ void AlteraDados() {
         do {
             gets(FilmePesquisado);
             pesquisa = Pesquisa();
-            if(pesquisa == 0) 
+            if(pesquisa == 0)
                 printf("Filme inexistente no catálogo, favor inserir um filme cadastrado: ");
         }while(pesquisa == 0);
 
@@ -192,25 +192,24 @@ void AlteraDados() {
         }while (novaQuantidade < 1);
         switch(pesquisa) {
         case 1:
-            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+            for (x = 0; x < N; x++)
                 filme[x] = FilmePesquisado[x];
             quantidade = novaQuantidade;
         break;
 
         case 2:
-            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+            for (x = 0; x < N; x++)
                filmeII[x] = FilmePesquisado[x];
             quantidadeII = novaQuantidade;
         break;
 
         case 3:
-            for (x = 0; FilmePesquisado[x] != '/0'; x++)
+            for (x = 0; x < N; x++)
                 filmeIII[x] = FilmePesquisado[x];
            quantidadeIII = novaQuantidade;
         break;
-
-        printf("\nAlteração concluída com sucesso.\n\n");
         }
+    printf("\nAlteração concluída com sucesso...");
     }
 }
 
@@ -218,7 +217,7 @@ void ExluiDados() {
 int pesquisa;
 char Resposta;
 
-     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*') 
+     if(filme[0]=='*' && filmeII[0]=='*' && filmeIII[0]=='*')
         printf("Não há filmes para excluir!!!n\n");
 
     else {
@@ -226,8 +225,8 @@ char Resposta;
         do {
             gets(FilmePesquisado);
             pesquisa = Pesquisa();
-            if(pesquisa == 0) 
-                printf("Insira o nome de um filme existente: );
+            if(pesquisa == 0)
+                printf("Insira o nome de um filme existente: ");
        }while (pesquisa == 0);
 
         printf("Você tem certeza que deseja excluir esse registro? (s/n): ");
@@ -249,7 +248,7 @@ char Resposta;
              }
             printf("\nFilme excluido com sucesso...\n\n");
         }
-    else printf("voltando para o menu...\n\n);
+    else printf("voltando para o menu...\n\n");
     }
 }
 
@@ -289,13 +288,11 @@ int main(){
             case 1: //entrada de dados
                 printf("**---------------- Entrada de dados ----------------**\n\n");
                 Entrada();
-                system("pause");
             break;
 
             case 2: //lista tudo o que tem
                 printf("**-------------------- Listagem --------------------**\n\n");
                 Listagem();
-                system("pause");
             break;
 
             case 3: //Pesquisa pelo nome completo
@@ -303,25 +300,21 @@ int main(){
                 printf("\nDigite o nome do filme que deseja consultar: ");
                 gets(FilmePesquisado);
                 Pesquisa();
-                system("pause");
             break;
 
             case 4: //Pesquisa pela inicial
                 printf("**-------------- Pesquisa pela inicial --------------**\n\n");
                 Letra();
-                system("pause");
             break;
 
             case 5: //ALtera dados de 1 dos filmes, usando a função Pesquisa()
                 printf("**---------------- Alteração de dados ----------------**\n\n");
                 AlteraDados();
-                system("pause");
             break;
 
             case 6: //exclui dados de 1 dos filmes. usando a função Pesquisa()
                 printf("**----------------- Exclusão de dados -----------------**\n\n");
                 ExluiDados();
-                system("pause");
             break;
 
             case 7: //sai
@@ -337,6 +330,8 @@ int main(){
         fwrite(filmeIII, 1, 20, catalogo_filmes);
         fwrite(&quantidadeIII, sizeof(int),1,catalogo_filmes);
         fclose(catalogo_filmes);
+        printf("\n");
+        system("pause");
     }
 return 0;
 }
