@@ -116,8 +116,6 @@ struct Calendario{
         int dia, mes, ano;
 };
 
-
-
 int bissexto(int ano) {
     if((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0)
             return 366;
@@ -135,21 +133,22 @@ int meses(int mes, int ano){
 
 int Calculo(struct Calendario DataI, struct Calendario DataF){
     int ano, mes, Soma = 0;
+
     //contagem da diferença se as datas tiverem 1 ano ou mais de diferença
-    if(DataI.ano != DataF.ano && DataF.mes > DataI.mes)
+    if(DataI.ano != DataF.ano && DataF.mes >= DataI.mes)
         for(ano = DataI.ano; ano < DataF.ano; ano++)
             Soma += bissexto(ano);
-    
+
     //contando se o mes INICIAL for MENOR que o mês FINAL
     if(DataI.mes != DataF.mes && DataF.mes > DataI.mes)
         ano = DataF.ano;
         for(mes = DataI.mes; mes < DataF.mes; mes++)
             Soma += meses(mes, ano);
-    
+
     //contando se o mes INICIAL for MAIOR que o mês FINAL
      if (DataI.mes != DataF.mes && DataI.mes > DataF.mes) {
         ano = DataF.ano - 1;
-         
+
     //conta os mses da data INICIAL até o ano da data FINAL
         for(mes = DataI.mes; mes < 13; mes++)
              Soma += meses(mes, ano);
@@ -159,17 +158,17 @@ int Calculo(struct Calendario DataI, struct Calendario DataF){
              Soma += meses(mes,ano);
 
     if(DataI.mes != DataF.mes && DataI.dia > DataF.dia)
-        Soma += (meses(ano,mes) - DataI.dia) + DataF.dia;
-         
-    if(DataI.mes != DataF.mes && DataF.dia > DataI.dia)
+        Soma += (meses(mes, ano) - DataI.dia) + DataF.dia;
+
+    if(DataI.mes == DataF.mes && DataF.dia > DataI.dia)
         Soma += DataF.dia - DataI.dia;
-    }  
+    }
     return Soma;
 }
 
 int main(){
     char Resposta;
-    int ano, mes;
+    int ano, mes, TotalDias;
     struct Calendario DataI, DataF;
     setlocale(LC_ALL,"");
 
@@ -183,7 +182,7 @@ int main(){
             if(DataI.ano < 0)
                 printf("O ano deve ser superior a 0: ");
         }while(DataI.ano < 0);
-    int ano = DataI.ano;
+    ano = DataI.ano;
 
     //inserindo mes I
         printf("Mês: ");
@@ -198,9 +197,12 @@ int main(){
         do{
             printf("Dia: ");
             scanf(" %d",&DataI.dia);
-        if(DataI.dia > meses(ano, mes))
-            printf("O dia deve ser um valor entre 1 e %d: ", meses(ano, mes));
-        }while(DataI.dia < 1 || DataI.dia > meses(ano, mes));
+            TotalDias = meses(mes, ano);
+        if(DataI.dia > TotalDias){
+            printf("O dia deve ser um valor entre 1 e %d: ", TotalDias);
+        }
+        }while(DataI.dia < 1 || DataI.dia > TotalDias);
+        printf("\n%d/%d/%d", DataI.dia, DataI.mes, DataI.ano);
 
     //Inserindo ano II
         printf("\nInsira o ano da 2ª data");
@@ -210,6 +212,7 @@ int main(){
             if(DataF.ano < DataI.ano)
                 printf("O ano da data final deve ser superior ou igual ao ano da data inicial: ");
         }while(DataF.ano < DataI.ano);
+        ano = DataF.ano;
     //inserindo mes II
         printf("Mês: ");
         do{
@@ -219,13 +222,17 @@ int main(){
         else if(DataI.ano == DataF.ano && DataI.mes > DataF.mes)
                     printf("O mês da data final deve ser maior ou igual ao mês da data inicial se os anos forem iguais: ");
         }while( (DataF.mes > 12 || DataF.mes < 1) || (DataI.ano == DataF.ano && DataI.mes > DataF.mes) );
+        mes = DataF.mes;
     //inserindo dia II
         printf("Dia: ");
         do{
             scanf(" %d",&DataF.dia);
-        }while(DataF.dia > meses(DataF.ano, DataF.mes));
+            TotalDias = meses(mes, ano);
+            if(DataF.dia < 1 || DataF.dia > TotalDias)
+                printf("O dia deve ser um valor entre 1 e %d: ", TotalDias);
+        }while(DataF.dia > TotalDias);
 
-    printf("\nA data %d.%d.%d tem %d dias de diferença da data %d.%d.%d", DataI.dia, DataI.mes, DataI.ano, Calculo(DataI, DataF), DataF.dia, DataF.mes, DataF.ano);
+    printf("\nA data inicial %d/%d/%d tem %d dias de diferença da data final %d/%d/%d", DataI.dia, DataI.mes, DataI.ano, Calculo(DataI, DataF), DataF.dia, DataF.mes, DataF.ano);
     printf("\n\nDeseja inserir novos valores? (s/n)");
     scanf(" %c",&Resposta);
     }while(Resposta == 's' || Resposta == 'S');
