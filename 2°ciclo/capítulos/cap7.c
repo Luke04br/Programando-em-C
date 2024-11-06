@@ -290,3 +290,65 @@ int main(){
     return 0;
 }
 #endif//ex4
+/*
+struct Calendario{
+        int dia, mes, ano;
+};
+
+
+unsigned int Calculo(struct Calendario DataI, struct Calendario DataII) {
+    int anos, int mes, int dias;
+
+    for(Data.ano; DataI.ano < DataII.ano; Data.ano)
+}
+
+int main(){
+    char Resposta;
+    struct Calendario DataI, DataII;
+    setlocale(LC_ALL,"");
+
+    //inserindo ano I
+    do {
+        printf("Insira a data inicial: ");
+        pritnf("Ano:");
+        do{
+            scanf(" %d",&DataII.ano);
+            if(DataII.ano < 0)
+                printf("O ano deve ser superior a 0: ");
+        }while(DataII.ano < 0);
+    //inserindo mes I
+        printf("Mês: ");
+        do{
+            scanf(" %d",&DataI.mes);
+            if(DataII.mes > 12 || DataII.mes<1)
+                printf("O mês deve ser um valor entre 1 e 12: ");
+        }while(DataII.mes > 12 || DataII.mes<1);
+	//inserindo dia I
+        printf("Insira o dia da 1ª data: ");
+        scanf(" %d",&DataII.dia);
+    //Inserindo ano II
+        printf("Insira o ano da 2ª data: ");
+        do{
+            scanf(" %d",&DataII.ano);
+            if(DataII.ano < 0)
+                printf("O ano deve ser superior a 0: ");
+        }while(DataII.ano < 0);
+    //inserindo mes II
+        printf("Insira o mes da 2ª data: ");
+        do{
+            scanf(" %d",&DataII.mes);
+            if(DataII.mes > 12 || DataII.mes<1)
+                printf("O mês deve ser um valor entre 1 e 12: ");
+        }while(DataII.mes > 12 || DataII.mes<1);
+	//inserindo dia II
+        printf("Insira o dia da 2ª data: ");
+        scanf(" %d",&DataII.dia);
+
+	printf("A data %d.%d.%d tem %u dias de diferença da data %d.%d.%d", DataI.dia, DataI.mes, DataI.ano, Calculo(DataI, DataII), DataII.dia, DataII.mes, DataII.ano);
+	printf("\n\nDeseja inserir novos valores? (s/n)");
+	scanf(" %c",&Resposta);
+    }while(Resposta == 's' || Resposta == 'S');
+
+    return 0;
+}
+*/
