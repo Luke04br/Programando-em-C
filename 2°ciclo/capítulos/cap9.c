@@ -18,6 +18,16 @@
     1234567890123456789012345678901234567890123456789012345678901234567890
         char      int       long                float               double
               unsigned char       unsigned int        unsigned long          */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex1
 
 #ifdef ex2
@@ -27,6 +37,16 @@
     Escreva uma funcao para comparar as 2 strings. Passe como parametros para 
     a funcao as 2 strings usando ponteiros e retorne como resultado se IGUAIS 1 
     ou se DIFERENTES 0. Mostre o resultado no video na funcao main(). */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex2
 
 #ifdef ex3
@@ -35,6 +55,16 @@
     o resultado acumulado dos n valores. As operacoes aritmeticas e a entrada
     de dados devem ser funcoes que recebe os valores usando ponteiros.  
     As variaveis sao LOCAIS na funcao main(). */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex3
 
 #ifdef ex4
@@ -46,6 +76,16 @@
     O vetor deve ser declarado como variavel LOCAL na funcao main().
 
     vetor -> b,d,f,h,j,k,m,o,q,s,u,w,y                                 */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex4
 
 #ifdef ex5
@@ -56,9 +96,29 @@
     Coloque no menu a opcao de sair tambem. Utilize o comando switch.
     (vetor de estruturas)
      estutura: nome, end, cidade, estado, cep                          */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex5
 
 #ifdef ex6
 /* 6 - Acrescente ao menu do exercicio anterior as funcoes de procura, altera e
     exclui um registro sempre usando ponteiros. */
+int main(){
+  char Resposta;
+  setloclae(LC_ALL,"");
+  do {
+    system("cls");
+    printf("Deseja inserir novos valores? (s/n)");
+    Resposta = getchar();
+  }while(Resposta == 's' || Resposta == 'S');
+  return 0;
+}
 #endif // ex6
