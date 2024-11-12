@@ -31,11 +31,25 @@ int main(){
     funcao para compara-las usando ponteiros e retorne como resultado se 
     sao IGUAIS 1 ou se sao DIFERENTES 0 para a funcao main(). 
     Imprima o resultado na funcao main(). Declare os vetores como variavel global */ 
+int comparacao(char *str1, char *str2){
+    for(; str1 != '\0'&& str2 != '\0'; str1++, str2++)
+        if(*str1 != *str2)
+            return 0; // se tiver algo diferente
+    if(str1 == '\0' && str2 == '\0')
+        return 1; // se for igual e o finalizar estiver na mesma posição
+    return 0; // se o finalizador n estiver na mesma posição
+}
 int main(){
+char str1[11], str2[11];
   char Resposta;
   setloclae(LC_ALL,"");
   do {
     system("cls");
+    printf("Insira a primeira string: ");
+    gets(str1);
+    printf("Insira a segunda string: ");
+    gets(str2);
+    comparacao();
     printf("Deseja inserir novos valores? (s/n)");
     Resposta = getchar();
   }while(Resposta == 's' || Resposta == 'S');
@@ -49,16 +63,32 @@ int main(){
     Imprima o resultado da pesquisa no video na funcao main(). Passe como informacao
     para a funcao a letra digitada usando ponteiros.(utilize o comando return). 
     O vetor deve ser declarado como variavel global.
-
     vetor -> b,d,f,h,j,k,m,o,q,s,u,w,y */
+
+char vetor[14] = {'b','d','f','h','j','k','m','o','q','s','u','w','y'};
+
+char pesquisa(char *vetor, char letra) {
+    for(x = 0; x < 14; x++)
+        if(*(vetor + x) == vetor[x])
+            return 1;
+    return 0;
+}
+
 int main(){
-  char Resposta;
+char letra;
   setloclae(LC_ALL,"");
   do {
-    system("cls");
-    printf("Deseja inserir novos valores? (s/n)");
-    Resposta = getchar();
-  }while(Resposta == 's' || Resposta == 'S');
+        system("cls");
+        printf("Insira a letra que deseja pesquisar: ");
+        letra = getchar();
+        resultado = pesquisa(vetor, letra);
+        if(resultado == 1)
+            printf("A letra %c está presente no vetor!!!", letra);
+        else   
+            printf("A letra %c não está presente no vetor!!!", letra");
+        printf("Deseja inserir novos valores? (s/n)");
+        letra = getchar();
+  }while(letra == 's' || letra == 'S');
   return 0;
 }
 #endif // ex3
