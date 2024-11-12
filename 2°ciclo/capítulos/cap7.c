@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include<locale.h>
 //OBS.: Todos os programa devem ser finalizados pelo usuario.
-#define ex3
+#define ex2
 
 #ifdef ex1
 /*1 - Escreva um programa que tem uma estrutura da dados com os membros abaixo.
@@ -81,27 +81,76 @@ int main() {
 /*2 - Escreva um programa com a estrutura de dados abaixo. Defina um vetor de
     estruturas de 4 elementos. Receba os dados pelo teclado em uma funcao
     e imprima-os no video em uma funcao. Utilize vetor de estruturas.
-    Fa a um menu com uma opcao para saida do programa.
+    Faça um menu com uma opcao para saida do programa.
 		estrutura: nome, end, cidade, estado, cep
 */
-struct info{
+struct dados{
 	char nome[10], end[50], cidade[15], estado[3], cep[9];
 };
-
-void entrada(){
+int Menu() {
+	int Resposta;
+	system("cls");
+	printf("*-------------Menu-------------*\n");
+	printf("1 - receber todos os dados\n");
+	printf("2 - imprime todos os dados\n");
+	printf("3 - sair\n");
+	printf("\nEscolha a opção que deseja: ");
+	scanf("%d",&Resposta);
+	getchar();
+	system("cls");
+	return Resposta;
 }
 
-void impressao(struct info dados[4]){
-}
-int main() {
-	struct info dados[4];
-	char Resposta;
-	do {
+void entrada(struct dados info[4]) {
+    int x;
 
-		printf("Deseja inserir novos valores? ");
-    		scanf(%c,&Resposta);
-    	}while(Resposta!='s' && Resposta!='S');
-    return 0;
+    printf("*-------------Entrada-------------*\n");
+    for(x = 0; x < 4; x++) {
+        printf("\nDigite o nome da %dª pessoa: ", x + 1);
+        gets(info[x].nome);
+
+        printf("Insira o endereço de %s: ", info[x].nome);
+        gets(info[x].end);
+
+        printf("Insira a cidade de %s: ", info[x].nome);
+        gets(info[x].cidade);
+
+        printf("Insira siglas do estado de %s: ", info[x].nome);
+        gets(info[x].estado);
+
+        printf("Insira o CEP de %s: ", info[x].nome);
+        gets(info[x].cep);
+
+    }
+}
+
+void impressao(struct dados info[4]){
+    printf("*-------------Listagem-------------*\n");
+}
+
+int main(){
+	struct dados info[4];
+	int x;
+	setlocale(LC_ALL,"");
+
+	for(;;){
+		switch(Menu()){
+			case 1:
+                entrada(info);
+			break;
+
+			case 2:
+			    impressao(info);
+			break;
+
+			case 3:
+                printf("*-------------Saindo-------------*\n");
+				exit(0);
+			break;
+		}
+    printf("\n");
+	system("pause");
+	}
 }
 #endif//ex2
 
@@ -259,13 +308,13 @@ struct dados{
 int Menu() {
 	int Resposta;
 	system("cls");
-	printf("*-------------Menu-------------*\n);
-	printf("1 - receber todos os dados"\n);
-	printf("2 - imprime todos os dados"\n);
+	printf("*-------------Menu-------------*\n");
+	printf("1 - receber todos os dados\n");
+	printf("2 - imprime todos os dados\n");
 	printf("3 - calcula o IMC de todas as pessoas\n");
 	printf("4 - sair\n");
-	printf("Escolha a opção que deseja: ");
-	scanf("%d".&Resposta);
+	printf("\nEscolha a opção que deseja: ");
+	scanf("%d",&Resposta);
 	getchar();
 	system("cls");
 	return Resposta;
@@ -280,48 +329,52 @@ int main(){
 	for(;;){
 		switch(Menu()){
 			case 1:
-				printf("*-------------Entrada-------------*");
+				printf("*-------------Entrada-------------*\n");
 				for(x = 0; x < 4; x++) {
-					printf("\nDigite o nome da xª pessoa: ", x + 1);
+					printf("\nDigite o nome da %dª pessoa: ", x + 1);
 					gets(pessoas[x].nome);
-					printf("\nDigite o peso de %s: ", pessoas[x].nome);
-					scanf("%f",&pessoas[x].peso);
-					printf("\nDigite a altura de %s: ", pessoas[x].nome);
-					scanf("%f",&pessoas[x].altura);
+					printf("Digite o peso de %s: ", pessoas[x].nome);
+					do {
+                        scanf("%f",&pessoas[x].peso);
+                        getchar();
+                        if(pessoas[x].peso < 0)
+                            printf("Digite um valor válido: ");
+					}while(pessoas[x].peso < 0);
+					printf("Digite a altura de %s: ", pessoas[x].nome);
+					do {
+                        scanf("%f",&pessoas[x].altura);
+                        getchar();
+                        if(pessoas[x].altura < 0)
+                            printf("Digite um valor válido: ");
+					}while(pessoas[x].altura < 0);
 				}
 			break;
 
 			case 2:
-				printf("*-------------Listagem-------------*");
+				printf("*-------------Listagem-------------*\n");
 				for(x = 0; x < 4; x++) {
-					printf("xº:\n")
+					printf("xº: \n");
 					printf("\nNome: %s", pessoas[x].nome);
-					printf("\nPeso: %f", pessoas[x].peso);
-					printf("\nAltura: %f\n", pessoas[x].peso);
+					printf("\nPeso: %.2f", pessoas[x].peso);
+					printf("\nAltura: %.2f\n", pessoas[x].altura);
 					}
 			break;
 
 			case 3:
-				printf("*-----------Cálculo do IMC-----------*");
+				printf("*-----------Cálculo do IMC-----------*\n");
 				for(x = 0; x < 4; x++) {
 					IMC = (pessoas[x].peso)/(pessoas[x].altura*pessoas[x].altura);
-					printf("$s tem %f de IMC",pessoas[x].nome, IMC);
+					printf("\n%s tem %.2f de IMC\n",pessoas[x].nome, IMC);
 				}
 			break;
 
 			case 4:
-				printf("*-------------Saindo-------------*");
+				printf("*-------------Saindo-------------*\n");
 				exit(0);
 			break;
 		}
+    printf("\n");
 	system("pause");
 	}
-}
-
-
-    printf("Deseja inserir novos valores? ");
-    scanf(%c,&Resposta);
-    }while(Resposta!='s' && Resposta!='S');
-    return 0;
 }
 #endif//ex4
