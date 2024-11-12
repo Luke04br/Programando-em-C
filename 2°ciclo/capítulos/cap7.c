@@ -126,6 +126,9 @@ void entrada(struct dados info[4]) {
 
 void impressao(struct dados info[4]){
     printf("*-------------Listagem-------------*\n");
+    for(x = 0; x < 4; x++){
+        printf("")
+    }
 }
 
 int main(){
