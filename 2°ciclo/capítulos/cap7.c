@@ -127,7 +127,11 @@ void entrada(struct dados info[4]) {
 void impressao(struct dados info[4]){
     printf("*-------------Listagem-------------*\n");
     for(x = 0; x < 4; x++){
-        printf("")
+        printf("\nNome: %s",info[x].nome);
+	printf("\nEndereço: %s",info[x].end);
+	printf("\nCidade: %s",info[x].cidade);
+	printf("\nEstado: %s",info[x].estado);
+	printf("\nNome: %s",info[x].cep);
     }
 }
 
@@ -139,19 +143,19 @@ int main(){
 	for(;;){
 		switch(Menu()){
 			case 1:
-                entrada(info);
+                		entrada(info);
 			break;
 
 			case 2:
-			    impressao(info);
+				impressao(info);
 			break;
 
 			case 3:
-                printf("*-------------Saindo-------------*\n");
+               			printf("*-------------Saindo-------------*\n");
 				exit(0);
 			break;
 		}
-    printf("\n");
+   	 printf("\n");
 	system("pause");
 	}
 }
@@ -338,17 +342,17 @@ int main(){
 					gets(pessoas[x].nome);
 					printf("Digite o peso de %s: ", pessoas[x].nome);
 					do {
-                        scanf("%f",&pessoas[x].peso);
-                        getchar();
-                        if(pessoas[x].peso < 0)
-                            printf("Digite um valor válido: ");
+                        			scanf("%f",&pessoas[x].peso);
+                        			getchar();
+                        			if(pessoas[x].peso < 0)
+                          	  		printf("Digite um valor válido: ");
 					}while(pessoas[x].peso < 0);
 					printf("Digite a altura de %s: ", pessoas[x].nome);
 					do {
-                        scanf("%f",&pessoas[x].altura);
-                        getchar();
-                        if(pessoas[x].altura < 0)
-                            printf("Digite um valor válido: ");
+                        			scanf("%f",&pessoas[x].altura);
+                        			getchar();
+                        			if(pessoas[x].altura < 0)
+                           			 	printf("Digite um valor válido: ");
 					}while(pessoas[x].altura < 0);
 				}
 			break;
@@ -360,7 +364,7 @@ int main(){
 					printf("\nNome: %s", pessoas[x].nome);
 					printf("\nPeso: %.2f", pessoas[x].peso);
 					printf("\nAltura: %.2f\n", pessoas[x].altura);
-					}
+				}
 			break;
 
 			case 3:
@@ -376,8 +380,8 @@ int main(){
 				exit(0);
 			break;
 		}
-    printf("\n");
-	system("pause");
+    		printf("\n");
+		system("pause");
 	}
 }
 #endif//ex4
