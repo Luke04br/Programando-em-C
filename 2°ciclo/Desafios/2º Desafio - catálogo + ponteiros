@@ -80,8 +80,7 @@ void Listagem(FILE *catalogo, struct dados filme) {
     }
 }
 
-int Pesquisa(FILE *catalogo, struct dados filme) {
-    char pesquisa[21];
+int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
     int x;
 
     catalogo = fopen("catalogo.txt","r");
@@ -91,23 +90,81 @@ int Pesquisa(FILE *catalogo, struct dados filme) {
         return;
     }
     else{
-        printf("Digite o nome do filme pesquisado: ");
-        scanf("%s",&pesquisa);
         while(fread(&filme,sizeof(filme),1,catalogo)== 1){
-            for(x = 0; pesquisa[x] != '\0'; x++)
-                if(filme.nome[x]!= pesquisa[x])
+            for(x = 0; filmepesquisado[x] != '\0'; x++)
+                if(filme.nome[x]!= filmepesquisado[x])
                     break;
-            if(filme.nome[x]== '\0' && pesquisa[x] == '\0') {
+            if(filme.nome[x]== '\0' && filmepesquisado[x] == '\0') {
                 printf("Nome do filme: %s\n",filme.nome);
                 printf("Quantidade disponível: %d",filme.quantidade);
-            printf("\nPreço: %.2f\n",filme.preco);
-            printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+                printf("\nPreço: %.2f\n",filme.preco);
+                printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
             }
         }
     }
     fclose(catalogo);
 }
-void Estoque(FILE *catalogo, struct dados filme) {
+
+void PesquisaData(FILE *catalogo, struct dados filme) {
+    int ano, mes;
+
+    catalogo = fopen("catalogo.txt","r");
+
+    if(catalogo == NULL){
+        printf("Não foi possível abrir o catálogo");
+        return;
+    }
+
+    else{
+        printf("Insira o ano de lançamento do filme: ");
+        scanf("%d",&ano);
+        getchar();
+
+        printf("Insira o mês de lançamento do filme: ");
+        scanf("%d",&mes);
+        getchar();
+
+        while(fread(&filme,sizeof(filme),1,catalogo)== 1){
+            if(ano == filme.ano && mes == filme.mes) {
+                printf("\nNome do filme: %s\n",filme.nome);
+                printf("Quantidade disponível: %d",filme.quantidade);
+                printf("\nPreço: %.2f\n",filme.preco);
+                printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+            }
+        }
+    }
+    fclose(catalogo);
+}
+
+void FaixaPreco(FILE *catalogo, struct dados filme) {
+   float min, max;
+
+    catalogo = fopen("catalogo.txt","r");
+
+    if(catalogo == NULL){
+        printf("Não foi possível abrir o catálogo");
+        return;
+    }
+
+    else{
+        printf("Insira o preço mínimo: ");
+        scanf("%f",&min);
+        getchar();
+
+        printf("Insira o preço máximo: ");
+        scanf("%f",&max);
+        getchar();
+
+        while(fread(&filme,sizeof(filme),1,catalogo)== 1){
+            if(filme.preco > min && filme.preco < max) {
+                printf("\nNome do filme: %s\n",filme.nome);
+                printf("Quantidade disponível: %d",filme.quantidade);
+                printf("\nPreço: %.2f\n",filme.preco);
+                printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+            }
+        }
+    }
+    fclose(catalogo);
 }
 
 void ALteraPreco(FILE *catalogo, struct dados filme) {
@@ -126,6 +183,7 @@ void Saida() {
 int main(){
     int Resposta;
     struct dados filme;
+    char filmepesquisado[21];
     FILE *catalogo;
     setlocale(LC_ALL,"");
 
@@ -141,9 +199,34 @@ int main(){
             break;
 
             case 3:
-                Pesquisa(catalogo, filme);
+                printf("Insira o nome do filme que deseja consultar: ");
+                gets(filmepesquisado);
+                Pesquisa(catalogo, filme,filmepesquisado);
             break;
 
+            case 4:
+                PesquisaData(catalogo, filme);
+            break;
+
+            case 5:
+                FaixaPreco(catalogo, filme);
+            break;
+
+            case 6:
+
+            break;
+
+            case 7:
+
+            break;
+
+            case 8:
+
+            break;
+
+            case 9:
+
+            break;
             case 10:
                 Saida();
             break;
