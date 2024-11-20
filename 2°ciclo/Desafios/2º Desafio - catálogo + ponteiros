@@ -30,7 +30,7 @@ int Menu() {
     return Resposta;
 }
 
-void Entrada(FILE *catalogo, struct dados filme){
+void Entrada(FILE *catalogo, struct dados filme, char *filmepesquisado){
 
     catalogo = fopen("catalogo.txt", "a"); // para apenas adicionar
     if(catalogo == NULL){
@@ -81,7 +81,7 @@ void Listagem(FILE *catalogo, struct dados filme) {
 }
 
 int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
-    int x;
+    int x, pont = 0;
 
     catalogo = fopen("catalogo.txt","r");
 
@@ -91,9 +91,11 @@ int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
     }
     else{
         while(fread(&filme,sizeof(filme),1,catalogo)== 1){
-            for(x = 0; filmepesquisado[x] != '\0'; x++)
+            for(x = 0; filmepesquisado[x] != '\0'; x++) {
+                pont++;
                 if(filme.nome[x]!= filmepesquisado[x])
                     break;
+            }
             if(filme.nome[x]== '\0' && filmepesquisado[x] == '\0') {
                 printf("Nome do filme: %s\n",filme.nome);
                 printf("Quantidade disponível: %d",filme.quantidade);
@@ -103,6 +105,7 @@ int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
         }
     }
     fclose(catalogo);
+    return pont;
 }
 
 void PesquisaData(FILE *catalogo, struct dados filme) {
@@ -167,6 +170,9 @@ void FaixaPreco(FILE *catalogo, struct dados filme) {
     fclose(catalogo);
 }
 
+void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
+Pesquisa(catalogo, filme, filmepesquisado);
+}
 void ALteraPreco(FILE *catalogo, struct dados filme) {
 }
 
@@ -191,7 +197,9 @@ int main(){
         system("cls");
         switch(Menu()) {
             case 1:
-                Entrada(catalogo, filme);
+                printf("Insira o nome do filme: ");
+                gets(filmepesquisado);
+                Entrada(catalogo, filme, filmepesquisado);
             break;
 
             case 2:
@@ -213,7 +221,7 @@ int main(){
             break;
 
             case 6:
-
+                AlteraEstoque();
             break;
 
             case 7:
