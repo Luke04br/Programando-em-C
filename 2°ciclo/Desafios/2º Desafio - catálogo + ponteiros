@@ -31,8 +31,8 @@ int Menu() {
 }
 
 void Entrada(FILE *catalogo, struct dados filme, char *filmepesquisado){
-    int x, pesquisa;
-
+    int x;
+    long pesquisa;
     catalogo = fopen("catalogo.txt", "a"); // "a"para apenas adicionar
 
     if(catalogo == NULL){
@@ -40,39 +40,53 @@ void Entrada(FILE *catalogo, struct dados filme, char *filmepesquisado){
         fclose(catalogo);
         return;
     }
-    else{
-        fclose(catalogo);
-        printf("Digite o nome do filme: ");
-        do{
-            scanf("%s",filmepesquisado); // sem o "&", pois "pesquisa" já é um endereço
-            getchar();
-            pesquisa = Pesquisa(catalogo, filme, pesquisa);
-            if(pesquisa > -1){
-                printf("Esse filme já está cadastrado! Favor inserir outro: ");
-            }
-        }while(pesquisa > -1);
 
-        for(x = 0; filmepesquisado[x] != '\0'; x++)
-            filme.nome[x] = filmepesquisado[x];
+    printf("Digite o nome do filme: ");
+    do{
+        scanf("%s",filmepesquisado); // sem o "&", pois "pesquisa" já é um endereço
+        getchar();
+        pesquisa = Pesquisa(catalogo, filme, pesquisa);
+        if(pesquisa > -1){
+            printf("Esse filme já está cadastrado! Favor inserir outro: ");
+        }
+    }while(pesquisa > -1);
 
-        printf("Digite a quantidade disponivel: ");
+    for(x = 0; filmepesquisado[x] != '\0'; x++)
+        filme.nome[x] = filmepesquisado[x];
+
+    printf("Digite a quantidade disponivel: ");
+    do{
         scanf("%d",&filme.quantidade);
         getchar();
+        if(filme.quantidade < 0)
+            printf("A quantidade disponível deve ser maior ou igual a 0: ");
+    }while(filme.quantidade < 0);
 
-        printf("Digite o preço do filme: ");
+    printf("Digite o preço do filme: ");
+    do{
         scanf("%f",&filme.preco);
+        getchar();
+        if(filmes.preco <= 0)
+            printf("O preço do filme deve ser maior que 0: ");
+    }while(filmes.preco <= 0);
 
-        printf("Digite o mês de laçamento: ");
+    printf("Digite o mês de laçamento: ");
+    do{
         scanf("%d",&filme.mes);
+        getchar();
+        if(filme.mes > 12 || filme.mes < 1)
+            printf("O mês deve ser uma número entre 1 e 12: ");
+    }while(filme.mes > 12 || filme.mes < 1);
 
-        printf("Digite o ano de laçamento: ");
+    printf("Digite o ano de laçamento: ");
+    do{
         scanf("%d",&filme.ano);
-
-        catalogo = fopen("catalogo.txt", "a");
+        if(filme.ano < 1895)
+            printf("O ano deve ser igual ou superior a 1895: "); // data do primiero filme lançado
+    }while(filme.ano < 1895);
         fwrite(&filme, sizeof(filme),1,catalogo);
-        fclose(catalogo);
         printf("\nFilme cadastrado com sucesso!!!\n");
-    }
+        fclose(catalogo);
 }
 
 void Listagem(FILE *catalogo, struct dados filme) {
@@ -96,7 +110,7 @@ void Listagem(FILE *catalogo, struct dados filme) {
     }
 }
 
-int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
+long Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
     int x, posicao = 0;
     catalogo = fopen("catalogo.txt","r");
 
@@ -107,7 +121,7 @@ int Pesquisa(FILE *catalogo, struct dados filme, char *filmepesquisado) {
     }
 
     else{
-        while(fread(&filme,sizeof(filme),1,catalogo)== 1){
+        while(fread(&filme,sizeof(filme),1,catalogo) == 1){
             for(x = 0; filmepesquisado[x] != '\0'; x++)
                 if(filme.nome[x]!= filmepesquisado[x])
                     break;
@@ -202,6 +216,7 @@ void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
 
         if(Consulta == -1){
             printf("Filme não cadastrado!!!");
+            return
         }
 
         else {
