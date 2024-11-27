@@ -199,9 +199,9 @@ void FaixaPreco(FILE *catalogo, struct dados filme) {
 }
 
 void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
-    int Novaquant;
+    int Novaquant; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
-    long Consulta;
+    long Consulta; 
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
         if(Consulta == -1){
@@ -230,80 +230,107 @@ void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
         printf("\nQuantidade atualizada com sucesso!!!\n\n");
 }
 
-void ALteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado) {
-    int Consulta;
-    float Novopreco;
-
+void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
+    int Novopreco; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
+    long Consulta; 
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
-    catalogo = fopen("catalogo.txt", "r+");
 
-    if(catalogo == NULL){
-        printf("Não foi possível abrir o catálogo");
-        return;
-    }
+        if(Consulta == -1){
+            printf("Filme não cadastrado!!!");
+            return;
+        }
 
-    if(Consulta == -1){
-        printf("Filme não cadastrado!!!");
-        fclose(catalogo);
-    }
-
-    else {
-        fseek(catalogo, Consulta * sizeof(filme), SEEK_SET);
+        catalogo = fopen("catalogo.txt","r+");
+        if(catalogo == NULL){
+            printf("Não foi possível abrir o catálogo");
+            return;
+        }
+        Consulta*=sizeof(filme);
+        fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
-        printf("Insira o novo preco: ");
-        scanf("%f",&Novopreco);
+
+        printf("Insira o o novo preço: ");
+        scanf("%d",&Novopreco);
         getchar();
         filme.preco = Novopreco;
-        fseek(catalogo, Consulta * sizeof(filme), SEEK_SET);
-        fwrite(&filme, sizeof(filme),1,catalogo);
-    }
 
-    fclose(catalogo);
-    printf("\nPreço atualizado com sucesso!!!\n\n");
+        fseek(catalogo, Consulta, SEEK_SET);
+        fwrite(&filme, sizeof(filme),1,catalogo);
+
+        fclose(catalogo);
+        printf("\nPreço atualizado com sucesso!!!\n\n");
 }
 
-void AlteraTudo(FILE *catalogo, struct dados filme, char *filmepesquisado){
-    int Consulta, Novaquant;
-    float Novopreco;
-
+void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
+    int Novopreco; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
+    long Consulta; 
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
-    catalogo = fopen("catalogo.txt", "r+");
 
-    if(catalogo == NULL){
-        printf("Não foi possível abrir o catálogo");
-        return;
-    }
+        if(Consulta == -1){
+            printf("Filme não cadastrado!!!");
+            return;
+        }
 
-    if(Consulta == -1){
-        printf("Filme não cadastrado!!!");
-        fclose(catalogo);
-    }
-
-    else {
-        fseek(catalogo, Consulta * sizeof(filme), SEEK_SET);
+        catalogo = fopen("catalogo.txt","r+");
+        if(catalogo == NULL){
+            printf("Não foi possível abrir o catálogo");
+            return;
+        }
+        Consulta*=sizeof(filme);
+        fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
-        printf("Insira a nova quantidade: ");
-        scanf("%d",&Novaquant);
-        getchar();
-        filme.quantidade = Novaquant;
 
-        printf("Insira o novo preco: ");
-        scanf("%f",&Novopreco);
+        printf("Insira o o novo preço: ");
+        scanf("%d",&Novopreco);
         getchar();
         filme.preco = Novopreco;
-        fseek(catalogo, Consulta * sizeof(filme), SEEK_SET);
+
+        fseek(catalogo, Consulta, SEEK_SET);
         fwrite(&filme, sizeof(filme),1,catalogo);
 
-    }
-    fclose(catalogo);
-    printf("\nPreço atualizado com sucesso!!!\n\n");
+        fclose(catalogo);
+        printf("\n Quantidade e Preço atualizados com sucesso!!!\n\n");
 }
 
-void ExluiFilme(FILE *catalogo, struct dados filme){
+void ExcluirFilme(FILE *catalogo, struct dados filme, char *filmepesquisado){
+    printf("\n");
+    char Resposta;
+    long Consulta; 
+    Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
+        if(Consulta == -1){
+            printf("Filme não cadastrado!!!");
+            return;
+        }
+
+        catalogo = fopen("catalogo.txt","r+");
+        if(catalogo == NULL){
+            printf("Não foi possível abrir o catálogo");
+            return;
+        }
+
+        Consulta*=sizeof(filme);
+        fseek(catalogo, Consulta, SEEK_SET);
+        fread(&filme, sizeof(filme),1,catalogo);
+
+        printf("Essa ação não pode ser desfeita!");
+        printf("Você tem certeza que deseja excluir esse registro?(S/N): ");
+        Resposta = getchar();
+
+        if(Resposta == 's' || Resposta == 'S') {
+            filme.nome[0] = "*";
+            fseek(catalogo, Consulta, SEEK_SET);
+            fwrite(&filme, sizeof(filme),1,catalogo);
+            printf("\nFilme excluído com sucesso!!!\n\n");
+        }
+        else
+            printf("Retornando ao menu...\n\n");
+
+        fclose(catalogo);
 }
+
 void Saida() {
     printf("Fechando o menu...\n\n");
     exit(0);
@@ -341,22 +368,29 @@ int main(){
             break;
 
             case 6:
-                printf("Insira o nome do filme que deseja alterar a quantidade: ");
+                printf("Insira o nome do filme que deseja atualizar a quantidade em estoque: ");
                 gets(filmepesquisado);
                 AlteraEstoque(catalogo, filme, filmepesquisado);
             break;
-
+                
             case 7:
-
+                printf("Insira o nome do filme que deseja atualizar o preço: ");
+                gets(filmepesquisado);
+                AlteraPreco(catalogo, filme, filmepesquisado);
             break;
 
             case 8:
-
+                printf("Insira o nome do filme que deseja atualizar o preço e a quantidade: ");
+                gets(filmepesquisado);
+                AlteraTudo(catalogo, filme, filmepesquisado);
             break;
 
             case 9:
-
+                printf("Insira o nome do filme que deseja excluir: ");
+                gets(filmepesquisado);
+                void ExcluirFilme(catalogo, filme, filmepesquisado);
             break;
+
             case 10:
                 Saida();
             break;
