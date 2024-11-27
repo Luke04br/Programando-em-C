@@ -63,9 +63,9 @@ void Entrada(FILE *catalogo, struct dados filme, char *filmepesquisado){
     do{
         scanf("%f",&filme.preco);
         getchar();
-        if(filme.preco <= 0)
+        if(filme.preco < 0)
             printf("O preço do filme deve ser maior que 0: ");
-    }while(filme.preco <= 0);
+    }while(filme.preco < 0);
 
     printf("Digite o mês de laçamento: ");
     do{
