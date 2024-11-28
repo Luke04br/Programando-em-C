@@ -156,10 +156,11 @@ void PesquisaData(FILE *catalogo, struct dados filme) {
                 printf("Quantidade disponível: %d",filme.quantidade);
                 printf("\nPreço: %.2f\n",filme.preco);
                 printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+                cont++;
             }
         }
         if(cont == 0)
-            printf("Não há filmes cadastrados com essa data de lançamento");
+            printf("Não há filmes cadastrados com essa data de lançamento\n\n");
     }
     fclose(catalogo);
 }
@@ -201,11 +202,11 @@ void FaixaPreco(FILE *catalogo, struct dados filme) {
 void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
     int Novaquant; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
-    long Consulta; 
+    long Consulta;
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
         if(Consulta == -1){
-            printf("Filme não cadastrado!!!");
+            printf("Filme não cadastrado\n\n!!!");
             return;
         }
 
@@ -233,11 +234,11 @@ void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
 void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
     int Novopreco; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
-    long Consulta; 
+    long Consulta;
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
         if(Consulta == -1){
-            printf("Filme não cadastrado!!!");
+            printf("Filme não cadastrado!!!\n\n");
             return;
         }
 
@@ -262,14 +263,14 @@ void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
         printf("\nPreço atualizado com sucesso!!!\n\n");
 }
 
-void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
-    int Novopreco; // nunca colocar q quantidade = 10!!! dá Erro
+void AlteraTudo(FILE *catalogo, struct dados filme, char *filmepesquisado){
+    int Novopreco, Novaquant; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
-    long Consulta; 
+    long Consulta;
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
         if(Consulta == -1){
-            printf("Filme não cadastrado!!!");
+            printf("Filme não cadastrado!!!\n\n");
             return;
         }
 
@@ -297,11 +298,11 @@ void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
 void ExcluirFilme(FILE *catalogo, struct dados filme, char *filmepesquisado){
     printf("\n");
     char Resposta;
-    long Consulta; 
+    long Consulta;
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
 
         if(Consulta == -1){
-            printf("Filme não cadastrado!!!");
+            printf("Filme não cadastrado!!!\n\n");
             return;
         }
 
@@ -315,19 +316,18 @@ void ExcluirFilme(FILE *catalogo, struct dados filme, char *filmepesquisado){
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
 
-        printf("Essa ação não pode ser desfeita!");
-        printf("Você tem certeza que deseja excluir esse registro?(S/N): ");
+        printf("Essa ação não pode ser desfeita!\n");
+        printf("Você tem certeza que deseja excluir esse registro? (S/N): ");
         Resposta = getchar();
 
         if(Resposta == 's' || Resposta == 'S') {
-            filme.nome[0] = "*";
+            filme.nome[0] = '*'; // excluindo logicamente
             fseek(catalogo, Consulta, SEEK_SET);
             fwrite(&filme, sizeof(filme),1,catalogo);
             printf("\nFilme excluído com sucesso!!!\n\n");
         }
         else
             printf("Retornando ao menu...\n\n");
-
         fclose(catalogo);
 }
 
@@ -372,7 +372,7 @@ int main(){
                 gets(filmepesquisado);
                 AlteraEstoque(catalogo, filme, filmepesquisado);
             break;
-                
+
             case 7:
                 printf("Insira o nome do filme que deseja atualizar o preço: ");
                 gets(filmepesquisado);
@@ -388,7 +388,7 @@ int main(){
             case 9:
                 printf("Insira o nome do filme que deseja excluir: ");
                 gets(filmepesquisado);
-                void ExcluirFilme(catalogo, filme, filmepesquisado);
+                ExcluirFilme(catalogo, filme, filmepesquisado);
             break;
 
             case 10:
