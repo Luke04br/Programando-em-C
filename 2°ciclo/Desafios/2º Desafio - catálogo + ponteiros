@@ -143,13 +143,23 @@ void PesquisaData(FILE *catalogo, struct dados filme) {
     }
 
     printf("**--------------- Pesquisa Data ---------------**\n\n");
-    printf("Insira o ano de lançamento do filme: ");
-    scanf("%d",&ano);
-    getchar();
+    printf("Mês de lançamento: ");
+    do{
+        scanf("%d",&mes);
+        getchar();
+        if(mes > 12 || mes < 1)
+            printf("O mês deve ser um número entre 1 e 12: ");
+    }while(mes > 12 || mes < 1);
+    filme.mes = mes;
 
-    printf("Insira o mês de lançamento do filme: ");
-    scanf("%d",&mes);
-    getchar();
+    printf("Ano de lançamento: ");
+    do{
+        scanf("%d",&ano);
+        getchar();
+        if(ano > 12 || ano < 1)
+            printf("O ano deve ser maior que 1845: ");
+    }while(ano < 1845);
+    filme.ano = ano;
 
     while(fread(&filme,sizeof(filme),1,catalogo)== 1){
         if(ano == filme.ano && mes == filme.mes && filme.nome[0] != '*') {
@@ -179,12 +189,20 @@ void FaixaPreco(FILE *catalogo, struct dados filme) {
 
     printf("**--------------- Faixa de Preço ---------------**\n\n");
     printf("Insira o preço mínimo: ");
-    scanf("%f",&min);
-    getchar();
+    do {
+        scanf("%f",&min);
+        getchar();
+        if(min < 0)
+            printf("O valor mínimo de ser igual ou superior a 0: ");
+    }while(min < 0);
 
     printf("Insira o preço máximo: ");
-    scanf("%f",&max);
-    getchar();
+    do {
+        scanf("%f",&max);
+        getchar();
+        if(min >= max)
+            printf("O valor máximo deve ser maior que o valor mínimo: ");
+    }while(min >= max);
 
     while(fread(&filme,sizeof(filme),1,catalogo)== 1){
         if(filme.preco > min && filme.preco < max && filme.nome[0] != '*') {
@@ -224,8 +242,12 @@ void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
         fread(&filme, sizeof(filme),1,catalogo);
 
         printf("Insira a nova quantidade: ");
-        scanf("%d",&Novaquant);
-        getchar();
+        do{
+            scanf("%d",&Novaquant);
+            getchar();
+            if(Novaquant < 0)
+                printf("Digite um valor válido: ");
+        }while(Novaquant < 0);
         filme.quantidade = Novaquant;
 
         fseek(catalogo, Consulta, SEEK_SET);
@@ -256,9 +278,13 @@ void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
 
-        printf("Insira o o novo preço: ");
-        scanf("%d",&Novopreco);
-        getchar();
+        printf("Insira o novo preço: ");
+        do{
+            scanf("%f",&Novopreco);
+            getchar();
+            if(Novopreco < 0)
+                printf("O preço deve ser maior que 0: ");
+        }while(Novopreco < 0);
         filme.preco = Novopreco;
 
         fseek(catalogo, Consulta, SEEK_SET);
