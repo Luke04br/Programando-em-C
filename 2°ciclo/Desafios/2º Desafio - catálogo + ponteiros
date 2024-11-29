@@ -38,7 +38,7 @@ void Entrada(FILE *catalogo, struct dados filme, char *filmepesquisado){
         printf("Não foi possível abrir o catálogo");
         return;
     }
-
+    printf("**--------------- Entrada de dados ---------------**\n\n");
     printf("Digite o nome do filme: ");
     do{
         gets(filmepesquisado);// sem o "&", pois "filmepesquisado" já é um endereço
@@ -93,6 +93,7 @@ void Listagem(FILE *catalogo, struct dados filme) {
         printf("Não foi possível abrir o catálogo");
         return;
     }
+    printf("**--------------- Listagem ---------------**\n\n");
     while(fread(&filme, sizeof(filme),1,catalogo) == 1){
         if(filme.nome[0] != '*') {
             printf("Nome do filme: %s\n",filme.nome);
@@ -141,27 +142,28 @@ void PesquisaData(FILE *catalogo, struct dados filme) {
         return;
     }
 
-    else{
-        printf("Insira o ano de lançamento do filme: ");
-        scanf("%d",&ano);
-        getchar();
+    printf("**--------------- Pesquisa Data ---------------**\n\n");
+    printf("Insira o ano de lançamento do filme: ");
+    scanf("%d",&ano);
+    getchar();
 
-        printf("Insira o mês de lançamento do filme: ");
-        scanf("%d",&mes);
-        getchar();
+    printf("Insira o mês de lançamento do filme: ");
+    scanf("%d",&mes);
+    getchar();
 
-        while(fread(&filme,sizeof(filme),1,catalogo)== 1){
-            if(ano == filme.ano && mes == filme.mes && filme.nome[0] != '*') {
-                printf("\nNome do filme: %s\n",filme.nome);
-                printf("Quantidade disponível: %d",filme.quantidade);
-                printf("\nPreço: %.2f\n",filme.preco);
-                printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
-                cont++;
-            }
+    while(fread(&filme,sizeof(filme),1,catalogo)== 1){
+        if(ano == filme.ano && mes == filme.mes && filme.nome[0] != '*') {
+            printf("\nNome do filme: %s\n",filme.nome);
+            printf("Quantidade disponível: %d",filme.quantidade);
+            printf("\nPreço: %.2f\n",filme.preco);
+            printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+            cont++;
         }
-        if(cont == 0)
-            printf("Não há filmes cadastrados com essa data de lançamento\n\n");
     }
+
+    if(cont == 0)
+        printf("Não há filmes cadastrados com essa data de lançamento\n\n");
+
     fclose(catalogo);
 }
 
@@ -175,27 +177,28 @@ void FaixaPreco(FILE *catalogo, struct dados filme) {
         return;
     }
 
-    else{
-        printf("Insira o preço mínimo: ");
-        scanf("%f",&min);
-        getchar();
+    printf("**--------------- Faixa de Preço ---------------**\n\n");
+    printf("Insira o preço mínimo: ");
+    scanf("%f",&min);
+    getchar();
 
-        printf("Insira o preço máximo: ");
-        scanf("%f",&max);
-        getchar();
+    printf("Insira o preço máximo: ");
+    scanf("%f",&max);
+    getchar();
 
-        while(fread(&filme,sizeof(filme),1,catalogo)== 1){
-            if(filme.preco > min && filme.preco < max && filme.nome[0] != '*') {
-                printf("\nNome do filme: %s\n",filme.nome);
-                printf("Quantidade disponível: %d",filme.quantidade);
-                printf("\nPreço: %.2f\n",filme.preco);
-                printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
-                cont++;
-            }
+    while(fread(&filme,sizeof(filme),1,catalogo)== 1){
+        if(filme.preco > min && filme.preco < max && filme.nome[0] != '*') {
+            printf("\nNome do filme: %s\n",filme.nome);
+            printf("Quantidade disponível: %d",filme.quantidade);
+            printf("\nPreço: %.2f\n",filme.preco);
+            printf("Data de lançamento: %d/%d\n\n",filme.mes, filme.ano);
+            cont++;
         }
-        if(cont == 0)
-            printf("Não há filmes cadastrados nessa faixa de preço");
     }
+
+    if(cont == 0)
+        printf("Não há filmes cadastrados nessa faixa de preço");
+
     fclose(catalogo);
 }
 
@@ -215,6 +218,7 @@ void AlteraEstoque(FILE *catalogo, struct dados filme, char *filmepesquisado){
             printf("Não foi possível abrir o catálogo");
             return;
         }
+        printf("**--------------- Atualizando o Estoque ---------------**\n\n");
         Consulta*=sizeof(filme);
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
@@ -247,6 +251,7 @@ void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
             printf("Não foi possível abrir o catálogo");
             return;
         }
+        printf("**--------------- Alterar Preço ---------------**\n\n");
         Consulta*=sizeof(filme);
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
@@ -264,7 +269,8 @@ void AlteraPreco(FILE *catalogo, struct dados filme, char *filmepesquisado){
 }
 
 void AlteraTudo(FILE *catalogo, struct dados filme, char *filmepesquisado){
-    int Novopreco, Novaquant; // nunca colocar q quantidade = 10!!! dá Erro
+    int x;
+    float p; // nunca colocar q quantidade = 10!!! dá Erro
     printf("\n");
     long Consulta;
     Consulta = Pesquisa(catalogo, filme, filmepesquisado);
@@ -279,20 +285,62 @@ void AlteraTudo(FILE *catalogo, struct dados filme, char *filmepesquisado){
             printf("Não foi possível abrir o catálogo");
             return;
         }
+        printf("**--------------- Alterar todos os dados ---------------**\n\n");
         Consulta*=sizeof(filme);
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
 
-        printf("Insira o o novo preço: ");
-        scanf("%d",&Novopreco);
-        getchar();
-        filme.preco = Novopreco;
+        printf("Nome do Filme: ");
+        do{
+            gets(filmepesquisado);
+            x = Pesquisa(catalogo, filme, filmepesquisado);
+            if(x > -1)
+                printf("Esse filme já está cadastrado. Favor inserir outro: ");
+        }while(x > -1);
+        for(x = 0; filmepesquisado[x] != '\0'; x++)
+             filme.nome[x] = filmepesquisado[x];
+
+        printf("Quantidade: ");
+        do{
+            scanf("%d",&x);
+            getchar();
+            if(x < 0)
+                printf("Digite um valor válido: ");
+        }while(x < 0);
+        filme.quantidade = x;
+
+        printf("Preço: ");
+        do{
+            scanf("%f",&p);
+            getchar();
+            if(p < 0)
+                printf("Digite um valor válido: ");
+        }while(p < 0);
+        filme.preco = p;
+
+        printf("Mês de lançamento: ");
+        do{
+            scanf("%d",&x);
+            getchar();
+            if(x > 12 || x < 1)
+                printf("O mês deve ser um número entre 1 e 12: ");
+        }while(x > 12 || x < 1);
+        filme.mes = x;
+
+        printf("Ano de lançamento: ");
+        do{
+            scanf("%d",&x);
+            getchar();
+            if(x > 12 || x < 1)
+                printf("O ano deve ser maior que 1845: ");
+        }while(x < 1845);
+        filme.ano = x;
 
         fseek(catalogo, Consulta, SEEK_SET);
         fwrite(&filme, sizeof(filme),1,catalogo);
 
         fclose(catalogo);
-        printf("\n Quantidade e Preço atualizados com sucesso!!!\n\n");
+        printf("\nDados alterados com sucesso!!!\n\n");
 }
 
 void ExcluirFilme(FILE *catalogo, struct dados filme, char *filmepesquisado){
@@ -312,6 +360,7 @@ void ExcluirFilme(FILE *catalogo, struct dados filme, char *filmepesquisado){
             return;
         }
 
+        printf("**--------------- Excluir filme ---------------**\n\n");
         Consulta*=sizeof(filme);
         fseek(catalogo, Consulta, SEEK_SET);
         fread(&filme, sizeof(filme),1,catalogo);
@@ -354,6 +403,7 @@ int main(){
             break;
 
             case 3:
+                printf("**--------------- Pesquisa ---------------**\n\n");
                 printf("Insira o nome do filme que deseja consultar: ");
                 gets(filmepesquisado);
                 Pesquisa(catalogo, filme, filmepesquisado);
@@ -380,7 +430,7 @@ int main(){
             break;
 
             case 8:
-                printf("Insira o nome do filme que deseja atualizar o preço e a quantidade: ");
+                printf("Insira o nome do filme que deseja alterar todos os dados: ");
                 gets(filmepesquisado);
                 AlteraTudo(catalogo, filme, filmepesquisado);
             break;
