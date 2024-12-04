@@ -79,9 +79,9 @@ void Entrada(FILE *catalogo, struct dados *filme, char *filmepesquisado) {
     printf("Digite o ano de lançamento: ");
     do {
         scanf("%d", &filme->ano);
-        if (filme->ano < 1895)
-            printf("O ano deve ser igual ou superior a 1895: "); // data do primeiro filme lançado
-    } while (filme->ano < 1895);
+        if (filme->ano < 1888 )
+            printf("O ano deve ser igual ou superior a 1888 : "); // data do primeiro filme lançado
+    } while (filme->ano < 1888 );
     printf("\nFilme cadastrado com sucesso!!!\n");
 
     fwrite(filme, sizeof(struct dados), 1, catalogo);
@@ -157,9 +157,9 @@ void PesquisaData(FILE *catalogo, struct dados *filme) {
     do {
         scanf("%d", &ano);
         getchar();
-        if (ano < 1895)
-            printf("O ano deve ser igual ou superior a 1895: ");
-    } while (ano < 1895);
+        if (ano < 1888 )
+            printf("O ano deve ser igual ou superior a 1888 : ");
+    } while (ano < 1888 );
 
     while (fread(filme, sizeof(struct dados), 1, catalogo) == 1) {
         if (ano == filme->ano && mes == filme->mes && filme->nome[0] != '*') {
@@ -359,9 +359,9 @@ void AlteraTudo(FILE *catalogo, struct dados *filme, char *filmepesquisado) {
     do {
         scanf("%d", &x);
         getchar();
-        if (x < 1895)
-            printf("O ano deve ser igual ou superior a 1895: ");
-    } while (x < 1895);
+        if (x < 1888 )
+            printf("O ano deve ser igual ou superior a 1888 : ");
+    } while (x < 1888 );
     filme->ano = x;
 
     fseek(catalogo, Consulta, SEEK_SET);
