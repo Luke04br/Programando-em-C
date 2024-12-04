@@ -41,7 +41,7 @@ void Entrada(FILE *catalogo, struct dados *filme, char *filmepesquisado) {
     printf("**--------------- Entrada de dados ---------------**\n\n");
     printf("Digite o nome do filme: ");
     do {
-        gets(filmepesquisado); // sem o "&", pois "filmepesquisado" já é um endereço
+        gets(filmepesquisado);
         pesquisa = Pesquisa(catalogo, filme, filmepesquisado);
         if (pesquisa > -1) {
             printf("Esse filme já está cadastrado! Favor inserir outro: ");
