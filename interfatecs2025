@@ -1,1 +1,153 @@
+#include <stdio.h>
 
+int main(){
+int N, P;
+float T, U;
+
+    scanf("%d",&N);
+    int contador[N];
+
+    for(int i = 0; i < N; i++) {
+        scanf("%f ", &T);
+        scanf("%f ",&U);
+        scanf("%d",&P);
+        if(P == 1)
+            contador[i] = 0;
+
+        else {
+            if(T > 30 && U < 50)
+                contador[i] = 1;
+            else
+                contador[i] = 0;
+        }
+    }
+    for(int i = 0; i < N; i++) {
+        if(contador[i] == 0)
+            printf("NAO REGAR\n");
+        else
+            printf("REGAR\n");
+    }
+
+}
+
+#include <stdio.h>
+
+int main(){
+    int T, V, C, M, Total;
+
+    scanf("%d",&T);
+    scanf("%d",&V);
+    scanf("%d",&C);
+    scanf("%d",&M);
+
+    if(V > C && V > M)
+        Total = ((M*T) + ((M+C)*T))*2;
+
+    if(C > V && C > M)
+        Total = ((V*T) + (M*T))*2;
+
+    if(M > V && M > C)
+        Total = ((V*T) + ((V + C)*T)) * 2;
+
+    printf("%d\n", Total);
+
+}
+
+#include <stdio.h>
+
+int main(){
+    int T, V, C, M, Total;
+
+    scanf("%d",&T);
+    scanf("%d",&V);
+    scanf("%d",&C);
+    scanf("%d",&M);
+
+    if(V > C && V > M)
+        Total = ((M*T) + ((M+C)*T))*2;
+
+    if(C > V && C > M)
+        Total = ((V*T) + (M*T))*2;
+
+    if(M > V && M > C)
+        Total = ((V*T) + ((V + C)*T)) * 2;
+
+    printf("%d\n", Total);
+
+}
+
+#include <stdio.h>
+
+
+
+
+int main(){
+    int T, V, C, M, Total;
+
+    scanf("%d",&T);
+    scanf("%d",&V);
+    scanf("%d",&C);
+    scanf("%d",&M);
+
+    if(V > C && V > M && (C + M) < V){
+        Total = ((M*T) + ((M+C)*T))*2;
+    }else if(M > V && M > C && (V + C) < M){
+        Total = ((V*T) + ((V + C)*T)) * 2;
+    }else{
+        Total = ((V*T) + (M*T))*2;
+    }
+
+
+    printf("%d\n", Total);
+
+}
+
+#include <stdio.h>
+
+int main(){
+
+    int DO, DA, soma, quant;
+    scanf("%d", &quant);
+
+    int sorteios[quant];
+
+    for(int i = 0; i < quant; i++){
+        scanf("%d", &DO);
+        scanf("%d", &DA);
+        soma = DA + DO;
+
+    if(DA < DO){
+        if(soma > 40){
+            sorteios[i] = 0;//printf("DOROTHY DECIDE E A NONNA VAI");
+        }else{
+            sorteios[i] = 1; //printf("DOROTHY DECIDE");
+        }
+    }
+    else{
+        if(soma > 40){
+             sorteios[i] = 2; //printf("DAGMAR DECIDE E A NONNA VAI");
+        }else{
+             sorteios[i] = 3; //printf("DAGMAR DECIDE");
+        }
+    }
+    }
+    for(int i = 0; i < quant; i++){
+        switch(sorteios[i]){
+        case 0:
+            printf("DOROTHY DECIDE E A NONNA VAI\n");
+        break;
+
+        case 1:
+            printf("DOROTHY DECIDE\n");
+        break;
+
+        case 2:
+            printf("DAGMAR DECIDE E A NONNA VAI\n");
+        break;
+
+        case 3:
+            printf("DAGMAR DECIDE\n");
+        break;
+        }
+    }
+}
