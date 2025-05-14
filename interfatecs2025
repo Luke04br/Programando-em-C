@@ -1,5 +1,7 @@
 #include <stdio.h>
+#Define agricultor
 
+#ifdef agricultor
 int main(){
 int N, P;
 float T, U;
@@ -29,9 +31,9 @@ float T, U;
     }
 
 }
+#endif
 
-#include <stdio.h>
-
+#ifdef fonte
 int main(){
     int T, V, C, M, Total;
 
@@ -40,70 +42,20 @@ int main(){
     scanf("%d",&C);
     scanf("%d",&M);
 
-    if(V > C && V > M)
-        Total = ((M*T) + ((M+C)*T))*2;
+    if(V > C && V > M && V >(C + M))
+        Total = ((M*T) + ((M+C)*T)) * 2;
 
-    if(C > V && C > M)
-        Total = ((V*T) + (M*T))*2;
-
-    if(M > V && M > C)
+    if else(M > V && M > C && M > (V + C))
         Total = ((V*T) + ((V + C)*T)) * 2;
 
-    printf("%d\n", Total);
-
-}
-
-#include <stdio.h>
-
-int main(){
-    int T, V, C, M, Total;
-
-    scanf("%d",&T);
-    scanf("%d",&V);
-    scanf("%d",&C);
-    scanf("%d",&M);
-
-    if(V > C && V > M)
-        Total = ((M*T) + ((M+C)*T))*2;
-
-    if(C > V && C > M)
-        Total = ((V*T) + (M*T))*2;
-
-    if(M > V && M > C)
-        Total = ((V*T) + ((V + C)*T)) * 2;
+    else
+        Total = ((V*T) + (M*T)) * 2;
 
     printf("%d\n", Total);
-
 }
+#endif
 
-#include <stdio.h>
-
-
-
-
-int main(){
-    int T, V, C, M, Total;
-
-    scanf("%d",&T);
-    scanf("%d",&V);
-    scanf("%d",&C);
-    scanf("%d",&M);
-
-    if(V > C && V > M && (C + M) < V){
-        Total = ((M*T) + ((M+C)*T))*2;
-    }else if(M > V && M > C && (V + C) < M){
-        Total = ((V*T) + ((V + C)*T)) * 2;
-    }else{
-        Total = ((V*T) + (M*T))*2;
-    }
-
-
-    printf("%d\n", Total);
-
-}
-
-#include <stdio.h>
-
+#ifdef nonnavai
 int main(){
 
     int DO, DA, soma, quant;
@@ -151,9 +103,12 @@ int main(){
         }
     }
 }
+#endif //nonnavai
 
-#include <stdio.h>
+#ifdef suplemento
+#endif
 
+#ifdef pim
 int main(){
     int num, i;
 
@@ -165,17 +120,15 @@ int main(){
         else
         printf("%d ",i);
 }
-#include <stdio.h>
+#endif
 
+#ifdef falsoprimo
 int main(){
     int num, i, cont;
 
     do{
-
         scanf("%d", &num);
-
     }while(num < 0 && num >= 1000000)
-
 
     for(i = 0; i < n; i++){
         if(num % i == 0) {
@@ -185,8 +138,8 @@ int main(){
         }
     }
     if(cont == 3)
-        printf("sim");
+        printf("sim\n");
     else
-        printf("nao");
-
+        printf("nao\");n
 }
+#endif
