@@ -3,10 +3,13 @@ int main(){
     int num, i;
 
     scanf("%d", &num);
-
-    for(i = 1; i <  num + 1; i++)
+    for(i = 1; i <  num + 1; i++) {
+        if(i =! 1)
+            printf(" ");
         if(i % 4 == 0)
-        printf("pim ");
+            printf("pim");
         else
-        printf("%d ",i);
+            printf("%d",i);
+    }
+    printf("\n");
 }
