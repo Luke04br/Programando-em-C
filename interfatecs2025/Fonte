@@ -1,0 +1,19 @@
+int main(){
+    int T, V, C, M, Total;
+
+    scanf("%d",&T);
+    scanf("%d",&V);
+    scanf("%d",&C);
+    scanf("%d",&M);
+
+    if(V > C && V > M && V >(C + M))
+        Total = ((M*T) + ((M+C)*T)) * 2;
+
+    if else(M > V && M > C && M > (V + C))
+        Total = ((V*T) + ((V + C)*T)) * 2;
+
+    else
+        Total = ((V*T) + (M*T)) * 2;
+
+    printf("%d\n", Total);
+}
