@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main(){
-int N, P;
-float T, U;
+    int N, P;
+    float T, U;
 
     scanf("%d",&N);
     int contador[N];
