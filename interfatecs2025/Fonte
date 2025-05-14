@@ -7,10 +7,10 @@ int main(){
     scanf("%d",&C);
     scanf("%d",&M);
 
-    if(V > C && V > M && V >(C + M))
+    if(V > C && V > M && V > (C + M) )
         Total = ((M*T) + ((M+C)*T)) * 2;
 
-    if else(M > V && M > C && M > (V + C))
+    else if(M > V && M > C && M > (V + C) )
         Total = ((V*T) + ((V + C)*T)) * 2;
 
     else
