@@ -11,38 +11,36 @@ int main(){
         scanf("%d", &DA);
         soma = DA + DO;
 
-    if(DA < DO){
-        if(soma > 40){
-            sorteios[i] = 0;//printf("DOROTHY DECIDE E A NONNA VAI");
-        }else{
-            sorteios[i] = 1; //printf("DOROTHY DECIDE");
+        if(DA < DO){
+            if(soma > 40)
+                sorteios[i] = 0;//printf("DOROTHY DECIDE E A NONNA VAI");
+            else
+                sorteios[i] = 1; //printf("DOROTHY DECIDE");   
         }
-    }
-    else{
-        if(soma > 40){
-             sorteios[i] = 2; //printf("DAGMAR DECIDE E A NONNA VAI");
-        }else{
-             sorteios[i] = 3; //printf("DAGMAR DECIDE");
+        else{
+            if(soma > 40)
+                sorteios[i] = 2; //printf("DAGMAR DECIDE E A NONNA VAI");
+            else
+                sorteios[i] = 3; //printf("DAGMAR DECIDE");
         }
-    }
     }
     for(int i = 0; i < quant; i++){
         switch(sorteios[i]){
-        case 0:
-            printf("DOROTHY DECIDE E A NONNA VAI\n");
-        break;
+            case 0:
+                printf("DOROTHY DECIDE E A NONNA VAI\n");
+            break;
 
-        case 1:
-            printf("DOROTHY DECIDE\n");
-        break;
+            case 1:
+                printf("DOROTHY DECIDE\n");
+            break;
 
-        case 2:
-            printf("DAGMAR DECIDE E A NONNA VAI\n");
-        break;
+            case 2:
+                printf("DAGMAR DECIDE E A NONNA VAI\n");
+            break;
 
-        case 3:
-            printf("DAGMAR DECIDE\n");
-        break;
+            case 3:
+                printf("DAGMAR DECIDE\n");
+            break;
         }
     }
 }
