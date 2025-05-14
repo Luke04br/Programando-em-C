@@ -1,9 +1,8 @@
 #include <stdio.h>
 int main(){
-
     int DO, DA, soma, quant;
-    scanf("%d", &quant);
 
+    scanf("%d", &quant);
     int sorteios[quant];
 
     for(int i = 0; i < quant; i++){
