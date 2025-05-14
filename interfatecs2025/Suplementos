@@ -1,14 +1,13 @@
 #include <stdio.h>
 int main(){
-    int D, soma = 0, falta = 0;
+    int D, S, soma = 0, falta = 0;
 
     scanf("%d", &D);
-    int S[D];
     
     for(int i = 0; i < D; i++){
-        scanf("%d", &S[i]);
-        soma+= S[i];
-        if(S[i] < 0 && (soma + falta) < 0)
+        scanf("%d", &S);
+        soma+= S;
+        if(S < 0 && (soma + falta) < 0)
             falta = soma;
     }
     printf("%d\n",falta);
