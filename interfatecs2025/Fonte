@@ -8,13 +8,13 @@ int main(){
     scanf("%d",&M);
 
     if(V > C && V > M && V > (C + M) )
-        Total = ((M*T) + ((M+C)*T)) * 2;
+        Total = ((M * T) + ((M + C) * T)) * 2;
 
     else if(M > V && M > C && M > (V + C) )
-        Total = ((V*T) + ((V + C)*T)) * 2;
+        Total = ((V * T) + ((V + C) * T)) * 2;
 
     else
-        Total = ((V*T) + (M*T)) * 2;
+        Total = ((V * T) + (M * T)) * 2;
 
     printf("%d\n", Total);
 }
