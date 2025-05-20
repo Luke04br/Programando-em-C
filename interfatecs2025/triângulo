@@ -1,1 +1,11 @@
+#include <stdio.h>
+#include <math.h>
 
+int main(){
+    float angulo, ladoA, ladoB, anguloemRadianos;
+    
+    scanf("%f %f %f", &ladoA, &ladoB ,&angulo);
+    anguloemRadianos = angulo * M_PI / 180;
+    float resultado = (ladoA * ladoB * sin(anguloemRadianos))/2;
+    printf("%.4f\n",resultado);
+}
