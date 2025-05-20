@@ -10,7 +10,10 @@ int lucroMax(int T, int Q[], int L[], int n) {
     else {
         int incluir = L[n - 1] + lucroMax(T - Q[n - 1], Q, L, n);
         int excluir = lucroMax(T, Q, L, n - 1);
-        return (incluir > excluir) ? incluir : excluir;
+        if(incluir > excluir)
+            return incluir;
+        else 
+            return excluir;;
     }
 }
 
