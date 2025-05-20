@@ -1,28 +1,26 @@
 #include <stdio.h>
 
-int LucroMaximo(int T, int Q[], int L[],int i){
-    if(T == 0 || i == 0)
+int lucroMax(int T, int Q[], int L[], int n) {
+    if (n == 0 || T == 0) 
         return 0;
-    if(Q[i] > T)
-        return Lucro(T, Q, L, i - 1);
+
+    if (Q[n - 1] > T) 
+        return lucroMax(T, Q, L, n - 1);
+                
     else {
-        int incluir = L[i] + Lucro(T - Q[i], Q, L, i - 1);
-        int naoIncluir = Lucro(T, Q, L, i - 1);
-        
-    if (incluir > naoIncluir) 
-        return incluir; 
-    else 
-        return naoIncluir;
-        }
+        int incluir = L[n - 1] + lucroMax(T - Q[n - 1], Q, L, n);
+        int excluir = lucroMax(T, Q, L, n - 1);
+        return (incluir > excluir) ? incluir : excluir;
+    }
 }
 
-int main(){
-    int T /*tecido total*/, Q[3] /*Tecido por peça*/, L[3] /*Valor da peça*/, n = sizeof(Q) / sizeof(Q[0]);
-    
+int main() {
+    int L[3], Q[3], T, n = 3;
+
     scanf("%d", &T);
-    for(int i = 0; i < 3; i++){
+        
+    for(int i = 0; i < 3; i++)
         scanf("%d %d", &Q[i], &L[i]);
-    }
-    printf("%d",n);
-    printf("%d",LucroMaximo(T, Q, L, n));  
+            
+    printf("%d\n", lucroMax(T, Q, L, n));
 }
